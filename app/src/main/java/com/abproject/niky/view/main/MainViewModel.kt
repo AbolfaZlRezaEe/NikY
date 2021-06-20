@@ -1,4 +1,4 @@
-package com.abproject.niky.view.home
+package com.abproject.niky.view.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val productRepository: ProductRepository,
 ) : NikyViewModel() {
 

@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.home.HomeActivity">
+    tools:context=".view.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="سلام دنیا"
-        android:textAppearance="?textAppearanceHeadline6" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navigationContainer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
+        app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/mainNavigationView"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        app:menu="@menu/main_navigation_menu"/>
+        app:menu="@menu/main_navigation_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
