@@ -15,5 +15,13 @@
         <item name="android:fontFamily">@font/primary_extra_bold</item>
     </style>
 
+    <!-- Niky Search EditText Style -->
+    <style name="NikySearchEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/background_search_edittext</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="android:textColorHint">?android:textColorSecondary</item>
+    </style>
+
 
 </resources>

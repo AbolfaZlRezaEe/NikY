@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.databinding.FragmentCartBinding
 import com.abproject.niky.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : NikyFragment() {
 
     private var _binding: FragmentProfileBinding? = null

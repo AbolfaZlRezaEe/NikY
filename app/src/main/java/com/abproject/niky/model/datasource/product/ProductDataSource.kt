@@ -6,7 +6,9 @@ import io.reactivex.Single
 
 interface ProductDataSource {
 
-    fun getProducts(): Single<List<Product>>
+    fun getProductsBySort(
+        sort: Int,
+    ): Single<List<Product>>
 
     fun getFavoriteProducts(): Single<List<Product>>
 

@@ -3,4 +3,10 @@
     <string name="home">خانه</string>
     <string name="cart">سبد خرید</string>
     <string name="profile">اطلاعات کاربری</string>
+    <string name="searchHint">جستجو</string>
+    <string name="viewAll">مشاهده همه</string>
+    <string name="latest">جدید ترین</string>
+    <string name="popular">محبوب ترین</string>
+    <string name="PriceAsc">گران ترین</string>
+    <string name="PriceDesc">ارزان ترین</string>
 </resources>

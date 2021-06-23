@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 class ProductLocalDataSource : ProductDataSource {
 
-    override fun getProducts(): Single<List<Product>> {
+    override fun getProductsBySort(sort: Int): Single<List<Product>> {
         TODO("Not yet implemented")
     }
 

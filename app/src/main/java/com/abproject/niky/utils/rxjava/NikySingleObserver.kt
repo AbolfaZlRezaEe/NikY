@@ -5,6 +5,14 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
+/**
+ * this is a custom class for SingleObserver.
+ * this class responsible for handling Errors and
+ * canceling the requests.
+ * take a compositeDisposable and adding disposable in
+ * onSubscribe method for canceling request if needed.
+ * Under construction...
+ */
 abstract class NikySingleObserver<T>(
     private val compositeDisposable: CompositeDisposable,
 ) : SingleObserver<T> {
@@ -15,6 +23,5 @@ abstract class NikySingleObserver<T>(
 
     override fun onError(e: Throwable) {
         Timber.d(e.toString())
-        TODO("this method will be developing...")
     }
 }

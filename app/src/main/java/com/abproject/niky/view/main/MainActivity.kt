@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.abproject.niky.R
 import com.abproject.niky.databinding.ActivityMainBinding
@@ -28,6 +29,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * functionality of this method is an copy of NavigationAdvancedSample.
+     * please read and use this repository for own project that use bottom
+     * navigation view.
+     * https://github.com/android/architecture-components-samples/tree/main/NavigationAdvancedSample
+     */
     private fun setupBottomNavigationView() {
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.navigationContainer
@@ -38,11 +45,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.cartFragment, R.id.profileFragment)
+            setOf(R.id.home, R.id.cart, R.id.profile)
         )
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration)
     }
 }
