@@ -48,6 +48,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    //RecyclerView Library
+    def recyclerview_version="1.2.1"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
     //Room Database Library:
     def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
@@ -85,9 +89,9 @@ dependencies {
     //Retrofit Library
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    //Rxjava with Retrofit
+    //Rxjava2 with Retrofit
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    //Rxjava with GsonConverter
+    //Retrofit with GsonConverter
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     //Logging interceptor

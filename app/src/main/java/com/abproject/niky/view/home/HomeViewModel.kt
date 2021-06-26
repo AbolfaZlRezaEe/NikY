@@ -33,6 +33,12 @@ class HomeViewModel @Inject constructor(
     val getBanners: LiveData<List<Banner>> get() = _getBanners
 
     /**
+     * this variable save viewPager height ans reloaded again when
+     * fragment restarted.
+     */
+    var viewPagerHeight: Float = 0F
+
+    /**
      * i call this method in init block because in the
      * initialize view model we need to receive banners
      * for showing in home Fragment. so don't need call

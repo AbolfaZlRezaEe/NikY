@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import androidx.viewpager.widget.ViewPager
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.databinding.FragmentHomeBinding
 import com.abproject.niky.model.model.Banner
@@ -60,6 +62,22 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
         super.onViewCreated(view, savedInstanceState)
 
         listeningToObservers()
+        recyclerViewsStateRestoration()
+    }
+
+    /**
+     * recyclerViewsStateRestoration function managing all
+     * recyclerViews states in fragment.
+     */
+    private fun recyclerViewsStateRestoration() {
+        latestAdapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+        popularAdapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+        priceAscAdapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+        priceDescAdapter.stateRestorationPolicy =
+            RecyclerView.Adapter.StateRestorationPolicy.ALLOW
     }
 
     //listening to all observers that this class needs.
@@ -86,9 +104,10 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
         }
 
         homeViewModel.getBanners.observe(viewLifecycleOwner) { response ->
-            initializeBannerSlider(response)
+            initializeBannerSlider(response, homeViewModel.viewPagerHeight)
         }
     }
+
 
     /**
      * this is so bad method. i have no choice right now.
@@ -136,33 +155,38 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
 
     private fun initializeBannerSlider(
         banners: List<Banner>,
+        height: Float,
     ) {
         //create an instance of BannerSliderAdapter
         val bannerSliderAdapter = BannerSliderAdapter(this, banners)
         //set BannerSliderAdapter for own viewPager
         binding.bannerSliderViewPagerHome.adapter = bannerSliderAdapter
-        calculateBannerSliderHeight()
+        calculateBannerSliderHeight(height)
         //set slider indicator for viewPager
         binding.sliderIndicatorHome.setViewPager2(binding.bannerSliderViewPagerHome)
     }
 
-    private fun calculateBannerSliderHeight() {
+    private fun calculateBannerSliderHeight(
+        height: Float,
+    ) {
         //calculate the height of viewPager
         val viewPagerHeight = ((binding.bannerSliderViewPagerHome.measuredWidth
                 - convertDpToPixel(32f, requireContext())) * 173) / 328
         //take layoutParams for set a new Height in viewPager
         val layoutParams = binding.bannerSliderViewPagerHome.layoutParams
-        layoutParams.height = viewPagerHeight.toInt()
+        //checking height isn't 0
+        //if 0, then calculate height with normal way
+        if (height > 0)
+            layoutParams.height = height.toInt()
+        else {
+            layoutParams.height = viewPagerHeight.toInt()
+            //then pass that to the viewPagerHeight variable in viewModel for saving
+            homeViewModel.viewPagerHeight = viewPagerHeight
+        }
         //set new layoutParams for viewPager
         binding.bannerSliderViewPagerHome.layoutParams = layoutParams
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        //for calculate again banner slider height
-        calculateBannerSliderHeight()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
