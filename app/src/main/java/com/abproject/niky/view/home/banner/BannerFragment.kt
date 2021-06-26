@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.components.imageview.ImageLoadingService
-import com.abproject.niky.customview.NikyImageView
 import com.abproject.niky.databinding.FragmentBannerBinding
 import com.abproject.niky.model.model.Banner
 import com.abproject.niky.utils.Variables.EXTRA_KEY_BANNER_DATA

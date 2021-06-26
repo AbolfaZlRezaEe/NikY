@@ -8,7 +8,7 @@
     android:layout_marginEnd="4dp"
     android:paddingBottom="12dp">
 
-    <com.abproject.niky.customview.NikyImageView
+    <com.abproject.niky.customview.imageview.NikyImageView
         android:id="@+id/productImageViewItem"
         android:layout_width="0dp"
         android:layout_height="189dp"

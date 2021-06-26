@@ -1,6 +1,6 @@
 package com.abproject.niky.components.imageview
 
-import com.abproject.niky.customview.NikyImageView
+import com.abproject.niky.customview.imageview.NikyImageView
 import com.facebook.drawee.view.SimpleDraweeView
 import java.lang.IllegalStateException
 

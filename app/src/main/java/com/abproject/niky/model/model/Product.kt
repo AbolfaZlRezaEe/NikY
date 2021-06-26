@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.abproject.niky.utils.Variables.PRODUCT_TABLE_NAME
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -13,8 +14,10 @@ data class Product(
     @PrimaryKey
     val id: Int,
     val image: String,
-    val previous_price: Int,
-    val price: Int,
+    @SerializedName("previous_price")
+    val previousPrice: Int,
+    @SerializedName("price")
+    val currentPrice: Int,
     val status: Int,
     val title: String,
 ) : Parcelable

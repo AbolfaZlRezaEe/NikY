@@ -1,5 +1,6 @@
 package com.abproject.niky.view.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +13,18 @@ import com.abproject.niky.databinding.FragmentHomeBinding
 import com.abproject.niky.model.model.Banner
 import com.abproject.niky.model.model.Product
 import com.abproject.niky.utils.UtilFunctions.convertDpToPixel
+import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_DATA
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_LATEST
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_POPULAR
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_PRICE_ASC
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_PRICE_DESC
 import com.abproject.niky.view.home.banner.BannerSliderAdapter
+import com.abproject.niky.view.productdetail.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : NikyFragment() {
+class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -97,6 +100,12 @@ class HomeFragment : NikyFragment() {
         sortBy: Int,
         products: List<Product>,
     ) {
+        //initialize all productListeners for onClickListener
+        latestAdapter.productListener = this
+        popularAdapter.productListener = this
+        priceAscAdapter.productListener = this
+        priceDescAdapter.productListener = this
+
         when (sortBy) {
             PRODUCT_SORT_LATEST -> {
                 latestAdapter.setProducts(products)
@@ -158,5 +167,12 @@ class HomeFragment : NikyFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onProductClick(product: Product) {
+        //start activity and pass product to ProductDetailActivity
+        startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
+            putExtra(EXTRA_KEY_PRODUCT_DATA, product)
+        })
     }
 }

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.abproject.niky.R
 import com.abproject.niky.components.imageview.ImageLoadingService
-import com.abproject.niky.customview.NikyImageView
+import com.abproject.niky.customview.imageview.NikyImageView
 import com.abproject.niky.model.model.Product
 import com.abproject.niky.utils.EnglishConverter
 import com.abproject.niky.utils.UtilFunctions.formatPrice
@@ -21,6 +21,9 @@ class ProductHomeAdapter @Inject constructor(
 ) : RecyclerView.Adapter<ProductHomeAdapter.ProductHomeViewHolder>() {
 
     private val products = ArrayList<Product>()
+
+    //for on click listeners on products
+    var productListener: ProductListener? = null
 
     fun setProducts(
         products: List<Product>,
@@ -47,18 +50,24 @@ class ProductHomeAdapter @Inject constructor(
             product: Product,
         ) {
             productTitle.text = product.title
+
             productPreviousPrice.text =
-                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.price).toString())
+                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.currentPrice).toString())
+
             productCurrentPrice.text =
-                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previous_price).toString())
+                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousPrice).toString())
             imageLoadingService.loadImage(productImageView, product.image)
+
             productPreviousPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+
             productFavorite.setOnClickListener {
 
             }
-            itemView.implementSpringAnimationTrait()
-            itemView.setOnClickListener {
 
+            itemView.implementSpringAnimationTrait()
+
+            itemView.setOnClickListener {
+                productListener?.onProductClick(product)
             }
         }
     }
@@ -79,5 +88,9 @@ class ProductHomeAdapter @Inject constructor(
 
     override fun getItemCount(): Int {
         return products.size
+    }
+
+    interface ProductListener {
+        fun onProductClick(product: Product)
     }
 }

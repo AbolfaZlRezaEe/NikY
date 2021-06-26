@@ -9,4 +9,8 @@
     <string name="popular">محبوب ترین</string>
     <string name="PriceAsc">گران ترین</string>
     <string name="PriceDesc">ارزان ترین</string>
+    <string name="comments">نظرات کاربران</string>
+    <string name="insertComment">افزودن نظر</string>
+    <string name="viewAllComments">مشاهده همه نظرات</string>
+    <string name="addToCart">اضافه کردن به سبد خرید</string>
 </resources>

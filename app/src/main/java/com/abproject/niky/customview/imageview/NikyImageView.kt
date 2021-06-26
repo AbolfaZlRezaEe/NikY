@@ -1,4 +1,4 @@
-package com.abproject.niky.customview
+package com.abproject.niky.customview.imageview
 
 import android.content.Context
 import android.util.AttributeSet

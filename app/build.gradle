@@ -68,6 +68,7 @@ dependencies {
     //ViewModel Component for Injection with Hilt
     def hilt_viewmodel = "1.0.0-alpha03"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel"
+    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodel"
 
     //Ktx library
     def kotlin_ktx = "1.3.0"
