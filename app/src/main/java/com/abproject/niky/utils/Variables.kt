@@ -5,7 +5,7 @@ object Variables {
     //base url use for creating retrofit instance
     const val BASE_URL = "http://expertdevelopers.ir/api/v1/"
 
-    //database name use for creating RoomDatabase instance.
+    //database name use for creating room database instance.
     const val DATABASE_NAME = "niky_db"
 
     //name of the Product table in database.
@@ -15,6 +15,7 @@ object Variables {
     const val EXTRA_KEY_BANNER_DATA = "bannerData"
     const val EXTRA_KEY_PRODUCT_DATA = "productData"
     const val EXTRA_KEY_PRODUCT_ID_DATA = "productIdData"
+    const val EXTRA_KEY_PRODUCT_SORT = "productSort"
 
     //all static functions can use in sending request for
     //receive Product list from server
@@ -23,7 +24,12 @@ object Variables {
     const val PRODUCT_SORT_PRICE_DESC = 2
     const val PRODUCT_SORT_PRICE_ASC = 3
 
-    //static variables for comment Adapter
+    //static variables for comment adapter
     const val SHOW_EVERY_THINGS = 125
     const val SHOW_THREE_COMMENTS = 126
+
+    //view types for product adapter
+    const val PRODUCT_VIEW_TYPE_LARGE = 4
+    const val PRODUCT_VIEW_TYPE_ROUNDED = 5
+    const val PRODUCT_VIEW_TYPE_GRID = 6
 }

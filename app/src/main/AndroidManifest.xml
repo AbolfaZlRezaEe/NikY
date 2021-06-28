@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NikY"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.comment.CommentActivity"></activity>
+        <activity android:name=".view.productlist.ProductListActivity"></activity>
+        <activity android:name=".view.comment.CommentActivity" />
         <activity android:name=".view.productdetail.ProductDetailActivity" />
         <activity android:name=".view.main.MainActivity">
             <intent-filter>

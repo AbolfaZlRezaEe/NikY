@@ -1,7 +1,7 @@
 package com.abproject.niky.di
 
 import com.abproject.niky.components.imageview.ImageLoadingService
-import com.abproject.niky.view.home.ProductHomeAdapter
+import com.abproject.niky.view.common.ProductAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ object AdapterModule {
     @Provides
     fun provideProductHomeAdapter(
         imageLoadingService: ImageLoadingService,
-    ): ProductHomeAdapter {
-        return ProductHomeAdapter(imageLoadingService)
+    ): ProductAdapter {
+        return ProductAdapter(imageLoadingService)
     }
 }

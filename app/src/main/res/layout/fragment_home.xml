@@ -83,15 +83,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
-                    android:text="@string/latest"
+                    android:text="@string/sortLatestProduct"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/latestViewAllButtonHome"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/latestViewAllButtonHome"
                     android:layout_gravity="end|center_vertical"
                     android:text="@string/viewAll" />
             </FrameLayout>
@@ -114,15 +114,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
-                    android:text="@string/popular"
+                    android:text="@string/sortPopularProduct"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/popularViewAllButtonHome"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/popularViewAllButtonHome"
                     android:layout_gravity="end|center_vertical"
                     android:text="@string/viewAll" />
             </FrameLayout>
@@ -145,15 +145,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
-                    android:text="@string/PriceDesc"
+                    android:text="@string/sortPriceHighToLowProduct"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/priceDescViewAllButtonHome"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/priceDescViewAllButtonHome"
                     android:layout_gravity="end|center_vertical"
                     android:text="@string/viewAll" />
             </FrameLayout>
@@ -176,15 +176,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
-                    android:text="@string/PriceAsc"
+                    android:text="@string/sortPriceLowToHighProduct"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/priceAscViewAllButtonHome"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/priceAscViewAllButtonHome"
                     android:layout_gravity="end|center_vertical"
                     android:text="@string/viewAll" />
             </FrameLayout>

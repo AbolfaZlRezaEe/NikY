@@ -9,24 +9,26 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import androidx.viewpager.widget.ViewPager
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.databinding.FragmentHomeBinding
 import com.abproject.niky.model.model.Banner
 import com.abproject.niky.model.model.Product
 import com.abproject.niky.utils.UtilFunctions.convertDpToPixel
 import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_DATA
+import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_SORT
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_LATEST
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_POPULAR
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_PRICE_ASC
 import com.abproject.niky.utils.Variables.PRODUCT_SORT_PRICE_DESC
+import com.abproject.niky.view.common.ProductAdapter
 import com.abproject.niky.view.home.banner.BannerSliderAdapter
 import com.abproject.niky.view.productdetail.ProductDetailActivity
+import com.abproject.niky.view.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
+class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -38,16 +40,16 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
      * for each of the lists.
      */
     @Inject
-    lateinit var popularAdapter: ProductHomeAdapter
+    lateinit var popularAdapter: ProductAdapter
 
     @Inject
-    lateinit var latestAdapter: ProductHomeAdapter
+    lateinit var latestAdapter: ProductAdapter
 
     @Inject
-    lateinit var priceAscAdapter: ProductHomeAdapter
+    lateinit var priceAscAdapter: ProductAdapter
 
     @Inject
-    lateinit var priceDescAdapter: ProductHomeAdapter
+    lateinit var priceDescAdapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,6 +65,7 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
 
         listeningToObservers()
         recyclerViewsStateRestoration()
+        initializeViewAllButtons()
     }
 
     /**
@@ -78,6 +81,32 @@ class HomeFragment : NikyFragment(), ProductHomeAdapter.ProductListener {
             RecyclerView.Adapter.StateRestorationPolicy.ALLOW
         priceDescAdapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.ALLOW
+    }
+
+    private fun initializeViewAllButtons() {
+        binding.latestViewAllButtonHome.setOnClickListener {
+            startProductListActivity(PRODUCT_SORT_LATEST)
+        }
+
+        binding.popularViewAllButtonHome.setOnClickListener {
+            startProductListActivity(PRODUCT_SORT_POPULAR)
+        }
+
+        binding.priceAscViewAllButtonHome.setOnClickListener {
+            startProductListActivity(PRODUCT_SORT_PRICE_ASC)
+        }
+
+        binding.priceDescViewAllButtonHome.setOnClickListener {
+            startProductListActivity(PRODUCT_SORT_PRICE_DESC)
+        }
+    }
+
+    private fun startProductListActivity(
+        productSort: Int,
+    ) {
+        startActivity(Intent(requireContext(), ProductListActivity::class.java).apply {
+            putExtra(EXTRA_KEY_PRODUCT_SORT, productSort)
+        })
     }
 
     //listening to all observers that this class needs.

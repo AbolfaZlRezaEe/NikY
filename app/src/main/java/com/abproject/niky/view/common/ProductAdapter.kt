@@ -1,4 +1,4 @@
-package com.abproject.niky.view.home
+package com.abproject.niky.view.common
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -13,17 +13,39 @@ import com.abproject.niky.customview.imageview.NikyImageView
 import com.abproject.niky.model.model.Product
 import com.abproject.niky.utils.EnglishConverter
 import com.abproject.niky.utils.UtilFunctions.formatPrice
+import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_GRID
+import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_LARGE
+import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_ROUNDED
 import com.abproject.niky.utils.implementSpringAnimationTrait
 import javax.inject.Inject
 
-class ProductHomeAdapter @Inject constructor(
+class ProductAdapter @Inject constructor(
     private val imageLoadingService: ImageLoadingService,
-) : RecyclerView.Adapter<ProductHomeAdapter.ProductHomeViewHolder>() {
+) : RecyclerView.Adapter<ProductAdapter.ProductHomeViewHolder>() {
 
     private val products = ArrayList<Product>()
 
+    //for handling which view type show
+    private var viewType: Int = PRODUCT_VIEW_TYPE_ROUNDED
+
     //for on click listeners on products
     var productListener: ProductListener? = null
+
+    /**
+     * this function take a viewType as input
+     * and set that viewType in Adapter.
+     */
+    fun setViewType(
+        viewType: Int,
+    ) {
+        this.viewType = viewType
+        notifyDataSetChanged()
+    }
+
+    //get viewType
+    fun getViewType(): Int {
+        return viewType
+    }
 
     fun setProducts(
         products: List<Product>,
@@ -72,14 +94,35 @@ class ProductHomeAdapter @Inject constructor(
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return viewType
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHomeViewHolder {
         return ProductHomeViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_product,
+                getLayoutResId(viewType),
                 parent,
                 false
             )
         )
+    }
+
+    /**
+     * getLayoutResId take viewType variable in onCreateViewHolder and
+     * check it, then return a resource layout that contain a sort in
+     * product list.
+     * Note: if viewType isn't valid, this function throwing an Exception!
+     */
+    private fun getLayoutResId(
+        viewType: Int,
+    ): Int {
+        return when (viewType) {
+            PRODUCT_VIEW_TYPE_LARGE -> R.layout.item_product_large
+            PRODUCT_VIEW_TYPE_ROUNDED -> R.layout.item_product_rounded
+            PRODUCT_VIEW_TYPE_GRID -> R.layout.item_product_grid
+            else -> throw IllegalStateException("ProductAdapter (debug)-> entered View Type isn't valid!")
+        }
     }
 
     override fun onBindViewHolder(holder: ProductHomeViewHolder, position: Int) {
