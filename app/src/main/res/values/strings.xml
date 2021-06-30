@@ -15,6 +15,10 @@
     <string name="sortPopularProduct">پربازدیدترین</string>
     <string name="sortPriceHighToLowProduct">گران ترین</string>
     <string name="sortPriceLowToHighProduct">ارزان ترین</string>
+    <string name="timeoutExceptionMessage">دریافت اطلاعات با مشکل روبرو شد!</string>
+    <string name="snackbarExceptionMessage">خطای نامشخص</string>
+    <string name="tryAgain">تلاش مجدد</string>
+    <string name="addToCartSuccessfully">محصول با موفقیت به سبد خرید اضافه شد!</string>
 
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>

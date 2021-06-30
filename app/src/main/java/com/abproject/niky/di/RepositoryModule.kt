@@ -2,9 +2,12 @@ package com.abproject.niky.di
 
 import com.abproject.niky.model.apiservice.NikyApiService
 import com.abproject.niky.model.datasource.banner.BannerRemoteDataSource
+import com.abproject.niky.model.datasource.cart.CartRemoteDataSource
 import com.abproject.niky.model.datasource.comment.CommentRemoteDataSource
 import com.abproject.niky.model.datasource.product.ProductLocalDataSource
 import com.abproject.niky.model.datasource.product.ProductRemoteDataSource
+import com.abproject.niky.model.repository.cart.CartRepository
+import com.abproject.niky.model.repository.cart.CartRepositoryImpl
 import com.abproject.niky.model.repository.comment.CommentRepository
 import com.abproject.niky.model.repository.comment.CommentRepositoryImpl
 import com.abproject.niky.model.repository.product.ProductRepository
@@ -44,6 +47,16 @@ object RepositoryModule {
     ): CommentRepository {
         return CommentRepositoryImpl(
             CommentRemoteDataSource(apiService)
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideCartRepository(
+        apiService: NikyApiService,
+    ): CartRepository {
+        return CartRepositoryImpl(
+            CartRemoteDataSource(apiService)
         )
     }
 }

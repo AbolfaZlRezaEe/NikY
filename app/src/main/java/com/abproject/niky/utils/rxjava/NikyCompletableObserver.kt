@@ -1,8 +1,10 @@
 package com.abproject.niky.utils.rxjava
 
+import com.abproject.niky.utils.exceptionhandler.NikyExceptionMapper
 import io.reactivex.CompletableObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 
 /**
  * this is a custom class for CompletableObserver.
@@ -10,7 +12,6 @@ import io.reactivex.disposables.Disposable
  * canceling the requests.
  * take a compositeDisposable and adding disposable in
  * onSubscribe method for canceling request if needed.
- * Under construction...
  */
 abstract class NikyCompletableObserver(
     private val compositeDisposable: CompositeDisposable,
@@ -21,6 +22,7 @@ abstract class NikyCompletableObserver(
     }
 
     override fun onError(e: Throwable) {
-        TODO("this method will be developing...")
+        //handling error that receive from CompletableObservers.
+        EventBus.getDefault().post(NikyExceptionMapper.map(e))
     }
 }

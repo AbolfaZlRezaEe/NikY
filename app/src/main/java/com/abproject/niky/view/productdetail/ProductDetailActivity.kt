@@ -1,5 +1,6 @@
 package com.abproject.niky.view.productdetail
 
+import com.abproject.niky.R
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.abproject.niky.utils.EnglishConverter
 import com.abproject.niky.utils.UtilFunctions.formatPrice
 import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_ID_DATA
 import com.abproject.niky.utils.Variables.SHOW_THREE_COMMENTS
+import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.comment.CommentActivity
 import com.abproject.niky.view.comment.CommentAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,6 +79,16 @@ class ProductDetailActivity : NikyActivity() {
             this.finish()
         }
 
+        //initialize add to cart button clicked.
+        binding.addToCartExtendedFabProductDetail.setOnClickListener {
+            productDetailViewModel.addProductToCart()
+                .subscribe(object :
+                    NikyCompletableObserver(productDetailViewModel.compositeDisposable) {
+                    override fun onComplete() {
+                        showSnackBar(getString(R.string.addToCartSuccessfully))
+                    }
+                })
+        }
     }
 
     private fun setupCommentSection(

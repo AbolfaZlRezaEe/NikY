@@ -32,4 +32,12 @@ object Variables {
     const val PRODUCT_VIEW_TYPE_LARGE = 4
     const val PRODUCT_VIEW_TYPE_ROUNDED = 5
     const val PRODUCT_VIEW_TYPE_GRID = 6
+
+    //exception json objects keys
+    const val EXCEPTION_MESSAGE_KEY = "message"
+
+    //json keys for sending parameters to the server
+    const val JSON_PRODUCT_ID = "product_id"
+    const val JSON_CART_ITEM_ID = "cart_item_id"
+    const val JSON_COUNT = "count"
 }

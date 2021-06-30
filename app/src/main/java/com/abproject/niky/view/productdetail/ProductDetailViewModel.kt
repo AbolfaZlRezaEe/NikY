@@ -5,17 +5,20 @@ import androidx.lifecycle.SavedStateHandle
 import com.abproject.niky.base.NikyViewModel
 import com.abproject.niky.model.model.Comment
 import com.abproject.niky.model.model.Product
+import com.abproject.niky.model.repository.cart.CartRepository
 import com.abproject.niky.model.repository.comment.CommentRepository
 import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_DATA
 import com.abproject.niky.utils.asyncNetworkRequest
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.Completable
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val commentRepository: CommentRepository,
+    private val cartRepository: CartRepository,
 ) : NikyViewModel() {
 
     private val _getProduct = MutableLiveData<Product>()
@@ -49,6 +52,17 @@ class ProductDetailViewModel @Inject constructor(
                     _getComments.postValue(response)
                 }
             })
+    }
+
+    /**
+     * this function convert single request to the
+     * completable request and then sending request to the
+     * server for adding product tp the cart.
+     */
+     fun addProductToCart(): Completable {
+        return cartRepository.addProductToCart(_getProduct.value!!.id)
+            .asyncNetworkRequest()
+            .ignoreElement()
     }
 
 }

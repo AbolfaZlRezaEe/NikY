@@ -1,4 +1,4 @@
-package com.abproject.niky.customview.toolbar
+package com.abproject.niky.customview.toolbarview
 
 import android.content.Context
 import android.util.AttributeSet

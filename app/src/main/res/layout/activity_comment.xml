@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.abproject.niky.customview.toolbar.NikyToolbar
+        <com.abproject.niky.customview.toolbarview.NikyToolbar
             android:id="@+id/toolbarCommentList"
             android:layout_width="match_parent"
             android:layout_height="56dp"

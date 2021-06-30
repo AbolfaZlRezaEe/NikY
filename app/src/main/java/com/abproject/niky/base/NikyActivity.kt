@@ -1,10 +1,12 @@
 package com.abproject.niky.base
 
 import android.content.Context
+import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
+import org.greenrobot.eventbus.EventBus
 
 abstract class NikyActivity : AppCompatActivity(), NikyView {
 
@@ -28,4 +30,16 @@ abstract class NikyActivity : AppCompatActivity(), NikyView {
 
     override val viewContext: Context?
         get() = this
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //connect eventbus to the view
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //disconnect eventbus from the view
+        EventBus.getDefault().unregister(this)
+    }
 }

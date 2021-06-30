@@ -1,8 +1,10 @@
 package com.abproject.niky.utils.rxjava
 
+import com.abproject.niky.utils.exceptionhandler.NikyExceptionMapper
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
 /**
@@ -11,7 +13,6 @@ import timber.log.Timber
  * canceling the requests.
  * take a compositeDisposable and adding disposable in
  * onSubscribe method for canceling request if needed.
- * Under construction...
  */
 abstract class NikySingleObserver<T>(
     private val compositeDisposable: CompositeDisposable,
@@ -22,6 +23,8 @@ abstract class NikySingleObserver<T>(
     }
 
     override fun onError(e: Throwable) {
-        Timber.d(e.toString())
+        //handling error that receive from SingleObservers.
+        EventBus.getDefault().post(NikyExceptionMapper.map(e))
     }
+
 }
