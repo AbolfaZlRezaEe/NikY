@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.abproject.niky.R
-import com.abproject.niky.model.model.Comment
-import com.abproject.niky.utils.Variables.SHOW_EVERY_THINGS
+import com.abproject.niky.model.dataclass.Comment
+import com.abproject.niky.utils.other.Variables.SHOW_EVERY_THINGS
 
 class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 

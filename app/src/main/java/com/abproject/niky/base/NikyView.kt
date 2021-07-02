@@ -2,14 +2,14 @@ package com.abproject.niky.base
 
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.niky.R
 import com.abproject.niky.utils.exceptionhandler.ExceptionType
-import com.abproject.niky.model.model.NikyException
+import com.abproject.niky.model.dataclass.NikyException
 import com.abproject.niky.view.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
 import org.greenrobot.eventbus.Subscribe
@@ -30,6 +30,7 @@ interface NikyView {
      */
     fun showProgressbar(
         mustShow: Boolean,
+        mustBackgroundTransparent: Boolean = false,
     ) {
         rootView?.let { coordinatorLayout ->
             viewContext?.let { context ->
@@ -42,6 +43,8 @@ interface NikyView {
                         )
                     coordinatorLayout.addView(loadingView)
                 }
+                if (mustBackgroundTransparent)
+                    loadingView?.setBackgroundResource(android.R.color.transparent)
                 loadingView?.visibility = if (mustShow) View.VISIBLE else View.GONE
             }
         }

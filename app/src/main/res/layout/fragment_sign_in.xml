@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/customWidthNikyLogo"
+                    android:layout_height="@dimen/customHeightNikyLogo"
+                    app:srcCompat="@drawable/ic_nike_logo"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normalMargin"
+                    android:text="@string/signInToAccount"
+                    android:textAppearance="?textAppearanceHeadline5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/lowNormalMargin"
+                    android:alpha="0.8"
+                    android:text="@string/enterEmailAndPassword"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <EditText
+                    android:id="@+id/emailEditTextSignIn"
+                    style="@style/NikyAuthEditTextStyle"
+                    android:layout_width="@dimen/authEditTextWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/highNormalMargin"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+
+                <EditText
+                    android:id="@+id/passwordEditTextSignIn"
+                    style="@style/NikyAuthEditTextStyle"
+                    android:layout_width="@dimen/authEditTextWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/highNormalMargin"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/singInMaterialButton"
+                    android:layout_width="@dimen/customWidthAuthButton"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normalMargin"
+                    android:gravity="center"
+                    android:minHeight="@dimen/customAuthButtonMinHeight"
+                    android:text="@string/singIn" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/normalMargin"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.4"
+                    android:text="@string/doHaveNotAnAccount"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signUpLinkMaterialButtonSignIn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/primary_bold"
+                    android:text="@string/pleaseSignUp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

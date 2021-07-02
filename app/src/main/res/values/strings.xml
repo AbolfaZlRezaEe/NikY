@@ -16,9 +16,28 @@
     <string name="sortPriceHighToLowProduct">گران ترین</string>
     <string name="sortPriceLowToHighProduct">ارزان ترین</string>
     <string name="timeoutExceptionMessage">دریافت اطلاعات با مشکل روبرو شد!</string>
+    <string name="errorReceivingInformation">خطایی در دریافت اطلاعات به وجود آمد!</string>
     <string name="snackbarExceptionMessage">خطای نامشخص</string>
     <string name="tryAgain">تلاش مجدد</string>
     <string name="addToCartSuccessfully">محصول با موفقیت به سبد خرید اضافه شد!</string>
+    <string name="signInToAccount">ورود به حساب کاربری</string>
+    <string name="enterEmailAndPassword">لطفا ایمیل و رمز عبور خود را وارد کنید</string>
+    <string name="email">ایمیل</string>
+    <string name="password">رمز عبور</string>
+    <string name="singIn">ورود</string>
+    <string name="doHaveNotAnAccount">حساب کاربری ندارید؟</string>
+    <string name="pleaseSignUp">ثبت نام کنید</string>
+    <string name="signUpToAccount">ایجاد حساب کاربری</string>
+    <string name="signUp">ثبت نام</string>
+    <string name="doYouHaveAccount">قبلا ثبت نام کرده اید؟</string>
+    <string name="pleaseSignIn">وارد حساب کاربری خود شوید</string>
+    <string name="pleaseEnterEmail">لطفا ایمیل خود را وارد نمایید!</string>
+    <string name="pleaseEnterValidEmail">لطفا ایمیل معتبر وارد نمایید!</string>
+    <string name="pleaseEnterPassword">لطفا رمز عبور خود را وارد نمایید!</string>
+    <string name="signInSuccessfully">ورود شما با موفقیت انجام شد!</string>
+    <string name="signUpSuccessfully">ثبت نام شما با موفقیت انجام شد!</string>
+    <string name="signUpUsernameErrorMessage">این نام کاربری قبلا ثبت شده است!</string>
+    <string name="onlyPasswordsLongerThan8CharIsValid">رمز عبور شما باید بیشتر از هشت رقم باشد!</string>
 
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>

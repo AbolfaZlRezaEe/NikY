@@ -17,33 +17,28 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/largeIconSize"
                 android:layout_gravity="center_horizontal"
                 app:srcCompat="@drawable/ic_nike_logo" />
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp">
+                android:layout_height="@dimen/editTextsHeight"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginEnd="@dimen/normalMargin">
 
                 <EditText
                     android:id="@+id/searchEditTextHome"
                     style="@style/NikySearchEditTextStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:ellipsize="end"
-                    android:gravity="right|center_vertical"
-                    android:hint="@string/searchHint"
-                    android:lines="1"
-                    android:paddingStart="48dp"
-                    android:paddingEnd="16dp" />
+                    android:layout_height="@dimen/editTextsHeight"
+                    android:hint="@string/searchHint" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/normalMargin"
                     app:srcCompat="@drawable/ic_search_24dp" />
 
             </FrameLayout>
@@ -56,7 +51,7 @@
                     android:id="@+id/bannerSliderViewPagerHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="@dimen/normalMargin" />
 
                 <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                     android:id="@+id/slider_indicator_home"
@@ -76,8 +71,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,14 +96,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -132,14 +127,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,14 +158,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,8 +189,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp" />
+                android:paddingStart="@dimen/normalMargin"
+                android:paddingEnd="@dimen/normalMargin" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

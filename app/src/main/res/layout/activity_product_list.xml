@@ -12,17 +12,17 @@
         <com.abproject.niky.customview.toolbarview.NikyToolbar
             android:id="@+id/toolbarViewProductList"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/toolbarHeight"
             app:niky_toolbar_text="@string/productList" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dividerSize"
             android:background="?dividerColor" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_height="@dimen/toolbarHeight">
 
             <View
                 android:id="@+id/chooseSortViewProductList"
@@ -38,7 +38,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/normalMargin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/sortByTextViewProductList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/normalMargin"
                 android:text="@string/sortBy"
                 android:textAppearance="?textAppearanceBody1"
                 app:layout_constraintBottom_toTopOf="@+id/productSortTextViewProductList"
@@ -60,8 +60,8 @@
                 android:id="@+id/productSortTextViewProductList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginTop="@dimen/littleMargin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="12sp"
@@ -72,8 +72,8 @@
 
             <ImageView
                 android:id="@+id/viewTypeImageViewProductList"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
                 android:background="?selectableItemBackground"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -83,7 +83,7 @@
 
             <View
                 android:id="@+id/view"
-                android:layout_width="1dp"
+                android:layout_width="@dimen/dividerSize"
                 android:layout_height="0dp"
                 android:background="?dividerColor"
                 app:layout_constraintBottom_toBottomOf="parent"

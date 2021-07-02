@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.abproject.niky">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,12 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NikY"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".view.auth.AuthActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".view.main.MainActivity" />
+        <activity
+            android:name=".view.auth.AuthActivity"
+            android:theme="@style/Theme.NikY.Auth" />
         <activity android:name=".view.productlist.ProductListActivity" />
         <activity android:name=".view.comment.CommentActivity" />
         <activity android:name=".view.productdetail.ProductDetailActivity" />
-        <activity android:name=".view.main.MainActivity">
+        <activity android:name=".view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

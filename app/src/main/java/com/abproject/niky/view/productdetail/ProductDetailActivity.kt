@@ -13,12 +13,12 @@ import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.customview.scrollview.ObservableScrollViewCallbacks
 import com.abproject.niky.customview.scrollview.ScrollState
 import com.abproject.niky.databinding.ActivityProductDetailBinding
-import com.abproject.niky.model.model.Comment
-import com.abproject.niky.model.model.Product
-import com.abproject.niky.utils.EnglishConverter
-import com.abproject.niky.utils.UtilFunctions.formatPrice
-import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_ID_DATA
-import com.abproject.niky.utils.Variables.SHOW_THREE_COMMENTS
+import com.abproject.niky.model.dataclass.Comment
+import com.abproject.niky.model.dataclass.Product
+import com.abproject.niky.utils.other.EnglishConverter
+import com.abproject.niky.utils.other.UtilFunctions.formatPrice
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_ID_DATA
+import com.abproject.niky.utils.other.Variables.SHOW_THREE_COMMENTS
 import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.comment.CommentActivity
 import com.abproject.niky.view.comment.CommentAdapter
@@ -66,11 +66,15 @@ class ProductDetailActivity : NikyActivity() {
             product.image
         )
         binding.productTitleTextViewProductDetail.text = product.title
+
         binding.productPreviousPriceTextViewProductDetail.text =
             EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousPrice).toString())
+
         binding.productPreviousPriceTextViewProductDetail.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+
         binding.productCurrentPriceTextViewProductDetail.text =
             EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.currentPrice).toString())
+
         binding.toolbarTitleTextViewProductDetail.text = product.title
 
         initializeProductImageViewAnimation()

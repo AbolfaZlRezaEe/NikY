@@ -1,13 +1,13 @@
 package com.abproject.niky.model.datasource.cart
 
 import com.abproject.niky.model.apiservice.NikyApiService
-import com.abproject.niky.model.model.AddToCart
-import com.abproject.niky.model.model.Cart
-import com.abproject.niky.model.model.CartItemCount
-import com.abproject.niky.model.model.Message
-import com.abproject.niky.utils.Variables.JSON_CART_ITEM_ID
-import com.abproject.niky.utils.Variables.JSON_COUNT
-import com.abproject.niky.utils.Variables.JSON_PRODUCT_ID
+import com.abproject.niky.model.dataclass.AddToCart
+import com.abproject.niky.model.dataclass.Cart
+import com.abproject.niky.model.dataclass.CartItemCount
+import com.abproject.niky.model.dataclass.Message
+import com.abproject.niky.utils.other.Variables.JSON_CART_ITEM_ID_KEY
+import com.abproject.niky.utils.other.Variables.JSON_COUNT_KEY
+import com.abproject.niky.utils.other.Variables.JSON_PRODUCT_ID_KEY
 import com.google.gson.JsonObject
 import io.reactivex.Single
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class CartRemoteDataSource @Inject constructor(
         return apiService.addProductToCart(
             JsonObject().apply {
                 //add product id into json body and send to the server
-                addProperty(JSON_PRODUCT_ID, productId)
+                addProperty(JSON_PRODUCT_ID_KEY, productId)
             }
         )
     }
@@ -37,7 +37,7 @@ class CartRemoteDataSource @Inject constructor(
         return apiService.removeProductFromCart(
             JsonObject().apply {
                 //add cart item id into json body and send to the server
-                addProperty(JSON_CART_ITEM_ID, cartItemId)
+                addProperty(JSON_CART_ITEM_ID_KEY, cartItemId)
             }
         )
     }
@@ -48,9 +48,9 @@ class CartRemoteDataSource @Inject constructor(
     ): Single<AddToCart> {
         return apiService.changeProductCount(
             JsonObject().apply {
-                addProperty(JSON_CART_ITEM_ID, cartItemId)
+                addProperty(JSON_CART_ITEM_ID_KEY, cartItemId)
                 //add count into json body and send to the server
-                addProperty(JSON_COUNT, count)
+                addProperty(JSON_COUNT_KEY, count)
             }
         )
     }

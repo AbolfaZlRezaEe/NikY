@@ -10,6 +10,13 @@
         <!-- Surface brand color -->
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
+        <!-- Background brand color -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black</item>
+        <!-- Icon color -->
+        <item name="iconColor">@color/black</item>
+        <!-- ProgressBar color -->
+        <item name="progressBarColor">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/gray</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
@@ -40,5 +47,18 @@
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
 
+    </style>
+
+    <!-- Auth Theme -->
+    <style name="Theme.NikY.Auth" parent="Theme.NikY">
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="progressBarColor">@color/white</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="snackbarStyle">@style/NikyAuthSnackBarStyle</item>
+        <item name="materialButtonStyle">@style/NikyAuthMaterialButtonStyle</item>
     </style>
 </resources>

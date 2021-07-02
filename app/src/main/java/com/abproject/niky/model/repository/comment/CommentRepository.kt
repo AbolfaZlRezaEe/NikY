@@ -1,6 +1,6 @@
 package com.abproject.niky.model.repository.comment
 
-import com.abproject.niky.model.model.Comment
+import com.abproject.niky.model.dataclass.Comment
 import io.reactivex.Single
 
 interface CommentRepository {

@@ -1,12 +1,15 @@
 package com.abproject.niky.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
+import at.favre.lib.armadillo.Armadillo
 import com.abproject.niky.components.imageview.FrescoImageViewService
 import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.model.apiservice.NikyApiService
 import com.abproject.niky.model.database.NikyDatabase
-import com.abproject.niky.utils.Variables.DATABASE_NAME
+import com.abproject.niky.utils.other.Variables.DATABASE_NAME
+import com.abproject.niky.utils.other.Variables.SHARED_PREFERENCES_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,5 +52,15 @@ object ApplicationModule {
     @Provides
     fun provideImageLoadingService(): ImageLoadingService {
         return FrescoImageViewService()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSecureSharedPrefs(
+        @ApplicationContext context: Context,
+    ): SharedPreferences {
+        return Armadillo.create(context, SHARED_PREFERENCES_NAME)
+            .encryptionFingerprint(context)
+            .build()
     }
 }

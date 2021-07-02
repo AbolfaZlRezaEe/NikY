@@ -37,9 +37,9 @@
                     android:id="@+id/productTitleTextViewProductDetail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/normalMargin"
+                    android:layout_marginTop="@dimen/normalMargin"
+                    android:layout_marginEnd="@dimen/normalMargin"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:textAppearance="?textAppearanceHeadline6"
@@ -52,8 +52,8 @@
                     android:id="@+id/productPreviousPriceTextViewProductDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="@dimen/normalMargin"
+                    android:layout_marginEnd="@dimen/normalMargin"
                     android:textAppearance="?textAppearanceBody2"
                     android:textColor="?android:textColorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
                     android:id="@+id/productCurrentPriceTextViewProductDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="@dimen/littleMargin"
                     android:textAppearance="?textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="@+id/productPreviousPriceTextViewProductDetail"
                     app:layout_constraintTop_toBottomOf="@+id/productPreviousPriceTextViewProductDetail"
@@ -74,18 +74,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginTop="@dimen/normalMargin"
+                android:layout_marginEnd="@dimen/normalMargin"
                 android:text=" این کتونی شدیدا برای دویدن و راه رفتن مناسب هست و تقریبا. هیچ فشار مخربی رو نمیذارد به پا و زانوان شما انتقال داده شود"
                 android:textAppearance="?textAppearanceBody2" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:layout_marginTop="@dimen/normalMargin"
+                android:paddingStart="@dimen/normalPadding"
+                android:paddingEnd="@dimen/normalPadding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,9 +109,9 @@
                 android:id="@+id/commentsRecyclerViewProductDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginEnd="@dimen/normalMargin"
+                android:layout_marginBottom="@dimen/normalMargin"
                 android:background="@drawable/background_comment"
                 android:clipToPadding="false" />
 
@@ -120,9 +120,9 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginEnd="@dimen/normalMargin"
+                android:layout_marginBottom="@dimen/normalMargin"
                 android:text="@string/viewAllComments"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -137,19 +137,19 @@
 
         <ImageView
             android:id="@+id/backImageViewProductDetail"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
             android:layout_gravity="center_vertical|start"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/normalMargin"
             android:background="?selectableItemBackground"
             app:srcCompat="@drawable/ic_back_24dp" />
 
         <ImageView
             android:id="@+id/favoriteImageViewProductDetail"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/normalIconSize"
+            android:layout_height="@dimen/normalIconSize"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/normalMargin"
             android:background="?selectableItemBackground"
             app:srcCompat="@drawable/ic_favorites_24dp" />
     </FrameLayout>
@@ -167,8 +167,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginStart="@dimen/extraMargin"
+            android:layout_marginEnd="@dimen/extraMargin"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?textAppearanceHeadline6"
@@ -180,9 +180,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="@dimen/veryHighNormalMargin"
+        android:layout_marginEnd="@dimen/veryHighNormalMargin"
+        android:layout_marginBottom="@dimen/normalMargin"
         android:gravity="center"
         android:text="@string/addToCart" />
 

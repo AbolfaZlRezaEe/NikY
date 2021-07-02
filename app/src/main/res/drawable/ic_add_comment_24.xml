@@ -1,10 +1,18 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
+    android:width="@dimen/normalIconSize"
+    android:height="@dimen/normalIconSize"
     android:viewportWidth="24"
-    android:viewportHeight="24"
-    android:tint="?attr/colorControlNormal">
-  <path
-      android:fillColor="@android:color/white"
-      android:pathData="M20,2L4,2c-1.1,0 -2,0.9 -2,2v12c0,1.1 0.9,2 2,2h14l4,4L22,4c0,-1.1 -0.9,-2 -2,-2zM17,14L7,14c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1h10c0.55,0 1,0.45 1,1s-0.45,1 -1,1zM17,11L7,11c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1h10c0.55,0 1,0.45 1,1s-0.45,1 -1,1zM17,8L7,8c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1h10c0.55,0 1,0.45 1,1s-0.45,1 -1,1z"/>
+    android:viewportHeight="24">
+    <path
+        android:fillColor="?iconColor"
+        android:fillType="evenOdd"
+        android:pathData="M7.6952,13.3909C7.0505,13.3909 6.5267,12.8671 6.5267,12.2223C6.5267,11.5794 7.0505,11.0556 7.6952,11.0556C8.34,11.0556 8.8638,11.5794 8.8638,12.2223C8.8638,12.8671 8.34,13.3909 7.6952,13.3909ZM12.2381,13.3909C11.5933,13.3909 11.0695,12.8671 11.0695,12.2223C11.0695,11.5794 11.5933,11.0556 12.2381,11.0556C12.8829,11.0556 13.4067,11.5794 13.4067,12.2223C13.4067,12.8671 12.8829,13.3909 12.2381,13.3909ZM15.6125,12.2223C15.6125,12.8671 16.1363,13.3909 16.7811,13.3909C17.4258,13.3909 17.9496,12.8671 17.9496,12.2223C17.9496,11.5794 17.4258,11.0556 16.7811,11.0556C16.1363,11.0556 15.6125,11.5794 15.6125,12.2223Z" />
+    <path
+        android:fillColor="#00000000"
+        android:fillType="evenOdd"
+        android:pathData="M12.02,2C6.21,2 2,6.7461 2,12.015C2,13.6975 2.49,15.4291 3.35,17.0115C3.51,17.2729 3.53,17.6024 3.42,17.9139L2.75,20.1572C2.6,20.698 3.06,21.0976 3.57,20.9374L5.59,20.3375C6.14,20.1572 6.57,20.3866 7.08,20.698C8.54,21.5583 10.36,22 12,22C16.96,22 22,18.1642 22,11.985C22,6.656 17.7,2 12.02,2Z"
+        android:strokeWidth="1.5"
+        android:strokeColor="?iconColor"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
 </vector>

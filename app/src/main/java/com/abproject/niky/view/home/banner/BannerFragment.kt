@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.databinding.FragmentBannerBinding
-import com.abproject.niky.model.model.Banner
-import com.abproject.niky.utils.Variables.EXTRA_KEY_BANNER_DATA
+import com.abproject.niky.model.dataclass.Banner
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_BANNER_DATA
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.IllegalStateException
 import javax.inject.Inject

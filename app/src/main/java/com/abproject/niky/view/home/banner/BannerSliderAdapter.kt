@@ -1,10 +1,9 @@
 package com.abproject.niky.view.home.banner
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.abproject.niky.model.model.Banner
-import com.abproject.niky.utils.Variables.EXTRA_KEY_BANNER_DATA
+import com.abproject.niky.model.dataclass.Banner
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_BANNER_DATA
 
 class BannerSliderAdapter(
     fragment: Fragment,

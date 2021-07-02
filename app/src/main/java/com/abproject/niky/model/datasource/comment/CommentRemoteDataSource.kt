@@ -1,7 +1,7 @@
 package com.abproject.niky.model.datasource.comment
 
 import com.abproject.niky.model.apiservice.NikyApiService
-import com.abproject.niky.model.model.Comment
+import com.abproject.niky.model.dataclass.Comment
 import io.reactivex.Single
 import javax.inject.Inject
 

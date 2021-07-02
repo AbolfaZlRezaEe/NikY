@@ -5,13 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.abproject.niky.R
 import com.abproject.niky.base.NikyViewModel
-import com.abproject.niky.model.model.Product
+import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.model.repository.product.ProductRepository
-import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_SORT
-import com.abproject.niky.utils.asyncNetworkRequest
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_SORT
+import com.abproject.niky.utils.other.asyncNetworkRequest
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

@@ -3,15 +3,15 @@
 
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <corners android:radius="23dp" />
-            <stroke android:width="1dp" android:color="?colorOnSurface" />
+            <corners android:radius="@dimen/customRadiusSearchEditText" />
+            <stroke android:width="@dimen/dividerSize" android:color="?colorOnSurface" />
         </shape>
     </item>
 
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="23dp" />
-            <stroke android:width="1dp" android:color="?dividerColor" />
+            <corners android:radius="@dimen/customRadiusSearchEditText" />
+            <stroke android:width="@dimen/dividerSize" android:color="?dividerColor" />
         </shape>
     </item>
 

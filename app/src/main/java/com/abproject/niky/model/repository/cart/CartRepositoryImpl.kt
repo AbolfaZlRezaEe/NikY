@@ -1,10 +1,10 @@
 package com.abproject.niky.model.repository.cart
 
 import com.abproject.niky.model.datasource.cart.CartDataSource
-import com.abproject.niky.model.model.AddToCart
-import com.abproject.niky.model.model.Cart
-import com.abproject.niky.model.model.CartItemCount
-import com.abproject.niky.model.model.Message
+import com.abproject.niky.model.dataclass.AddToCart
+import com.abproject.niky.model.dataclass.Cart
+import com.abproject.niky.model.dataclass.CartItemCount
+import com.abproject.niky.model.dataclass.Message
 import io.reactivex.Single
 import javax.inject.Inject
 

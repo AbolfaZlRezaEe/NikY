@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abproject.niky.R
 import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.customview.imageview.NikyImageView
-import com.abproject.niky.model.model.Product
-import com.abproject.niky.utils.EnglishConverter
-import com.abproject.niky.utils.UtilFunctions.formatPrice
-import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_GRID
-import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_LARGE
-import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_ROUNDED
-import com.abproject.niky.utils.implementSpringAnimationTrait
+import com.abproject.niky.model.dataclass.Product
+import com.abproject.niky.utils.other.EnglishConverter
+import com.abproject.niky.utils.other.UtilFunctions.formatPrice
+import com.abproject.niky.utils.other.Variables.PRODUCT_VIEW_TYPE_GRID
+import com.abproject.niky.utils.other.Variables.PRODUCT_VIEW_TYPE_LARGE
+import com.abproject.niky.utils.other.Variables.PRODUCT_VIEW_TYPE_ROUNDED
+import com.abproject.niky.utils.other.implementSpringAnimationTrait
 import javax.inject.Inject
 
 class ProductAdapter @Inject constructor(

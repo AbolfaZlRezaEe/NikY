@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.abproject.niky.base.NikyViewModel
-import com.abproject.niky.model.model.Comment
+import com.abproject.niky.model.dataclass.Comment
 import com.abproject.niky.model.repository.comment.CommentRepository
-import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_ID_DATA
-import com.abproject.niky.utils.asyncNetworkRequest
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_ID_DATA
+import com.abproject.niky.utils.other.asyncNetworkRequest
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

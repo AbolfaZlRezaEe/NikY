@@ -8,7 +8,7 @@
     android:layout_marginTop="2dp"
     android:layout_marginEnd="2dp"
     android:layout_marginBottom="2dp"
-    android:paddingBottom="12dp">
+    android:paddingBottom="@dimen/normalMargin">
 
     <com.abproject.niky.customview.imageview.NikyImageView
         android:id="@+id/productImageViewItem"
@@ -23,9 +23,9 @@
         android:id="@+id/productTitleTextViewItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/normalMargin"
+        android:layout_marginTop="@dimen/lowNormalMargin"
+        android:layout_marginEnd="@dimen/normalMargin"
         android:ellipsize="end"
         android:maxLines="2"
         android:minLines="2"
@@ -39,7 +39,7 @@
         android:id="@+id/productPreviousPriceTextViewItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/littleMargin"
         android:textAppearance="?textAppearanceBody2"
         android:textColor="?android:textColorSecondary"
         app:layout_constraintStart_toStartOf="@+id/productTitleTextViewItem"
@@ -58,10 +58,10 @@
 
     <ImageView
         android:id="@+id/productFavoriteImageViewItem"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/highNormalIconSize"
+        android:layout_height="@dimen/highNormalIconSize"
+        android:layout_marginStart="@dimen/lowNormalMargin"
+        android:layout_marginTop="@dimen/lowNormalMargin"
         android:background="@drawable/background_favorite"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"

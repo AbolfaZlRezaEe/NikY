@@ -1,6 +1,10 @@
 package com.abproject.niky.di
 
-import com.abproject.niky.utils.Variables
+import com.abproject.niky.model.dataclass.TokenContainer
+import com.abproject.niky.utils.other.Variables
+import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_KEY_ACCEPT
+import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_KEY_AUTHORIZATION
+import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_VALUE_JSON
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +43,26 @@ object NetworkingModule {
     fun provideOkHttpClientForRetrofit(
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
-        return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
+        return OkHttpClient.Builder()
+            //adding headers to all requests
+            .addInterceptor { oldInterceptor ->
+
+                val oldRequest = oldInterceptor.request()
+                val newRequest = oldRequest.newBuilder()
+
+                //pass access token if that not null
+                if (!TokenContainer.accessToken.isNullOrEmpty())
+                    newRequest.addHeader(
+                        HEADER_REQUEST_KEY_AUTHORIZATION,
+                        TokenContainer.accessToken!!)
+
+                //set application/json header for all requests
+                newRequest.addHeader(HEADER_REQUEST_KEY_ACCEPT, HEADER_REQUEST_VALUE_JSON)
+                //set the old request method and body to the new request
+                newRequest.method(oldRequest.method, oldRequest.body)
+                return@addInterceptor oldInterceptor.proceed(newRequest.build())
+            }.addInterceptor(httpLoggingInterceptor)
+            .build()
     }
 
     @Singleton

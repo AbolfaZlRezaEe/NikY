@@ -1,8 +1,9 @@
 package com.abproject.niky.model.apiservice
 
-import com.abproject.niky.model.model.*
+import com.abproject.niky.model.dataclass.*
 import com.google.gson.JsonObject
 import io.reactivex.Single
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -56,4 +57,22 @@ interface NikyApiService {
     //get cart item count
     @GET("cart/count")
     fun getCartItemCount(): Single<CartItemCount>
+
+    //user signin
+    @POST("auth/token")
+    fun signIn(
+        @Body jsonObject: JsonObject,
+    ): Single<Token>
+
+    //user signup
+    @POST("user/register")
+    fun signUp(
+        @Body jsonObject: JsonObject,
+    ): Single<Message>
+
+    //refresh token
+    @POST("auth/token")
+    fun refreshToken(
+        @Body jsonObject: JsonObject,
+    ): Call<Token>
 }

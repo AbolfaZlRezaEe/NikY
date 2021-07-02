@@ -1,6 +1,6 @@
 package com.abproject.niky.model.datasource.product
 
-import com.abproject.niky.model.model.Product
+import com.abproject.niky.model.dataclass.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 

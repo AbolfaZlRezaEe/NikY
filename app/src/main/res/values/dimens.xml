@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Toolbar Height size (dp) -->
+    <dimen name="toolbarHeight">56dp</dimen>
+
+    <!-- Margin size (dp) -->
+    <dimen name="littleMargin">4dp</dimen>
+    <dimen name="lowNormalMargin">8dp</dimen>
+    <dimen name="normalMargin">16dp</dimen>
+    <dimen name="highNormalMargin">24dp</dimen>
+    <dimen name="veryHighNormalMargin">32dp</dimen>
+    <dimen name="extraMargin">48dp</dimen>
+
+    <!-- Padding size (dp) -->
+    <dimen name="normalPadding">16dp</dimen>
+    <dimen name="extraPadding">48dp</dimen>
+
+    <!-- Icon size (dp) -->
+    <dimen name="littleIconSize">16dp</dimen>
+    <dimen name="normalIconSize">24dp</dimen>
+    <dimen name="highNormalIconSize">32dp</dimen>
+    <dimen name="largeIconSize">56dp</dimen>
+
+    <!-- Bottom Navigation size (dp) -->
+    <dimen name="bottomNavigationViewHeight">56dp</dimen>
+    <dimen name="bottomNavigationViewMargin">56dp</dimen>
+
+    <!-- Divider size (dp) -->
+    <dimen name="dividerSize">1dp</dimen>
+
+    <!-- Edittext size (dp) -->
+    <dimen name="editTextsHeight">46dp</dimen>
+    <dimen name="authEditTextWidth">270dp</dimen>
+
+    <!-- Custom size (dp) -->
+    <dimen name="customHeightNikyImageView">189dp</dimen>
+    <dimen name="customWidthNikyLogo">100dp</dimen>
+    <dimen name="customHeightNikyLogo">60dp</dimen>
+    <dimen name="customAuthEditTextMinHeight">48dp</dimen>
+    <dimen name="customWidthAuthButton">270dp</dimen>
+    <dimen name="customAuthButtonMinHeight">48dp</dimen>
+
+    <!-- Custom radius size (dp) -->
+    <dimen name="customRadiusCommentItem">2dp</dimen>
+    <dimen name="customRadiusAuthEditText">8dp</dimen>
+    <dimen name="customRadiusSearchEditText">23dp</dimen>
+    <dimen name="customAuthMaterialButtonCornerRadius">8dp</dimen>
+
+    <!-- Texts size (sp) -->
+    <dimen name="textSizeHeadline5">22sp</dimen>
+    <dimen name="textSizeHeadline6">16sp</dimen>
+    <dimen name="textSizeBody1">14sp</dimen>
+    <dimen name="textSizeBody2">12sp</dimen>
+    <dimen name="editTextTextSize">16sp</dimen>
+
+</resources>

@@ -2,8 +2,8 @@ package com.abproject.niky.model.repository.product
 
 import com.abproject.niky.model.datasource.banner.BannerDataSource
 import com.abproject.niky.model.datasource.product.ProductDataSource
-import com.abproject.niky.model.model.Banner
-import com.abproject.niky.model.model.Product
+import com.abproject.niky.model.dataclass.Banner
+import com.abproject.niky.model.dataclass.Product
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject

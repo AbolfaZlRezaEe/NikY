@@ -1,7 +1,7 @@
 package com.abproject.niky.model.datasource.banner
 
 import com.abproject.niky.model.apiservice.NikyApiService
-import com.abproject.niky.model.model.Banner
+import com.abproject.niky.model.dataclass.Banner
 import io.reactivex.Single
 import javax.inject.Inject
 

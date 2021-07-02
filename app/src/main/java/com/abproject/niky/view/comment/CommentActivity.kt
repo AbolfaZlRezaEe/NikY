@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.abproject.niky.base.NikyActivity
 import com.abproject.niky.databinding.ActivityCommentBinding
-import com.abproject.niky.model.model.Comment
+import com.abproject.niky.model.dataclass.Comment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

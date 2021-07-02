@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.abproject.niky.R
 import com.abproject.niky.base.NikyActivity
 import com.abproject.niky.databinding.ActivityProductListBinding
-import com.abproject.niky.model.model.Product
-import com.abproject.niky.utils.Variables.EXTRA_KEY_PRODUCT_DATA
-import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_GRID
-import com.abproject.niky.utils.Variables.PRODUCT_VIEW_TYPE_LARGE
+import com.abproject.niky.model.dataclass.Product
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_DATA
+import com.abproject.niky.utils.other.Variables.PRODUCT_VIEW_TYPE_GRID
+import com.abproject.niky.utils.other.Variables.PRODUCT_VIEW_TYPE_LARGE
 import com.abproject.niky.view.common.ProductAdapter
 import com.abproject.niky.view.productdetail.ProductDetailActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

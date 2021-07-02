@@ -1,6 +1,6 @@
 package com.abproject.niky.model.datasource.cart
 
-import com.abproject.niky.model.model.*
+import com.abproject.niky.model.dataclass.*
 import io.reactivex.Single
 
 interface CartDataSource {
