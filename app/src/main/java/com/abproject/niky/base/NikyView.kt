@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.LayoutRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.niky.R
 import com.abproject.niky.utils.exceptionhandler.ExceptionType
@@ -58,10 +57,13 @@ interface NikyView {
     fun showSnackBar(
         message: String,
         duration: Int = Snackbar.LENGTH_SHORT,
-    ) {
+    ): Snackbar? {
         rootView?.let { coordinatorLayout ->
-            Snackbar.make(coordinatorLayout, message, duration).show()
+            val snackbar = Snackbar.make(coordinatorLayout, message, duration)
+            snackbar.show()
+            return snackbar
         }
+        return null
     }
 
     /**
@@ -114,5 +116,4 @@ interface NikyView {
             }
         }
     }
-
 }

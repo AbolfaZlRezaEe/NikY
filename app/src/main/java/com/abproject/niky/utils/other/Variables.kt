@@ -68,4 +68,7 @@ object Variables {
     const val SHARED_TOKEN_TYPE_KEY = "token_type"
     const val SHARED_ACCESS_TOKE_KEY = "access_token"
     const val SHARED_REFRESH_TOKEN_KEY = "refresh_token"
+
+    //timer name
+    const val TIMER_SEND_CONNECTION_STATUS = "sendConnectionStatus"
 }

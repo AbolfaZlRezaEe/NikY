@@ -6,9 +6,19 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
+import com.abproject.niky.utils.internetconnetion.ConnectionLiveData
 import org.greenrobot.eventbus.EventBus
 
 abstract class NikyActivity : AppCompatActivity(), NikyView {
+
+    lateinit var connectionLiveData: ConnectionLiveData
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //connect eventbus to the view
+        EventBus.getDefault().register(this)
+        //initialize connection live data
+        connectionLiveData = ConnectionLiveData(this)
+    }
 
     /**
      * this function searching in the viewGroups in our layout
@@ -30,12 +40,6 @@ abstract class NikyActivity : AppCompatActivity(), NikyView {
 
     override val viewContext: Context?
         get() = this
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //connect eventbus to the view
-        EventBus.getDefault().register(this)
-    }
 
     override fun onDestroy() {
         super.onDestroy()

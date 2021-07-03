@@ -24,9 +24,6 @@ class CommentViewModel @Inject constructor(
     val getAllComments: LiveData<List<Comment>> get() = _getAllComments
     val addCommentStatus: LiveData<Comment> get() = _addCommentStatus
 
-    init {
-        getAllComments()
-    }
 
     /**
      * this method using view savedStateHandle for take
@@ -38,30 +35,34 @@ class CommentViewModel @Inject constructor(
         return savedStateHandle.get<Int>(EXTRA_KEY_PRODUCT_ID_DATA)!!
     }
 
-    private fun getAllComments() {
-        _progressbarStatus.postValue(true)
-        commentRepository.getComments(getProductId())
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
-                override fun onSuccess(response: List<Comment>) {
-                    _getAllComments.postValue(response)
-                }
-            })
+    fun getAllComments() {
+        if (processForGettingDataInInternetConnection(_getAllComments)) {
+            _progressbarStatus.postValue(true)
+            commentRepository.getComments(getProductId())
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
+                    override fun onSuccess(response: List<Comment>) {
+                        _getAllComments.postValue(response)
+                    }
+                })
+        }
     }
 
     fun addComments(
         comment: Comment,
     ) {
-        _progressbarStatus.postValue(true)
-        commentRepository.addComment(comment)
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<Comment>(compositeDisposable) {
-                override fun onSuccess(response: Comment) {
-                    _addCommentStatus.postValue(response)
-                }
-            })
+        if (processForGettingDataInInternetConnection(_addCommentStatus)) {
+            _progressbarStatus.postValue(true)
+            commentRepository.addComment(comment)
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<Comment>(compositeDisposable) {
+                    override fun onSuccess(response: Comment) {
+                        _addCommentStatus.postValue(response)
+                    }
+                })
+        }
     }
 
 }

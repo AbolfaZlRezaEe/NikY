@@ -44,6 +44,18 @@ class ProductDetailActivity : NikyActivity() {
     }
 
     private fun listeningToObservers() {
+        //must ne show progress bar because receive response
+        //from connectionLiveData it takes time.
+        showProgressbar(true)
+        connectionLiveData.observe(this) { status ->
+            productDetailViewModel.internetConnectionStatus.value = status
+            //and after receive data it must be invisible.
+            showProgressbar(false)
+
+            productDetailViewModel.getProductFromExtra()
+            productDetailViewModel.getComments()
+        }
+
         productDetailViewModel.getProduct.observe(this) { product ->
             setupUi(product)
         }
@@ -86,7 +98,7 @@ class ProductDetailActivity : NikyActivity() {
         //initialize add to cart button clicked.
         binding.addToCartExtendedFabProductDetail.setOnClickListener {
             productDetailViewModel.addProductToCart()
-                .subscribe(object :
+                ?.subscribe(object :
                     NikyCompletableObserver(productDetailViewModel.compositeDisposable) {
                     override fun onComplete() {
                         showSnackBar(getString(R.string.addToCartSuccessfully))

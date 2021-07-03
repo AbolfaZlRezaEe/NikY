@@ -27,31 +27,28 @@ class ProductDetailViewModel @Inject constructor(
     val getProduct get() = _getProduct
     val getComments get() = _getComments
 
-    init {
-        getProductFromExtra()
-        getComments()
-    }
-
     /**
      * getProductFromExtra function take savedStateHandle and then
      * check the extra, if there was product object, take that and
      * return to the view for showing product detail.
      */
-    private fun getProductFromExtra() {
+    fun getProductFromExtra() {
         val response = savedStateHandle.get<Product>(EXTRA_KEY_PRODUCT_DATA)
         _getProduct.value = response!!
     }
 
-    private fun getComments() {
-        _progressbarStatus.postValue(true)
-        commentRepository.getComments(_getProduct.value!!.id)
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
-                override fun onSuccess(response: List<Comment>) {
-                    _getComments.postValue(response)
-                }
-            })
+    fun getComments() {
+        if (processForGettingDataInInternetConnection(_getComments)) {
+            _progressbarStatus.postValue(true)
+            commentRepository.getComments(_getProduct.value!!.id)
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
+                    override fun onSuccess(response: List<Comment>) {
+                        _getComments.postValue(response)
+                    }
+                })
+        }
     }
 
     /**
@@ -59,10 +56,13 @@ class ProductDetailViewModel @Inject constructor(
      * completable request and then sending request to the
      * server for adding product tp the cart.
      */
-     fun addProductToCart(): Completable {
-        return cartRepository.addProductToCart(_getProduct.value!!.id)
-            .asyncNetworkRequest()
-            .ignoreElement()
+    fun addProductToCart(): Completable? {
+        return if (checkingInternetConnection()) {
+            cartRepository.addProductToCart(_getProduct.value!!.id)
+                .asyncNetworkRequest()
+                .ignoreElement()
+        } else
+            null
     }
 
 }

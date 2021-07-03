@@ -37,6 +37,17 @@ class CommentActivity : NikyActivity() {
     }
 
     private fun listeningToObservers() {
+        //must ne show progress bar because receive response
+        //from connectionLiveData it takes time.
+        showProgressbar(true)
+        connectionLiveData.observe(this) { status ->
+            commentViewModel.internetConnectionStatus.value = status
+            //and after receive data it must be invisible.
+            showProgressbar(false)
+
+            commentViewModel.getAllComments()
+        }
+
         commentViewModel.getAllComments.observe(this) { response ->
             initializeRecyclerView(response)
         }

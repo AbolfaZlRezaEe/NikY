@@ -38,16 +38,6 @@ class HomeViewModel @Inject constructor(
      */
     var viewPagerHeight: Float = 0F
 
-    /**
-     * i call this method in init block because in the
-     * initialize view model we need to receive banners
-     * for showing in home Fragment. so don't need call
-     * this method in view. we handled in view model.
-     */
-    init {
-        requestForReceiveProducts()
-        getAllBanners()
-    }
 
     /**
      * this function takes sort and live data for post value
@@ -58,19 +48,21 @@ class HomeViewModel @Inject constructor(
         sort: Int,
         liveData: MutableLiveData<List<Product>>,
     ) {
-        _progressbarStatus.postValue(true)
-        productRepository.getProductsBySort(sort)
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
-                override fun onSuccess(response: List<Product>) {
-                    liveData.postValue(response)
-                }
-            })
+        if (processForGettingDataInInternetConnection(liveData)) {
+            _progressbarStatus.postValue(true)
+            productRepository.getProductsBySort(sort)
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
+                    override fun onSuccess(response: List<Product>) {
+                        liveData.postValue(response)
+                    }
+                })
+        }
     }
 
     // sending all requests.
-    private fun requestForReceiveProducts() {
+    fun requestForReceiveProducts() {
         getProductsBySort(
             PRODUCT_SORT_POPULAR,
             _getPopularProducts
@@ -93,16 +85,17 @@ class HomeViewModel @Inject constructor(
      * sending request for receive banners and sho them into
      * view pager in view.
      */
-    private fun getAllBanners() {
-        _progressbarStatus.postValue(true)
-        productRepository.getBanner()
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<List<Banner>>(compositeDisposable) {
-                override fun onSuccess(t: List<Banner>) {
-                    _getBanners.postValue(t)
-                }
-
-            })
+    fun getAllBanners() {
+        if (processForGettingDataInInternetConnection(_getBanners)) {
+            _progressbarStatus.postValue(true)
+            productRepository.getBanner()
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<List<Banner>>(compositeDisposable) {
+                    override fun onSuccess(t: List<Banner>) {
+                        _getBanners.postValue(t)
+                    }
+                })
+        }
     }
 }

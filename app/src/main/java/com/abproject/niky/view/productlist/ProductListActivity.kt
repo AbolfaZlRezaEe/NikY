@@ -33,11 +33,17 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initializeViews()
         listeningToObservers()
+        initializeViews()
     }
 
     private fun listeningToObservers() {
+        connectionLiveData.observe(this) { status ->
+            productListViewModel.internetConnectionStatus.value = status
+
+            productListViewModel.getProductsBySort(productListViewModel.getSortState.value!!)
+        }
+
         productListViewModel.getSortTitle.observe(this) { stringResource ->
             binding.productSortTextViewProductList.text = getString(stringResource)
         }
@@ -75,7 +81,7 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
                     R.array.productSortArray,
                     productListViewModel.getSortState.value!!
                 ) { dialog, selectedSortIndex ->
-                    productListViewModel.getProductsBySort(selectedSortIndex)
+                    productListViewModel.getProductsBySort(selectedSortIndex, true)
                     dialog.dismiss()
                 }
                 .show()

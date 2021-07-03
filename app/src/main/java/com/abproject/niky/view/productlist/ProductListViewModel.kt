@@ -49,24 +49,41 @@ class ProductListViewModel @Inject constructor(
         _getSortState.value = getSortFromSavedStateHandle()
         //get resource String by position of Array list.
         _getSortTitle.value = productSortTitles[_getSortState.value!!]
-        //send request for receive products from server.
-        getProductsBySort(_getSortState.value!!)
     }
 
     fun getProductsBySort(
         sort: Int,
+        //if this variable true, then request to the server
+        //and don't check the data in liveData.
+        mustSendRequest: Boolean = false,
     ) {
-        _getSortState.value = sort
-        _getSortTitle.value = productSortTitles[_getSortState.value!!]
-        _progressbarStatus.value = true
-        productRepository.getProductsBySort(sort)
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-            .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
-                override fun onSuccess(response: List<Product>) {
-                    _getProducts.value = response
-                }
-            })
+        if (mustSendRequest && checkingInternetConnection()) {
+            _getSortState.postValue(sort)
+            _getSortTitle.postValue(productSortTitles[_getSortState.value!!])
+            _progressbarStatus.postValue(true)
+            productRepository.getProductsBySort(sort)
+                .asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+                .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
+                    override fun onSuccess(response: List<Product>) {
+                        _getProducts.value = response
+                    }
+                })
+        } else {
+            if (processForGettingDataInInternetConnection(_getProducts)) {
+                _getSortState.postValue(sort)
+                _getSortTitle.postValue(productSortTitles[_getSortState.value!!])
+                _progressbarStatus.postValue(true)
+                productRepository.getProductsBySort(sort)
+                    .asyncNetworkRequest()
+                    .doFinally { _progressbarStatus.postValue(false) }
+                    .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
+                        override fun onSuccess(response: List<Product>) {
+                            _getProducts.value = response
+                        }
+                    })
+            }
+        }
     }
 
     /**

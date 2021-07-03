@@ -5,6 +5,7 @@ import com.abproject.niky.model.dataclass.NikyException
 import com.abproject.niky.utils.other.Variables.EXCEPTION_MESSAGE_KEY
 import org.json.JSONObject
 import retrofit2.HttpException
+import java.lang.IllegalStateException
 import java.net.SocketTimeoutException
 
 /**
@@ -31,10 +32,19 @@ class NikyExceptionMapper {
                                 JSONObject(throwable.response()?.errorBody()!!.string())
                             //getting message key from json body
                             val errorMessage = errorJsonObject.getString(EXCEPTION_MESSAGE_KEY)
-                            return NikyException(
-                                ExceptionType.AUTH,
-                                exceptionMessage = "$errorMessage!"
-                            )
+                            //only when this message thrown that username or password wrong
+                            return if (errorMessage == "The user credentials were incorrect.")
+                                NikyException(
+                                    ExceptionType.SIMPLE,
+                                    resourceStringMessage = R.string.usernameOrPasswordIsIncorrect
+                                )
+                            //this is the default message when thrown Http 401 exception
+                            else {
+                                NikyException(
+                                    ExceptionType.AUTH,
+                                    exceptionMessage = "$errorMessage!"
+                                )
+                            }
                         }
                         //internal server error (proxy set)
                         500 -> {
@@ -63,6 +73,13 @@ class NikyExceptionMapper {
                     return NikyException(
                         ExceptionType.TIMEOUT,
                         resourceStringMessage = R.string.timeoutExceptionMessage
+                    )
+                }
+                //this block only calls when an internet connection lost or a problem
+                is IllegalStateException -> {
+                    return NikyException(
+                        ExceptionType.SIMPLE,
+                        resourceStringMessage = R.string.pleaseCheckYourInternetConnection
                     )
                 }
                 else -> {

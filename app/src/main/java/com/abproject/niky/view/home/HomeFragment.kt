@@ -111,6 +111,17 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
 
     //listening to all observers that this class needs.
     private fun listeningToObservers() {
+        //must ne show progress bar because receive response
+        //from connectionLiveData it takes time.
+        showProgressbar(true)
+        connectionLiveData.observe(viewLifecycleOwner) {
+            homeViewModel.internetConnectionStatus.value = it
+            //and after receive data it must be invisible.
+            showProgressbar(false)
+
+            homeViewModel.requestForReceiveProducts()
+            homeViewModel.getAllBanners()
+        }
         homeViewModel.progressbarStatus.observe(viewLifecycleOwner) { status ->
             //showing progressbar in view.
             showProgressbar(status)

@@ -38,7 +38,10 @@
     <string name="signUpSuccessfully">ثبت نام شما با موفقیت انجام شد!</string>
     <string name="signUpUsernameErrorMessage">این نام کاربری قبلا ثبت شده است!</string>
     <string name="onlyPasswordsLongerThan8CharIsValid">رمز عبور شما باید بیشتر از هشت رقم باشد!</string>
-
+    <string name="waitingForInternetConnection">در انتظار شبکه...</string>
+    <string name="connectionSuccessfully">اتصال برقرار شد</string>
+    <string name="pleaseCheckYourInternetConnection">لطفا اتصال اینترنت خود را بررسی کنید!</string>
+    <string name="usernameOrPasswordIsIncorrect">نام کاربری و یا پسورد صحیح نمی باشد!</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

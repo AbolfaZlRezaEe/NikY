@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.abproject.niky.R
 import com.abproject.niky.base.NikyFragment
@@ -14,9 +14,7 @@ import com.abproject.niky.utils.other.isValidEmail
 import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.auth.AuthViewModel
 import com.abproject.niky.view.splash.SplashActivity
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -25,7 +23,7 @@ class SignInFragment : NikyFragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
-    private val authViewModel: AuthViewModel by viewModels()
+    private val authViewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +57,7 @@ class SignInFragment : NikyFragment() {
                 authViewModel.userSignIn(
                     binding.emailEditTextSignIn.text.toString(),
                     binding.passwordEditTextSignIn.text.toString()
-                ).subscribe(object : NikyCompletableObserver(authViewModel.compositeDisposable) {
+                )?.subscribe(object : NikyCompletableObserver(authViewModel.compositeDisposable) {
                     override fun onComplete() {
                         showSnackBar(getString(R.string.signInSuccessfully))
                         Timer("startSplashActivity", false).schedule(3000) {

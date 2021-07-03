@@ -15,26 +15,32 @@ class AuthViewModel @Inject constructor(
     fun userSignIn(
         username: String,
         password: String,
-    ): Completable {
-        _progressbarStatus.value = true
-        return userRepository.signIn(
-            username = username,
-            password = password
-        ).asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
-
-
+    ): Completable? {
+        return if (checkingInternetConnection()) {
+            _progressbarStatus.value = true
+            userRepository.signIn(
+                username = username,
+                password = password
+            ).asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+        } else {
+            null
+        }
     }
 
     fun userSignUp(
         username: String,
         password: String,
-    ): Completable {
-        _progressbarStatus.value = true
-        return userRepository.signUp(
-            username = username,
-            password = password
-        ).asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
+    ): Completable? {
+        return if (checkingInternetConnection()) {
+            _progressbarStatus.value = true
+            return userRepository.signUp(
+                username = username,
+                password = password
+            ).asyncNetworkRequest()
+                .doFinally { _progressbarStatus.postValue(false) }
+        } else {
+            null
+        }
     }
 }
