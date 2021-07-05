@@ -1,4 +1,4 @@
-package com.abproject.niky.model.dataclass
+package com.abproject.niky.utils.exceptionhandler.exceptions
 
 import androidx.annotation.StringRes
 import com.abproject.niky.utils.exceptionhandler.ExceptionType

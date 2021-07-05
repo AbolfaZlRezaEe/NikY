@@ -42,6 +42,17 @@
     <string name="connectionSuccessfully">اتصال برقرار شد</string>
     <string name="pleaseCheckYourInternetConnection">لطفا اتصال اینترنت خود را بررسی کنید!</string>
     <string name="usernameOrPasswordIsIncorrect">نام کاربری و یا پسورد صحیح نمی باشد!</string>
+    <string name="pay">پرداخت</string>
+    <string name="count">تعداد</string>
+    <string name="removeFromCart">حذف از سبد خرید</string>
+    <string name="totalPrice">مبلغ کل خرید</string>
+    <string name="shippingCost">هزینه ارسال</string>
+    <string name="payablePrice">مبلغ قابل پرداخت</string>
+    <string name="purchaseDetail">جزئیات خرید</string>
+    <string name="increaseCartItemError">تعداد محصول نمی تواند بیشتر از 5 عدد باشد!</string>
+    <string name="decreaseCartItemError">تعداد محصول نمی تواند کمتر از 1 عدد باشد!</string>
+    <string name="nothingForShowHere">هیچ خبری اینجا نیست!</string>
+    
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

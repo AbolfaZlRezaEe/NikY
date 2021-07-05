@@ -6,9 +6,9 @@ data class Cart(
     @SerializedName("cart_items")
     val cartItems: List<CartItem>,
     @SerializedName("payable_price")
-    val payable_price: Int,
+    val payable_price: Long,
     @SerializedName("shipping_cost")
-    val shippingCost: Int,
+    val shippingCost: Long,
     @SerializedName("total_price")
-    val totalPrice: Int,
+    val totalPrice: Long,
 )

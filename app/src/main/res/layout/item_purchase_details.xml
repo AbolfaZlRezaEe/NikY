@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/normalPadding"
+    android:paddingBottom="@dimen/normalPadding">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/lowNormalMargin"
+        android:padding="@dimen/lowNormalPadding"
+        android:text="@string/purchaseDetail"
+        android:textAppearance="?textAppearanceHeadline6"
+        android:textColor="?android:textColorSecondary" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/lowNormalMargin"
+        android:layout_marginEnd="@dimen/lowNormalMargin"
+        app:cardCornerRadius="@dimen/customRadiusPurchaseItem"
+        app:cardElevation="@dimen/customCartCardElevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/customPaddingNormal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normalMargin"
+                android:layout_marginTop="@dimen/customNormalMargin"
+                android:text="@string/totalPrice"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/highNormalMargin"
+                android:text="@string/shippingCost"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/highNormalMargin"
+                android:text="@string/payablePrice"
+                android:textAppearance="?textAppearanceBody1"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/totalPriceTextViewItemPurchase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/normalMargin"
+                android:textAppearance="?textAppearanceBody1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                tools:text="16000" />
+
+            <TextView
+                android:id="@+id/shippingCostTextViewItemPurchase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?textAppearanceBody1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                app:layout_constraintEnd_toEndOf="@+id/totalPriceTextViewItemPurchase"
+                app:layout_constraintTop_toTopOf="@+id/textView5"
+                tools:text="15000" />
+
+            <TextView
+                android:id="@+id/payablePriceTextViewItemPurchase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?textAppearanceBody1"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="@+id/shippingCostTextViewItemPurchase"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                tools:text="14000" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dividerSize"
+                android:layout_marginTop="@dimen/customNormalMargin"
+                android:background="?dividerColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dividerSize"
+                android:layout_marginTop="@dimen/customNormalMargin"
+                android:background="?dividerColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

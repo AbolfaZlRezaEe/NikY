@@ -7,12 +7,16 @@
     <!-- Margin size (dp) -->
     <dimen name="littleMargin">4dp</dimen>
     <dimen name="lowNormalMargin">8dp</dimen>
+    <dimen name="customNormalMargin">12dp</dimen>
     <dimen name="normalMargin">16dp</dimen>
     <dimen name="highNormalMargin">24dp</dimen>
     <dimen name="veryHighNormalMargin">32dp</dimen>
     <dimen name="extraMargin">48dp</dimen>
 
     <!-- Padding size (dp) -->
+    <dimen name="littlePadding">4dp</dimen>
+    <dimen name="lowNormalPadding">8dp</dimen>
+    <dimen name="customPaddingNormal">12dp</dimen>
     <dimen name="normalPadding">16dp</dimen>
     <dimen name="extraPadding">48dp</dimen>
 
@@ -40,12 +44,20 @@
     <dimen name="customAuthEditTextMinHeight">48dp</dimen>
     <dimen name="customWidthAuthButton">270dp</dimen>
     <dimen name="customAuthButtonMinHeight">48dp</dimen>
+    <dimen name="customPaddingRecyclerView">100dp</dimen>
+    <dimen name="customSizeNikyImageViewCartItem">100dp</dimen>
+    <dimen name="customCartEmptyStateImageView">280dp</dimen>
 
     <!-- Custom radius size (dp) -->
     <dimen name="customRadiusCommentItem">2dp</dimen>
+    <dimen name="customRadiusCartItem">8dp</dimen>
+    <dimen name="customRadiusPurchaseItem">8dp</dimen>
     <dimen name="customRadiusAuthEditText">8dp</dimen>
     <dimen name="customRadiusSearchEditText">23dp</dimen>
     <dimen name="customAuthMaterialButtonCornerRadius">8dp</dimen>
+
+    <!-- Custom elevation size (dp) -->
+    <dimen name="customCartCardElevation">2dp</dimen>
 
     <!-- Texts size (sp) -->
     <dimen name="textSizeHeadline5">22sp</dimen>

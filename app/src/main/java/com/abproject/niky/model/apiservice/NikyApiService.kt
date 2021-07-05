@@ -12,7 +12,7 @@ import retrofit2.http.Query
 /**
  * this Interface is responsible for sending all requests to the server.
  * also NikyApiService work with Rxjava library for receive data from
- * server.
+ * server and manage that.
  */
 interface NikyApiService {
 

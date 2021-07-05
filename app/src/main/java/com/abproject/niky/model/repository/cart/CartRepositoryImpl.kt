@@ -35,7 +35,7 @@ class CartRepositoryImpl @Inject constructor(
         return cartRemoteDataSource.changeProductCountFromCart(cartItemId, count)
     }
 
-    override fun getCartItemCart(): Single<CartItemCount> {
+    override fun getCartItemCount(): Single<CartItemCount> {
         return cartRemoteDataSource.getCartItemCart()
     }
 }

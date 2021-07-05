@@ -20,5 +20,5 @@ interface CartRepository {
         count: Int,
     ): Single<AddToCart>
 
-    fun getCartItemCart(): Single<CartItemCount>
+    fun getCartItemCount(): Single<CartItemCount>
 }

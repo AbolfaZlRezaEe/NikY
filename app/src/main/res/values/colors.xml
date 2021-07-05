@@ -10,5 +10,6 @@
 
     <!-- Custom color -->
     <color name="transparent">#00FFFFFF</color>
+    <color name="mediumWhite">#f8f8f8</color>
     <color name="white48">#48ffffff</color>
 </resources>

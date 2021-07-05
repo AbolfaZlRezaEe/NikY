@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.niky.R
 import com.abproject.niky.utils.exceptionhandler.ExceptionType
-import com.abproject.niky.model.dataclass.NikyException
+import com.abproject.niky.utils.exceptionhandler.exceptions.NikyException
 import com.abproject.niky.view.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
 import org.greenrobot.eventbus.Subscribe
@@ -83,6 +83,30 @@ interface NikyView {
     }
 
     /**
+     * this functionality create a empty state with layoutResId in input
+     * also this functionality is lazy and when we need empty state, then create.
+     */
+    fun showCartEmptyState(
+        layoutResId: Int,
+    ): View? {
+        rootView?.let { coordinatorLayout ->
+            viewContext?.let { context ->
+                var cartEmptyState =
+                    coordinatorLayout.findViewById<View>(R.id.rootViewCartEmptyState)
+                if (cartEmptyState == null) {
+                    cartEmptyState = LayoutInflater.from(context).inflate(
+                        layoutResId, coordinatorLayout, false
+                    )
+                    coordinatorLayout.addView(cartEmptyState)
+                }
+                cartEmptyState.visibility = View.VISIBLE
+                return cartEmptyState
+            }
+        }
+        return null
+    }
+
+    /**
      * contain all errors publish from event bus.
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -105,7 +129,20 @@ interface NikyView {
                 }
                 ExceptionType.TIMEOUT -> {
                     showSnackBar(
-                        context.getString(nikyException.resourceStringMessage))
+                        context.getString(nikyException.resourceStringMessage)
+                    )
+                }
+                ExceptionType.INTERNET_CONNECTION -> {
+                    showSnackBar(
+                        context.getString(nikyException.resourceStringMessage)
+                    )
+                }
+                ExceptionType.INCREASE_CART_ITEM,
+                ExceptionType.DECREASE_CART_ITEM,
+                -> {
+                    showSnackBar(
+                        context.getString(nikyException.resourceStringMessage)
+                    )
                 }
                 else -> {
                     showSnackBar(

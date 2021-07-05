@@ -15,9 +15,9 @@ data class Product(
     val id: Int,
     val image: String,
     @SerializedName("previous_price")
-    val previousPrice: Int,
+    val previousePrice: Long,
     @SerializedName("price")
-    val currentPrice: Int,
+    val currentPrice: Long,
     val status: Int,
     val title: String,
 ) : Parcelable

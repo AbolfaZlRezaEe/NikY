@@ -1,11 +1,12 @@
 package com.abproject.niky.utils.exceptionhandler
 
 import com.abproject.niky.R
-import com.abproject.niky.model.dataclass.NikyException
+import com.abproject.niky.utils.exceptionhandler.exceptions.CartException
+import com.abproject.niky.utils.exceptionhandler.exceptions.NikyException
+import com.abproject.niky.utils.exceptionhandler.exceptions.InternetException
 import com.abproject.niky.utils.other.Variables.EXCEPTION_MESSAGE_KEY
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.lang.IllegalStateException
 import java.net.SocketTimeoutException
 
 /**
@@ -76,10 +77,17 @@ class NikyExceptionMapper {
                     )
                 }
                 //this block only calls when an internet connection lost or a problem
-                is IllegalStateException -> {
+                is InternetException -> {
                     return NikyException(
-                        ExceptionType.SIMPLE,
-                        resourceStringMessage = R.string.pleaseCheckYourInternetConnection
+                        ExceptionType.INTERNET_CONNECTION,
+                        resourceStringMessage = throwable.resourceStringMessage
+                    )
+                }
+                //this block only reach when user in the Cart fragment and there is a problem
+                is CartException -> {
+                    return NikyException(
+                        throwable.exceptionType,
+                        resourceStringMessage = throwable.resourceStringMessage
                     )
                 }
                 else -> {

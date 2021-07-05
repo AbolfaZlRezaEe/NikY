@@ -7,7 +7,15 @@ package com.abproject.niky.utils.exceptionhandler
  * in internet connection.
  * DATABASE -> used for database errors and exceptions.
  * AUTH -> used for server errors like 401 unauthorized.
+ * INTERNET_CONNECTION -> problem in the phone internet connection.
+ * INCREASE_CART_ITEM, DECREASE_CART_ITEM -> related to cart adapter.
  */
 enum class ExceptionType {
-    SIMPLE, TIMEOUT, DATABASE, AUTH
+    SIMPLE,
+    TIMEOUT,
+    DATABASE,
+    AUTH,
+    INTERNET_CONNECTION,
+    INCREASE_CART_ITEM,
+    DECREASE_CART_ITEM
 }

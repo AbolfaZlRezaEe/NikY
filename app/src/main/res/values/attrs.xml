@@ -7,6 +7,8 @@
 
     <attr name="progressBarColor" format="color" />
 
+    <attr name="backgroundColorCart" format="color"/>
+
     <declare-styleable name="NikyToolbar">
         <attr name="niky_toolbar_text" format="string" />
     </declare-styleable>

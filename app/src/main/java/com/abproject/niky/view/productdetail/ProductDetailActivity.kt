@@ -80,7 +80,7 @@ class ProductDetailActivity : NikyActivity() {
         binding.productTitleTextViewProductDetail.text = product.title
 
         binding.productPreviousPriceTextViewProductDetail.text =
-            EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousPrice).toString())
+            EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousePrice).toString())
 
         binding.productPreviousPriceTextViewProductDetail.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 

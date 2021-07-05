@@ -77,7 +77,7 @@ class ProductAdapter @Inject constructor(
                 EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.currentPrice).toString())
 
             productCurrentPrice.text =
-                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousPrice).toString())
+                EnglishConverter.convertEnglishNumberToPersianNumber(formatPrice(product.previousePrice).toString())
             imageLoadingService.loadImage(productImageView, product.image)
 
             productPreviousPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG

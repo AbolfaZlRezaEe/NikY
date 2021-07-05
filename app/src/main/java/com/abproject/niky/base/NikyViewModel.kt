@@ -3,6 +3,10 @@ package com.abproject.niky.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.abproject.niky.R
+import com.abproject.niky.model.dataclass.EmptyState
+import com.abproject.niky.utils.exceptionhandler.ExceptionType
+import com.abproject.niky.utils.exceptionhandler.exceptions.InternetException
 import com.abproject.niky.utils.exceptionhandler.NikyExceptionMapper
 import io.reactivex.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
@@ -25,9 +29,21 @@ abstract class NikyViewModel : ViewModel() {
     protected val _progressbarStatus = MutableLiveData<Boolean>()
 
     /**
+     * _emptyStateStatusLiveData used in all view model that needs but
+     * view also can't see and change the value. so i used
+     * protected keyword for this reason.
+     */
+    protected val _emptyStateStatusLiveData = MutableLiveData<EmptyState>()
+
+    /**
      * progressbarStatus is a variable can view reach and use that.
      */
     val progressbarStatus: LiveData<Boolean> get() = _progressbarStatus
+
+    /**
+     * emptyStateStatusLiveData is a variable can view reach and use that.
+     */
+    val emptyStateStatusLiveData: LiveData<EmptyState> get() = _emptyStateStatusLiveData
 
     /**
      * internetConnectionStatus is a variable that contain internet
@@ -50,8 +66,12 @@ abstract class NikyViewModel : ViewModel() {
         return if (internetConnectionStatus.value == true) {
             liveData?.value == null
         } else {
-            EventBus.getDefault().post(NikyExceptionMapper.map
-                (IllegalStateException()))
+            EventBus.getDefault().post(NikyExceptionMapper.map(
+                InternetException(
+                    ExceptionType.INTERNET_CONNECTION,
+                    R.string.pleaseCheckYourInternetConnection
+                )
+            ))
             false
         }
     }
@@ -65,8 +85,12 @@ abstract class NikyViewModel : ViewModel() {
         return if (internetConnectionStatus.value == true)
             true
         else {
-            EventBus.getDefault().post(NikyExceptionMapper.map
-                (IllegalStateException()))
+            EventBus.getDefault().post(NikyExceptionMapper.map(
+                InternetException(
+                    ExceptionType.INTERNET_CONNECTION,
+                    R.string.pleaseCheckYourInternetConnection
+                )
+            ))
             false
         }
     }

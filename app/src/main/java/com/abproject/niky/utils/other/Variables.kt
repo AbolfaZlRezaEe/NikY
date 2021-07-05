@@ -71,4 +71,12 @@ object Variables {
 
     //timer name
     const val TIMER_SEND_CONNECTION_STATUS = "sendConnectionStatus"
+
+    //cart adapter view types
+    const val VIEW_TYPE_CART_ITEM = 50
+    const val VIEW_TYPE_PURCHASE_DETAIL = 51
+
+    //change cart item count type
+    const val INCREASE_CART_ITEM = 52
+    const val DECREASE_CART_ITEM = 53
 }
