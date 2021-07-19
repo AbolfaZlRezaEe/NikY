@@ -1,6 +1,6 @@
 package com.abproject.niky.di
 
-import com.abproject.niky.model.dataclass.TokenContainer
+import com.abproject.niky.model.objects.TokenContainer
 import com.abproject.niky.utils.other.Variables
 import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_KEY_ACCEPT
 import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_KEY_AUTHORIZATION

@@ -2,6 +2,7 @@ package com.abproject.niky.model.repository.user
 
 import com.abproject.niky.model.dataclass.Token
 import com.abproject.niky.model.datasource.token.TokenDataSource
+import com.abproject.niky.model.datasource.user.UserDataSource
 import com.abproject.niky.utils.other.Variables.JSON_CLIENT_ID_KEY
 import com.abproject.niky.utils.other.Variables.JSON_CLIENT_ID_VALUE
 import com.abproject.niky.utils.other.Variables.JSON_CLIENT_SECRET_KEY
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val tokenRemoteDataSource: TokenDataSource,
     private val tokenLocalDataSource: TokenDataSource,
+    private val userLocalDataSource: UserDataSource,
 ) : UserRepository {
 
     override fun signIn(
@@ -63,6 +65,10 @@ class UserRepositoryImpl @Inject constructor(
         }.ignoreElement()
     }
 
+    override fun signOut() {
+        tokenLocalDataSource.signOut()
+        userLocalDataSource.signOut()
+    }
 
     override fun loadTokenFromSharedPreferences(): Boolean {
         return tokenLocalDataSource.loadTokenFromSharedPreferences()
@@ -82,5 +88,29 @@ class UserRepositoryImpl @Inject constructor(
             refreshToken = token.refreshShToken
         )
         return true
+    }
+
+    override fun saveUserInformation(
+        firstName: String,
+        lastName: String,
+        email: String,
+        phoneNumber: String,
+        postalCode: String,
+        address: String,
+        age: Int,
+    ) {
+        userLocalDataSource.signIn(
+            firstName = firstName,
+            lastName = lastName,
+            email = email,
+            phoneNumber = phoneNumber,
+            postalCode = postalCode,
+            address = address,
+            age = age
+        )
+    }
+
+    override fun loadUserInformation() {
+        userLocalDataSource.loadUserInformation()
     }
 }

@@ -68,4 +68,22 @@
         <item name="android:inputType">text</item>
     </style>
 
+    <!-- Niky Profile Link TextView Style -->
+    <style name="NikyProfileTextViewStyle">
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:layout_marginTop">@dimen/littleMargin</item>
+        <item name="android:layout_marginBottom">@dimen/littleMargin</item>
+        <item name="android:minHeight">@dimen/profileLinkTextViewMinHeight</item>
+        <item name="android:drawablePadding">@dimen/customPaddingNormal</item>
+        <item name="android:paddingStart">@dimen/normalPadding</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!-- Niky UserProfile Shape Appearance -->
+    <style name="NikyUserProfileShapeAppearance">
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

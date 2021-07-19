@@ -10,6 +10,7 @@ import com.abproject.niky.model.datasource.product.ProductRemoteDataSource
 import com.abproject.niky.model.datasource.shipping.ShippingRemoteDataSource
 import com.abproject.niky.model.datasource.token.TokenLocalDataSource
 import com.abproject.niky.model.datasource.token.TokenRemoteDataSource
+import com.abproject.niky.model.datasource.user.UserLocalDataSource
 import com.abproject.niky.model.repository.cart.CartRepository
 import com.abproject.niky.model.repository.cart.CartRepositoryImpl
 import com.abproject.niky.model.repository.comment.CommentRepository
@@ -76,7 +77,8 @@ object RepositoryModule {
     ): UserRepository {
         return UserRepositoryImpl(
             TokenRemoteDataSource(apiService),
-            TokenLocalDataSource(sharedPreferences)
+            TokenLocalDataSource(sharedPreferences),
+            UserLocalDataSource(sharedPreferences)
         )
     }
 

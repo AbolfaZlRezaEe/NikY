@@ -29,4 +29,6 @@ interface TokenDataSource {
         accessToken: String,
         refreshToken: String,
     ): Boolean
+
+    fun signOut()
 }

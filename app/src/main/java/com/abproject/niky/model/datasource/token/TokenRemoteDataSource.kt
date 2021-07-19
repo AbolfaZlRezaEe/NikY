@@ -38,4 +38,8 @@ class TokenRemoteDataSource @Inject constructor(
     ): Boolean {
         TODO("Not yet implemented")
     }
+
+    override fun signOut() {
+        TODO("Not yet implemented")
+    }
 }

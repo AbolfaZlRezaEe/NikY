@@ -3,7 +3,7 @@ package com.abproject.niky.model.datasource.token
 import android.content.SharedPreferences
 import com.abproject.niky.model.dataclass.Message
 import com.abproject.niky.model.dataclass.Token
-import com.abproject.niky.model.dataclass.TokenContainer
+import com.abproject.niky.model.objects.TokenContainer
 import com.abproject.niky.utils.other.Variables.SHARED_ACCESS_TOKE_KEY
 import com.abproject.niky.utils.other.Variables.SHARED_REFRESH_TOKEN_KEY
 import com.abproject.niky.utils.other.Variables.SHARED_TOKEN_TYPE_KEY
@@ -60,5 +60,9 @@ class TokenLocalDataSource @Inject constructor(
             refreshToken = refreshToken
         )
         return true
+    }
+
+    override fun signOut() {
+        TokenContainer.clearTokenData()
     }
 }

@@ -1,4 +1,4 @@
-package com.abproject.niky.model.dataclass
+package com.abproject.niky.model.objects
 
 /**
  * this class contain AccessToken and RefreshToken.
@@ -26,14 +26,14 @@ object TokenContainer {
         accessToken: String?,
         refreshToken: String?,
     ) {
-        this.accessToken = accessToken
-        this.refreshToken = refreshToken
-        this.tokenType = tokenType
+        TokenContainer.accessToken = accessToken
+        TokenContainer.refreshToken = refreshToken
+        TokenContainer.tokenType = tokenType
     }
 
     fun clearTokenData() {
-        this.tokenType = null
-        this.accessToken = null
-        this.refreshToken = null
+        tokenType = null
+        accessToken = null
+        refreshToken = null
     }
 }

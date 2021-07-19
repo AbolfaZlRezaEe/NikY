@@ -2,7 +2,7 @@ package com.abproject.niky.utils.networking
 
 import com.abproject.niky.model.apiservice.NikyApiService
 import com.abproject.niky.model.dataclass.Token
-import com.abproject.niky.model.dataclass.TokenContainer
+import com.abproject.niky.model.objects.TokenContainer
 import com.abproject.niky.model.repository.user.UserRepository
 import com.abproject.niky.utils.exceptionhandler.NikyExceptionMapper
 import com.abproject.niky.utils.other.Variables.HEADER_REQUEST_KEY_AUTHORIZATION

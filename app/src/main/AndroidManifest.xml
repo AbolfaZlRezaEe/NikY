@@ -16,6 +16,8 @@
         android:theme="@style/Theme.NikY"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".view.favoriteslist.FavoritesListActivity"></activity>
+        <activity android:name=".view.profiledetail.ProfileDetailActivity" />
         <activity android:name=".view.orderhistory.OrderHistoryActivity" />
         <activity android:name=".view.payment.PaymentResultActivity">
             <intent-filter>

@@ -1,7 +1,7 @@
 package com.abproject.niky.view.splash
 
 import com.abproject.niky.base.NikyViewModel
-import com.abproject.niky.model.dataclass.TokenContainer
+import com.abproject.niky.model.objects.TokenContainer
 import com.abproject.niky.model.repository.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

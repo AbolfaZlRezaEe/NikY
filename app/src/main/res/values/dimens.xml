@@ -21,6 +21,9 @@
     <dimen name="veryHighNormalPadding">32dp</dimen>
     <dimen name="extraPadding">48dp</dimen>
 
+    <!-- min height (dp) -->
+    <dimen name="profileLinkTextViewMinHeight">46dp</dimen>
+
     <!-- Icon size (dp) -->
     <dimen name="littleIconSize">16dp</dimen>
     <dimen name="normalIconSize">24dp</dimen>
@@ -48,6 +51,7 @@
     <dimen name="customPaddingRecyclerView">100dp</dimen>
     <dimen name="customSizeNikyImageViewCartItem">100dp</dimen>
     <dimen name="customCartEmptyStateImageView">280dp</dimen>
+    <dimen name="customProfileImageView">75dp</dimen>
 
     <!-- Custom radius size (dp) -->
     <dimen name="customRadiusCommentItem">2dp</dimen>

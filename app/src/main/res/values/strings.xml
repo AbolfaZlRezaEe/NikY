@@ -77,6 +77,23 @@
     <string name="postalCardSchemeError">کد پستی شما باید حتما 10 رقم باشد!</string>
     <string name="addressError">لطفا آدرس خود را وارد نمایید!</string>
     <string name="addressSchemeError">آدرس شما باید بیش از 20 حرف باشد!</string>
+    <string name="newUser">کاربر تازه وارد</string>
+    <string name="signoutFromAccount">خروج از حساب کاربری</string>
+    <string name="favoritesList">لیست علاقه مندی ها</string>
+    <string name="profileEdit">ویرایش حساب کاربری</string>
+    <string name="youSignOutFromAccount">شما با موفقیت از حساب کاربری خود خارج شدید!</string>
+    <string name="signOutDialogTitle">خروج از حساب کاربری</string>
+    <string name="signOutDialogMessage">آیا می خواهید از حساب کاربری خود خارج شوید؟</string>
+    <string name="yes">بله</string>
+    <string name="cancel">انصراف</string>
+    <string name="version">نسخه 1.0.0</string>
+    <string name="personalInformation">ویرایش اطلاعات فردی</string>
+    <string name="age">سن</string>
+    <string name="emailError">لطفا ایمیل خود را وارد نمایید!</string>
+    <string name="wrongEmailError">لطفا ایمیل معتبر وارد نمایید!</string>
+    <string name="ageError">لطفا سن خود را وارد نمایید!</string>
+    <string name="saveInformation">ذخیره اطلاعات</string>
+    <string name="savingUserInformationSuccessfully">اطلاعات شما با موفقیت ذخیره شد!</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>
