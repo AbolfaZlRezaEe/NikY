@@ -18,6 +18,7 @@
     <dimen name="lowNormalPadding">8dp</dimen>
     <dimen name="customPaddingNormal">12dp</dimen>
     <dimen name="normalPadding">16dp</dimen>
+    <dimen name="veryHighNormalPadding">32dp</dimen>
     <dimen name="extraPadding">48dp</dimen>
 
     <!-- Icon size (dp) -->

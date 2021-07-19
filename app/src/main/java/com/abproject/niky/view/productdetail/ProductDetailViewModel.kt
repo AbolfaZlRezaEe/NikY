@@ -38,17 +38,16 @@ class ProductDetailViewModel @Inject constructor(
     }
 
     fun getComments() {
-        if (processForGettingDataInInternetConnection(_getComments)) {
-            _progressbarStatus.postValue(true)
-            commentRepository.getComments(_getProduct.value!!.id)
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
-                    override fun onSuccess(response: List<Comment>) {
-                        _getComments.postValue(response)
-                    }
-                })
-        }
+        _progressbarStatusLiveData.postValue(true)
+        commentRepository.getComments(_getProduct.value!!.id)
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
+                override fun onSuccess(response: List<Comment>) {
+                    _getComments.postValue(response)
+                }
+            })
+
     }
 
     /**
@@ -56,13 +55,10 @@ class ProductDetailViewModel @Inject constructor(
      * completable request and then sending request to the
      * server for adding product tp the cart.
      */
-    fun addProductToCart(): Completable? {
-        return if (checkingInternetConnection()) {
-            cartRepository.addProductToCart(_getProduct.value!!.id)
-                .asyncNetworkRequest()
-                .ignoreElement()
-        } else
-            null
+    fun addProductToCart(): Completable {
+        return cartRepository.addProductToCart(_getProduct.value!!.id)
+            .asyncNetworkRequest()
+            .ignoreElement()
     }
 
 }

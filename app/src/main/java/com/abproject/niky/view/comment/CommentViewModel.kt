@@ -36,33 +36,31 @@ class CommentViewModel @Inject constructor(
     }
 
     fun getAllComments() {
-        if (processForGettingDataInInternetConnection(_getAllComments)) {
-            _progressbarStatus.postValue(true)
-            commentRepository.getComments(getProductId())
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
-                    override fun onSuccess(response: List<Comment>) {
-                        _getAllComments.postValue(response)
-                    }
-                })
-        }
+        _progressbarStatusLiveData.postValue(true)
+        commentRepository.getComments(getProductId())
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
+                override fun onSuccess(response: List<Comment>) {
+                    _getAllComments.postValue(response)
+                }
+            })
+
     }
 
     fun addComments(
         comment: Comment,
     ) {
-        if (processForGettingDataInInternetConnection(_addCommentStatus)) {
-            _progressbarStatus.postValue(true)
-            commentRepository.addComment(comment)
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .subscribe(object : NikySingleObserver<Comment>(compositeDisposable) {
-                    override fun onSuccess(response: Comment) {
-                        _addCommentStatus.postValue(response)
-                    }
-                })
-        }
+        _progressbarStatusLiveData.postValue(true)
+        commentRepository.addComment(comment)
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<Comment>(compositeDisposable) {
+                override fun onSuccess(response: Comment) {
+                    _addCommentStatus.postValue(response)
+                }
+            })
+
     }
 
 }

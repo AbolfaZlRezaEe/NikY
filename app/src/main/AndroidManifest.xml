@@ -16,6 +16,21 @@
         android:theme="@style/Theme.NikY"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".view.orderhistory.OrderHistoryActivity" />
+        <activity android:name=".view.payment.PaymentResultActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/hostName"
+                    android:pathPattern="/appCheckout"
+                    android:scheme="nike" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.shipping.ShippingActivity" />
         <activity android:name=".view.main.MainActivity" />
         <activity
             android:name=".view.auth.AuthActivity"

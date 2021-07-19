@@ -43,7 +43,7 @@ class MainActivity : NikyActivity() {
      */
     private fun setupBottomNavigationView() {
         val navHostFragment = supportFragmentManager.findFragmentById(
-            R.id.navigationContainer
+            R.id.mainNavigationContainer
         ) as NavHostFragment
         navController = navHostFragment.navController
 

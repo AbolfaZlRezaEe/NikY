@@ -30,6 +30,16 @@ fun CharSequence.isValidEmail() =
     !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 /**
+ * validationIranianPhoneNumber is an extension function that
+ * check phone number and return true or false.
+ */
+fun validationIranianPhoneNumber(number: String): Boolean {
+    val phoneNumberPattern =
+        Regex("(0|\\+98)?([ ]|,|-|[()]){0,2}9[1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}")
+    return (number.isNotEmpty() && number.matches(phoneNumberPattern))
+}
+
+/**
  * implementSpringAnimationTrait is a Extension function that
  * applying animation on view. this class use for items in
  * recycler view in project.

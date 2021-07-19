@@ -48,17 +48,16 @@ class HomeViewModel @Inject constructor(
         sort: Int,
         liveData: MutableLiveData<List<Product>>,
     ) {
-        if (processForGettingDataInInternetConnection(liveData)) {
-            _progressbarStatus.postValue(true)
-            productRepository.getProductsBySort(sort)
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
-                    override fun onSuccess(response: List<Product>) {
-                        liveData.postValue(response)
-                    }
-                })
-        }
+        _progressbarStatusLiveData.postValue(true)
+        productRepository.getProductsBySort(sort)
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
+                override fun onSuccess(response: List<Product>) {
+                    liveData.postValue(response)
+                }
+            })
+
     }
 
     // sending all requests.
@@ -86,16 +85,14 @@ class HomeViewModel @Inject constructor(
      * view pager in view.
      */
     fun getAllBanners() {
-        if (processForGettingDataInInternetConnection(_getBanners)) {
-            _progressbarStatus.postValue(true)
-            productRepository.getBanner()
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .subscribe(object : NikySingleObserver<List<Banner>>(compositeDisposable) {
-                    override fun onSuccess(t: List<Banner>) {
-                        _getBanners.postValue(t)
-                    }
-                })
-        }
+        _progressbarStatusLiveData.postValue(true)
+        productRepository.getBanner()
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<List<Banner>>(compositeDisposable) {
+                override fun onSuccess(t: List<Banner>) {
+                    _getBanners.postValue(t)
+                }
+            })
     }
 }

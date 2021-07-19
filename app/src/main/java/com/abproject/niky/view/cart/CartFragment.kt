@@ -14,9 +14,11 @@ import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.databinding.FragmentCartBinding
 import com.abproject.niky.utils.other.Variables.DECREASE_CART_ITEM
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_DATA
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PURCHASE_DETAIL
 import com.abproject.niky.utils.other.Variables.INCREASE_CART_ITEM
 import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.productdetail.ProductDetailActivity
+import com.abproject.niky.view.shipping.ShippingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,20 +46,21 @@ class CartFragment : NikyFragment() {
 
         listeningToTheObservers()
         initializeRecyclerView()
+        initializeViews()
+        cartViewModel.getCartItems()
+    }
+
+    private fun initializeViews() {
+        binding.payMaterialButtonCart.setOnClickListener {
+            startActivity(Intent(requireContext(), ShippingActivity::class.java).apply {
+                // TODO: 7/19/2021 force close because getPurchaseDetail is null
+                putExtra(EXTRA_KEY_PURCHASE_DETAIL, cartItemAdapter.getPurchaseDetail())
+            })
+            requireActivity().finish()
+        }
     }
 
     private fun listeningToTheObservers() {
-        //must ne show progress bar because receive response
-        //from connectionLiveData it takes time.
-        showProgressbar(true)
-        connectionLiveData.observe(viewLifecycleOwner) { status ->
-            cartViewModel.internetConnectionStatus.value = status
-            //and after receive data it must be invisible.
-            showProgressbar(false)
-
-            cartViewModel.getCartItems()
-        }
-
         cartViewModel.emptyStateStatusLiveData.observe(viewLifecycleOwner) { emptyState ->
             //create empty state view
             val emptyStateView = showCartEmptyState(R.layout.view_cart_empty_state)
@@ -71,7 +74,7 @@ class CartFragment : NikyFragment() {
                 emptyStateView?.visibility = View.GONE
         }
 
-        cartViewModel.progressbarStatus.observe(viewLifecycleOwner) { show ->
+        cartViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { show ->
             showProgressbar(show)
         }
 
@@ -108,7 +111,7 @@ class CartFragment : NikyFragment() {
 
         cartItemAdapter.onRemoveItemClick = { cartItem ->
             cartViewModel.removeProductFromCart(cartItem)
-                ?.subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
+                .subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
                     override fun onComplete() {
                         cartItemAdapter.removeCartItem(cartItem)
                     }
@@ -117,7 +120,7 @@ class CartFragment : NikyFragment() {
 
         cartItemAdapter.onIncreaseButtonClick = { cartItem ->
             cartViewModel.changeCartItemCount(cartItem, INCREASE_CART_ITEM)
-                ?.subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
+                .subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
                     override fun onComplete() {
                         cartItemAdapter.changeCartItemCount(cartItem)
                     }
@@ -126,32 +129,12 @@ class CartFragment : NikyFragment() {
 
         cartItemAdapter.onDecreaseButtonClick = { cartItem ->
             cartViewModel.changeCartItemCount(cartItem, DECREASE_CART_ITEM)
-                ?.subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
+                .subscribe(object : NikyCompletableObserver(cartViewModel.compositeDisposable) {
                     override fun onComplete() {
                         cartItemAdapter.changeCartItemCount(cartItem)
                     }
                 })
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        /*
-        for the first time this if return false because in the
-        connection live Data call this method.
-        but after first time every time this functionality call
-        and refreshing data from server.
-         */
-        if (cartViewModel.forceForSendingRequests >= 1)
-            cartViewModel.getCartItems()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        /*in the first time this functionality most be call
-        because in onStart we need that.
-         */
-        cartViewModel.forceForSendingRequests++
     }
 
 

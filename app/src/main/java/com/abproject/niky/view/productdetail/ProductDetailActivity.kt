@@ -40,22 +40,13 @@ class ProductDetailActivity : NikyActivity() {
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        productDetailViewModel.getProductFromExtra()
+        productDetailViewModel.getComments()
+
         listeningToObservers()
     }
 
     private fun listeningToObservers() {
-        //must ne show progress bar because receive response
-        //from connectionLiveData it takes time.
-        showProgressbar(true)
-        connectionLiveData.observe(this) { status ->
-            productDetailViewModel.internetConnectionStatus.value = status
-            //and after receive data it must be invisible.
-            showProgressbar(false)
-
-            productDetailViewModel.getProductFromExtra()
-            productDetailViewModel.getComments()
-        }
-
         productDetailViewModel.getProduct.observe(this) { product ->
             setupUi(product)
         }
@@ -65,7 +56,7 @@ class ProductDetailActivity : NikyActivity() {
 
         }
 
-        productDetailViewModel.progressbarStatus.observe(this) { show ->
+        productDetailViewModel.progressbarStatusLiveData.observe(this) { show ->
             showProgressbar(show)
         }
     }

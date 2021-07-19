@@ -42,7 +42,7 @@ class SignUpFragment : NikyFragment() {
     }
 
     private fun listeningToTheObservers() {
-        authViewModel.progressbarStatus.observe(viewLifecycleOwner) { show ->
+        authViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { show ->
             showProgressbar(show, true)
         }
     }

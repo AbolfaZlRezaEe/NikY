@@ -59,6 +59,10 @@ class CartItemAdapter @Inject constructor(
         notifyDataSetChanged()
     }
 
+    fun getPurchaseDetail(): PurchaseDetail? {
+        return purchaseDetail
+    }
+
     fun removeCartItem(
         cartItem: CartItem,
     ) {
@@ -182,10 +186,10 @@ class CartItemAdapter @Inject constructor(
                     ))
                 }
             }
-                /*
-                if the count == 1, user can not increase product count anymore.
-                and if user try for this, this functionality thrown an exception.
-                 */
+            /*
+            if the count == 1, user can not increase product count anymore.
+            and if user try for this, this functionality thrown an exception.
+             */
             decreaseButton.setOnClickListener {
                 if (cartItem.count > 1) {
                     changeProgressVisibility(cartItem)
@@ -228,7 +232,7 @@ class CartItemAdapter @Inject constructor(
         }
     }
 
-    inner class PurchaseItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PurchaseItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val totalPrice: TextView =
             itemView.findViewById(R.id.totalPriceTextViewItemPurchase)

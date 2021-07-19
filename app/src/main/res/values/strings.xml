@@ -52,7 +52,31 @@
     <string name="increaseCartItemError">تعداد محصول نمی تواند بیشتر از 5 عدد باشد!</string>
     <string name="decreaseCartItemError">تعداد محصول نمی تواند کمتر از 1 عدد باشد!</string>
     <string name="nothingForShowHere">هیچ خبری اینجا نیست!</string>
-    
+    <string name="shippingInformationToolbarTitle">مشخصات تحویل گیرنده و شیوه پرداخت</string>
+    <string name="firstName">نام</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="postalCode">کد پستی</string>
+    <string name="phoneNumber">شماره تلفن</string>
+    <string name="address">آدرس</string>
+    <string name="postalCodeHelper">لطفا کد پستی را بدون خط فاصله وارد نمایید</string>
+    <string name="cashOnDelivery">پرداخت در محل</string>
+    <string name="onlinePayment">پرداخت اینترنتی</string>
+    <string name="paymentResultToolbarTitle">نتیجه پرداخت</string>
+    <string name="paymentSuccessfully">پرداخت با موفقیت انجام شد!</string>
+    <string name="paymentFailed">پرداخت موفقیت آمیز نبود!</string>
+    <string name="purchaseStatus">وضعیت سفارش</string>
+    <string name="amount">مبلغ</string>
+    <string name="returnToHome">بازگشت به صفحه اصلی</string>
+    <string name="orderHistory">سوابق سفارش</string>
+    <string name="hostName">expertdevelopers.ir</string>
+    <string name="firstNameError">لطفا نام خود را وارد کنید!</string>
+    <string name="lastNameError">لطفا نام خانوادگی خود را وارد کنید!</string>
+    <string name="phoneNumberError">شماره تلفن شما باید حتما 11 رقم باشد!</string>
+    <string name="phoneNumberSchemeError">لطفا شماره تلفنتان را صحیح وارد کنید!</string>
+    <string name="postalCardError">لطفا کد پستی خود را وارد کنید!</string>
+    <string name="postalCardSchemeError">کد پستی شما باید حتما 10 رقم باشد!</string>
+    <string name="addressError">لطفا آدرس خود را وارد نمایید!</string>
+    <string name="addressSchemeError">آدرس شما باید بیش از 20 حرف باشد!</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

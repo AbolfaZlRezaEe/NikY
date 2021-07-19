@@ -10,15 +10,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class AuthActivity : NikyActivity() {
 
     private lateinit var binding: ActivityAuthBinding
-    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        connectionLiveData.observe(this) { status ->
-            authViewModel.internetConnectionStatus.value = status
-        }
     }
 }

@@ -38,6 +38,7 @@
         <item name="android:paddingEnd">@dimen/normalPadding</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
         <item name="android:minHeight">@dimen/customAuthEditTextMinHeight</item>
         <item name="android:gravity">right|center_vertical</item>
         <item name="android:textColorHint">@color/white48</item>
@@ -56,4 +57,15 @@
         <item name="backgroundTint">@color/blue</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <!-- Niky EditText Style -->
+    <style name="NikyTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/lowNormalMargin</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:inputType">text</item>
+    </style>
+
 </resources>

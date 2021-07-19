@@ -75,4 +75,18 @@ interface NikyApiService {
     fun refreshToken(
         @Body jsonObject: JsonObject,
     ): Call<Token>
+
+    //order history
+    @GET("order/list")
+    fun getOrderHistory(): Single<OrderItem>
+
+    @POST("order/submit")
+    fun submitOrder(
+        @Body jsonObject: JsonObject,
+    ): Single<SubmitOrderResult>
+
+    @GET("order/checkout")
+    fun getPaymentResult(
+        @Query("order_id") orderId: Int,
+    ): Single<PaymentResult>
 }

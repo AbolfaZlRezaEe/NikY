@@ -19,6 +19,8 @@ object Variables {
     const val EXTRA_KEY_PRODUCT_DATA = "productData"
     const val EXTRA_KEY_PRODUCT_ID_DATA = "productIdData"
     const val EXTRA_KEY_PRODUCT_SORT = "productSort"
+    const val EXTRA_KEY_PURCHASE_DETAIL = "purchaseDetail"
+    const val EXTRA_KEY_ORDER_ID = "orderId"
 
     //all static functions can use in sending request for
     //receive Product list from server
@@ -50,6 +52,13 @@ object Variables {
     const val JSON_CLIENT_ID_KEY = "client_id"
     const val JSON_CLIENT_SECRET_KEY = "client_secret"
     const val JSON_REFRESH_TOKEN_KEY = "refresh_token"
+    const val JSON_FIRST_NAME_KEY = "first_name"
+    const val JSON_LAST_NAME_KEY = "last_name"
+    const val JSON_POSTAL_CODE_KEY = "postal_code"
+    const val JSON_PHONE_NUMBER_KEY = "mobile"
+    const val JSON_ADDRESS_KEY = "address"
+    const val JSON_PAYMENT_METHOD_KEY = "payment_method"
+    const val JSON_ORDER_ID_KEY = "order_id"
 
     //json values for sending parameters to the server
     const val JSON_GRANT_TYPE_VALUE = "password"
@@ -79,4 +88,8 @@ object Variables {
     //change cart item count type
     const val INCREASE_CART_ITEM = 52
     const val DECREASE_CART_ITEM = 53
+
+    //payment method
+    const val PAYMENT_METHOD_ONLINE = "online"
+    const val PAYMENT_METHOD_CASH_ON_DELIVERY = "cash_on_delivery"
 }

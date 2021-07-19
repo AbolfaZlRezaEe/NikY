@@ -25,18 +25,11 @@ class CartViewModel @Inject constructor(
     val cartItemsLiveData: LiveData<List<CartItem>> get() = _cartItemsLiveData
     val purchaseDetailLiveData: LiveData<PurchaseDetail> get() = _purchaseDetailLiveData
 
-    /*
-    this variable responsible for contain how refresh data in CartFragment.
-    for this, please read the onStart and onStop section in the CartFragment.
-     */
-    var forceForSendingRequests: Int = 0
-
     fun getCartItems() {
-        processOfEmptyStateStatus()
-        _progressbarStatus.value = true
+        _progressbarStatusLiveData.value = true
         cartRepository.getAllCarts()
             .asyncNetworkRequest()
-            .doFinally { _progressbarStatus.postValue(false) }
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
             .subscribe(object : NikySingleObserver<Cart>(compositeDisposable) {
                 override fun onSuccess(response: Cart) {
                     _cartItemsLiveData.value = response.cartItems
@@ -49,6 +42,7 @@ class CartViewModel @Inject constructor(
 
                 }
             })
+
     }
 
     private fun setPurchaseDetailLiveData(
@@ -65,56 +59,48 @@ class CartViewModel @Inject constructor(
 
     fun removeProductFromCart(
         cartItem: CartItem,
-    ): Completable? {
-        return if (checkingInternetConnection()) {
-            _progressbarStatus.value = true
-            cartRepository.removeProductFromCart(cartItem.cartItemId)
-                .asyncNetworkRequest()
-                .doFinally { _progressbarStatus.postValue(false) }
-                .doAfterSuccess {
-                    calculatePurchaseDetail()
+    ): Completable {
+        _progressbarStatusLiveData.value = true
+        return cartRepository.removeProductFromCart(cartItem.cartItemId)
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .doAfterSuccess {
+                calculatePurchaseDetail()
 
-                    processOfEmptyStateStatus()
+                // TODO: 7/19/2021 fix the empty state status when nothing in cart
+                processOfEmptyStateStatus()
 
-                    //publish new CartItemCount with EventBus
-                    EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
-                        ?.let { cartItemCount ->
-                            cartItemCount.count -= cartItem.count
-                            EventBus.getDefault().postSticky(cartItemCount)
-                        }
-
-                }.ignoreElement()
-        } else
-            null
+                //publish new CartItemCount with EventBus
+                EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
+                    ?.let { cartItemCount ->
+                        cartItemCount.count -= cartItem.count
+                        EventBus.getDefault().postSticky(cartItemCount)
+                    }
+            }.ignoreElement()
     }
 
     fun changeCartItemCount(
         cartItem: CartItem,
         changeCountType: Int,
-    ): Completable? {
-        return if (checkingInternetConnection()) {
-            cartRepository.changeProductCountFromCart(
-                cartItemId = cartItem.cartItemId,
-                count = if (changeCountType == INCREASE_CART_ITEM) ++cartItem.count else --cartItem.count
-            ).asyncNetworkRequest()
-                .doAfterSuccess {
-                    calculatePurchaseDetail()
+    ): Completable {
+        return cartRepository.changeProductCountFromCart(
+            cartItemId = cartItem.cartItemId,
+            count = if (changeCountType == INCREASE_CART_ITEM) ++cartItem.count else --cartItem.count
+        ).asyncNetworkRequest()
+            .doAfterSuccess {
+                calculatePurchaseDetail()
 
-                    processOfEmptyStateStatus()
+                //publish new CartItemCount with EventBus
+                EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
+                    ?.let { cartItemCount ->
+                        if (changeCountType == INCREASE_CART_ITEM)
+                            cartItemCount.count++
+                        else
+                            cartItemCount.count--
+                        EventBus.getDefault().postSticky(cartItemCount)
+                    }
 
-                    //publish new CartItemCount with EventBus
-                    EventBus.getDefault().getStickyEvent(CartItemCount::class.java)
-                        ?.let { cartItemCount ->
-                            if (changeCountType == INCREASE_CART_ITEM)
-                                cartItemCount.count ++
-                            else
-                                cartItemCount.count --
-                            EventBus.getDefault().postSticky(cartItemCount)
-                        }
-
-                }.ignoreElement()
-        } else
-            null
+            }.ignoreElement()
     }
 
     /**

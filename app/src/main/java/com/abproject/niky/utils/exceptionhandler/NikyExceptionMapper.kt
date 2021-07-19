@@ -8,6 +8,7 @@ import com.abproject.niky.utils.other.Variables.EXCEPTION_MESSAGE_KEY
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 /**
  * NikyExceptionMapper contained all exceptions and classifies all exceptions.
@@ -81,6 +82,13 @@ class NikyExceptionMapper {
                     return NikyException(
                         ExceptionType.INTERNET_CONNECTION,
                         resourceStringMessage = throwable.resourceStringMessage
+                    )
+                }
+                //this block only reach when user no internet connection.
+                is UnknownHostException->{
+                    return NikyException(
+                        ExceptionType.INTERNET_CONNECTION,
+                        resourceStringMessage = R.string.pleaseCheckYourInternetConnection
                     )
                 }
                 //this block only reach when user in the Cart fragment and there is a problem

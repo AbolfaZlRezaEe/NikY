@@ -33,22 +33,19 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        productListViewModel.getProductsBySort(productListViewModel.getSortState.value!!)
+
         listeningToObservers()
+
         initializeViews()
     }
 
     private fun listeningToObservers() {
-        connectionLiveData.observe(this) { status ->
-            productListViewModel.internetConnectionStatus.value = status
-
-            productListViewModel.getProductsBySort(productListViewModel.getSortState.value!!)
-        }
-
         productListViewModel.getSortTitle.observe(this) { stringResource ->
             binding.productSortTextViewProductList.text = getString(stringResource)
         }
 
-        productListViewModel.progressbarStatus.observe(this) { show ->
+        productListViewModel.progressbarStatusLiveData.observe(this) { show ->
             showProgressbar(show)
         }
 
@@ -81,7 +78,7 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
                     R.array.productSortArray,
                     productListViewModel.getSortState.value!!
                 ) { dialog, selectedSortIndex ->
-                    productListViewModel.getProductsBySort(selectedSortIndex, true)
+                    productListViewModel.getProductsBySort(selectedSortIndex)
                     dialog.dismiss()
                 }
                 .show()
