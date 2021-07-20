@@ -86,13 +86,14 @@ interface NikyView {
      * this functionality create a empty state with layoutResId in input
      * also this functionality is lazy and when we need empty state, then create.
      */
-    fun showCartEmptyState(
+    fun showEmptyState(
         layoutResId: Int,
+        rootViewId: Int,
     ): View? {
         rootView?.let { coordinatorLayout ->
             viewContext?.let { context ->
                 var cartEmptyState =
-                    coordinatorLayout.findViewById<View>(R.id.rootViewCartEmptyState)
+                    coordinatorLayout.findViewById<View>(rootViewId)
                 if (cartEmptyState == null) {
                     cartEmptyState = LayoutInflater.from(context).inflate(
                         layoutResId, coordinatorLayout, false

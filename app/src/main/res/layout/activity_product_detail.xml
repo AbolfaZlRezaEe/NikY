@@ -150,7 +150,8 @@
             android:layout_height="@dimen/normalIconSize"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="@dimen/normalMargin"
-            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:background="?selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ic_favorites_24dp" />
     </FrameLayout>
 

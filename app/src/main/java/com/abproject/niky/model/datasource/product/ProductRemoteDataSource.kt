@@ -10,7 +10,9 @@ class ProductRemoteDataSource @Inject constructor(
     private val apiService: NikyApiService,
 ) : ProductDataSource {
 
-    override fun getProductsBySort(sort: Int): Single<List<Product>> {
+    override fun getProductsBySort(
+        sort: Int,
+    ): Single<List<Product>> {
         return apiService.getProducts(sort.toString())
     }
 
@@ -23,6 +25,10 @@ class ProductRemoteDataSource @Inject constructor(
     }
 
     override fun deleteProductFromFavorite(product: Product): Completable {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteAllProductsFromFavorites(): Completable {
         TODO("Not yet implemented")
     }
 }

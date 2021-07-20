@@ -2,6 +2,7 @@ package com.abproject.niky.di
 
 import android.content.SharedPreferences
 import com.abproject.niky.model.apiservice.NikyApiService
+import com.abproject.niky.model.database.dao.ProductDao
 import com.abproject.niky.model.datasource.banner.BannerRemoteDataSource
 import com.abproject.niky.model.datasource.cart.CartRemoteDataSource
 import com.abproject.niky.model.datasource.comment.CommentRemoteDataSource
@@ -41,10 +42,11 @@ object RepositoryModule {
     @Provides
     fun provideProductRepository(
         apiService: NikyApiService,
+        productDao: ProductDao,
     ): ProductRepository {
         return ProductRepositoryImpl(
             ProductRemoteDataSource(apiService),
-            ProductLocalDataSource(),
+            ProductLocalDataSource(productDao),
             BannerRemoteDataSource(apiService)
         )
     }

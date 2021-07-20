@@ -63,7 +63,8 @@ class CartFragment : NikyFragment() {
     private fun listeningToTheObservers() {
         cartViewModel.emptyStateStatusLiveData.observe(viewLifecycleOwner) { emptyState ->
             //create empty state view
-            val emptyStateView = showCartEmptyState(R.layout.view_cart_empty_state)
+            val emptyStateView =
+                showEmptyState(R.layout.view_cart_empty_state, R.id.rootViewCartEmptyState)
             if (emptyState.mustShowEmptyState) {
                 emptyStateView?.let { view ->
                     //set values if mustShowEmptyState is true

@@ -1,5 +1,6 @@
 package com.abproject.niky.model.datasource.product
 
+import androidx.lifecycle.LiveData
 import com.abproject.niky.model.dataclass.Product
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -19,4 +20,6 @@ interface ProductDataSource {
     fun deleteProductFromFavorite(
         product: Product,
     ): Completable
+
+    fun deleteAllProductsFromFavorites(): Completable
 }

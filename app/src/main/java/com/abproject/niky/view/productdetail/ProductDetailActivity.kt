@@ -91,6 +91,14 @@ class ProductDetailActivity : NikyActivity() {
             this.finish()
         }
 
+        binding.favoriteImageViewProductDetail.setOnClickListener {
+            productDetailViewModel.addOrDeleteProductFromFavorites(product)
+            product.isFavorite = !product.isFavorite
+            changeFavoriteIcon(product)
+        }
+
+        changeFavoriteIcon(product)
+
         binding.insertCommentMaterialButtonProductDetail.setOnClickListener {
             startActivity(Intent(this, AddCommentActivity::class.java).apply {
                 putExtra(EXTRA_KEY_PRODUCT_ID_DATA,
@@ -108,6 +116,15 @@ class ProductDetailActivity : NikyActivity() {
                     }
                 })
         }
+    }
+
+    private fun changeFavoriteIcon(
+        product: Product
+    ){
+        if (product.isFavorite)
+            binding.favoriteImageViewProductDetail.setImageResource(R.drawable.ic_favorites_fill_16dp)
+        else
+            binding.favoriteImageViewProductDetail.setImageResource(R.drawable.ic_favorites_16dp)
     }
 
     private fun setupCommentSection(

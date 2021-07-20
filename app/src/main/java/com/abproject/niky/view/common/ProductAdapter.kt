@@ -30,6 +30,7 @@ class ProductAdapter @Inject constructor(
 
     //for on click listeners on products
     var productListener: ProductListener? = null
+    var onFavoriteButtonClick: ((product: Product) -> Unit)? = null
 
     /**
      * this function take a viewType as input
@@ -83,7 +84,9 @@ class ProductAdapter @Inject constructor(
             productPreviousPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 
             productFavorite.setOnClickListener {
-
+                productListener?.onFavoriteButtonClick(product)
+                product.isFavorite = !product.isFavorite
+                notifyItemChanged(absoluteAdapterPosition)
             }
 
             itemView.implementSpringAnimationTrait()
@@ -91,6 +94,11 @@ class ProductAdapter @Inject constructor(
             itemView.setOnClickListener {
                 productListener?.onProductClick(product)
             }
+
+            if (product.isFavorite)
+                productFavorite.setImageResource(R.drawable.ic_favorites_fill_16dp)
+            else
+                productFavorite.setImageResource(R.drawable.ic_favorites_16dp)
         }
     }
 
@@ -135,5 +143,6 @@ class ProductAdapter @Inject constructor(
 
     interface ProductListener {
         fun onProductClick(product: Product)
+        fun onFavoriteButtonClick(product: Product)
     }
 }

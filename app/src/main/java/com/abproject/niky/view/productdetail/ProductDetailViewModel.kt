@@ -7,8 +7,10 @@ import com.abproject.niky.model.dataclass.Comment
 import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.model.repository.cart.CartRepository
 import com.abproject.niky.model.repository.comment.CommentRepository
+import com.abproject.niky.model.repository.product.ProductRepository
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_DATA
 import com.abproject.niky.utils.other.asyncNetworkRequest
+import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Completable
@@ -19,6 +21,7 @@ class ProductDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val commentRepository: CommentRepository,
     private val cartRepository: CartRepository,
+    private val productRepository: ProductRepository,
 ) : NikyViewModel() {
 
     private val _getProduct = MutableLiveData<Product>()
@@ -48,6 +51,28 @@ class ProductDetailViewModel @Inject constructor(
                 }
             })
 
+    }
+
+    fun addOrDeleteProductFromFavorites(
+        product: Product,
+    ) {
+        if (product.isFavorite) {
+            productRepository.deleteProductFromFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = false
+                    }
+                })
+        } else {
+            productRepository.addProductToFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = true
+                    }
+                })
+        }
     }
 
     /**

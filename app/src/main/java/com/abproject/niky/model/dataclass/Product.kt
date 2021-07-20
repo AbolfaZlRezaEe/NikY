@@ -20,4 +20,7 @@ data class Product(
     val currentPrice: Long,
     val status: Int,
     val title: String,
+    //for contain favorite section
+    //Note: this variable doesn't receive from server
+    var isFavorite: Boolean = false
 ) : Parcelable

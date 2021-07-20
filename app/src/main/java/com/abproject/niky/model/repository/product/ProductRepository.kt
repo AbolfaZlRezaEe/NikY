@@ -22,4 +22,7 @@ interface ProductRepository {
     fun deleteProductFromFavorite(
         product: Product,
     ): Completable
+
+    fun deleteAllProductsFromFavorites(): Completable
+
 }

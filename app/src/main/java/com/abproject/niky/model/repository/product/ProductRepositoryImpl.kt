@@ -14,8 +14,20 @@ class ProductRepositoryImpl @Inject constructor(
     private val bannerRemoteDataSource: BannerDataSource,
 ) : ProductRepository {
 
-    override fun getProductsBySort(sort: Int): Single<List<Product>> {
-        return productRemoteDataSource.getProductsBySort(sort)
+    override fun getProductsBySort(
+        sort: Int,
+    ): Single<List<Product>> {
+        return productLocalDataSource.getFavoriteProducts()
+            .flatMap { favoritesProduct ->
+                productRemoteDataSource.getProductsBySort(sort)
+                    .doOnSuccess { products ->
+                        val favoriteProductsId = favoritesProduct.map { product -> product.id }
+                        products.forEach { product ->
+                            if (favoriteProductsId.contains(product.id))
+                                product.isFavorite = true
+                        }
+                    }
+            }
     }
 
     override fun getBanner(): Single<List<Banner>> {
@@ -23,14 +35,22 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override fun getFavoriteProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
+        return productLocalDataSource.getFavoriteProducts()
     }
 
-    override fun addProductToFavorite(product: Product): Completable {
-        TODO("Not yet implemented")
+    override fun addProductToFavorite(
+        product: Product,
+    ): Completable {
+        return productLocalDataSource.addProductToFavorite(product)
     }
 
-    override fun deleteProductFromFavorite(product: Product): Completable {
-        TODO("Not yet implemented")
+    override fun deleteProductFromFavorite(
+        product: Product,
+    ): Completable {
+        return productLocalDataSource.deleteProductFromFavorite(product)
+    }
+
+    override fun deleteAllProductsFromFavorites(): Completable {
+        return productLocalDataSource.deleteAllProductsFromFavorites()
     }
 }

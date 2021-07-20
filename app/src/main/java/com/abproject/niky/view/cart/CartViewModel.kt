@@ -39,10 +39,8 @@ class CartViewModel @Inject constructor(
                         shippingCost = response.shippingCost,
                         payablePrice = response.payable_price
                     )
-
                 }
             })
-
     }
 
     private fun setPurchaseDetailLiveData(

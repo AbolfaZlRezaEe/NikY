@@ -8,6 +8,7 @@ import com.abproject.niky.components.imageview.FrescoImageViewService
 import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.model.apiservice.NikyApiService
 import com.abproject.niky.model.database.NikyDatabase
+import com.abproject.niky.model.database.dao.ProductDao
 import com.abproject.niky.utils.other.Variables.DATABASE_NAME
 import com.abproject.niky.utils.other.Variables.SHARED_PREFERENCES_NAME
 import dagger.Module
@@ -46,6 +47,14 @@ object ApplicationModule {
             NikyDatabase::class.java,
             DATABASE_NAME
         ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductDao(
+        database: NikyDatabase,
+    ): ProductDao {
+        return database.getProductDao()
     }
 
     @Singleton

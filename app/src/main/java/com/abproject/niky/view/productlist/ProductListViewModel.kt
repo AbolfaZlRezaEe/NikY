@@ -9,6 +9,7 @@ import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.model.repository.product.ProductRepository
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_SORT
 import com.abproject.niky.utils.other.asyncNetworkRequest
+import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -74,6 +75,28 @@ class ProductListViewModel @Inject constructor(
      */
     private fun getSortFromSavedStateHandle(): Int {
         return savedStateHandle.get<Int>(EXTRA_KEY_PRODUCT_SORT)!!
+    }
+
+    fun addOrDeleteProductFromFavorites(
+        product: Product,
+    ) {
+        if (product.isFavorite) {
+            productRepository.deleteProductFromFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = false
+                    }
+                })
+        } else {
+            productRepository.addProductToFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = true
+                    }
+                })
+        }
     }
 
 }

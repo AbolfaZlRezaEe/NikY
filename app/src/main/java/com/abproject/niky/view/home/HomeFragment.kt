@@ -65,12 +65,16 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
 
         listeningToObservers()
 
-        homeViewModel.requestForReceiveProducts()
         homeViewModel.getAllBanners()
 
         recyclerViewsStateRestoration()
 
         initializeViewAllButtons()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        homeViewModel.requestForReceiveProducts()
     }
 
     /**
@@ -232,5 +236,9 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
         startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
             putExtra(EXTRA_KEY_PRODUCT_DATA, product)
         })
+    }
+
+    override fun onFavoriteButtonClick(product: Product) {
+        homeViewModel.addOrDeleteProductFromFavorites(product)
     }
 }

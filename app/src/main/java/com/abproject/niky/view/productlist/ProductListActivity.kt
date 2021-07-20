@@ -106,4 +106,8 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
         })
     }
 
+    override fun onFavoriteButtonClick(product: Product) {
+        productListViewModel.addOrDeleteProductFromFavorites(product)
+    }
+
 }

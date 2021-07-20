@@ -11,6 +11,7 @@ import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_POPULAR
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_PRICE_ASC
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_PRICE_DESC
 import com.abproject.niky.utils.other.asyncNetworkRequest
+import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.utils.rxjava.NikySingleObserver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -78,6 +79,28 @@ class HomeViewModel @Inject constructor(
             PRODUCT_SORT_PRICE_DESC,
             _getPriceDescProducts
         )
+    }
+
+    fun addOrDeleteProductFromFavorites(
+        product: Product,
+    ) {
+        if (product.isFavorite) {
+            productRepository.deleteProductFromFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = false
+                    }
+                })
+        } else {
+            productRepository.addProductToFavorite(product)
+                .asyncNetworkRequest()
+                .subscribe(object : NikyCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = true
+                    }
+                })
+        }
     }
 
     /**

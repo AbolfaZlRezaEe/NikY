@@ -100,6 +100,9 @@
     <string name="addingCommentSuccessfully">نظر شما با موفقیت ثبت گردید!</string>
     <string name="commentTitleError">لطفا عنوان نظر خود را وارد نمایید!</string>
     <string name="commentContentError">لطفا نظر خود را وارد نمایید!</string>
+    <string name="deleteAllProductsFromFavoriteSuccessfully">تمامی محصولات با موفقیت از لیست علاقه مندی ها حذف شدند!</string>
+    <string name="deleteProductFromFavoriteSuccessfully">محصول مورد نظر با موفقیت از لیست علاقه مندی ها حذف گردید!</string>
+    <string name="nothingForShowInFavorites">هنوز چیزی جزو علاقه مندیات نبوده</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

@@ -73,7 +73,9 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
     override fun getItemCount(): Int {
         return if (adapterFlag == SHOW_EVERY_THINGS && comments.size > 3)
             comments.size
-        else
+        else if (comments.size < 3) {
+            comments.size
+        } else
             3
     }
 }
