@@ -94,6 +94,12 @@
     <string name="ageError">لطفا سن خود را وارد نمایید!</string>
     <string name="saveInformation">ذخیره اطلاعات</string>
     <string name="savingUserInformationSuccessfully">اطلاعات شما با موفقیت ذخیره شد!</string>
+    <string name="addComment">اضافه کردن نظر</string>
+    <string name="title">عنوان</string>
+    <string name="comment">نظر شما...</string>
+    <string name="addingCommentSuccessfully">نظر شما با موفقیت ثبت گردید!</string>
+    <string name="commentTitleError">لطفا عنوان نظر خود را وارد نمایید!</string>
+    <string name="commentContentError">لطفا نظر خود را وارد نمایید!</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

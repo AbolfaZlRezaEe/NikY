@@ -51,7 +51,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
         ) {
             commentTitle.text = comment.title
             commentDate.text = comment.date
-            commentAuthor.text = comment.author.email
+            commentAuthor.text = comment.author!!.email
             commentContent.text = comment.content
         }
     }

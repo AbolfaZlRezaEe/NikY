@@ -36,7 +36,10 @@ class UserRepositoryImpl @Inject constructor(
             }
         ).doOnSuccess { token ->
             //save token in shared preferences and TokenContainer
-            onSuccessFullLogin(token)
+            onSuccessFullLogin(
+                email = username,
+                token = token
+            )
         }.ignoreElement()
     }
 
@@ -61,7 +64,10 @@ class UserRepositoryImpl @Inject constructor(
                 }
             )
         }.doOnSuccess { token ->
-            onSuccessFullLogin(token)
+            onSuccessFullLogin(
+                email = username,
+                token = token
+            )
         }.ignoreElement()
     }
 
@@ -75,8 +81,18 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun onSuccessFullLogin(
+        email: String?,
         token: Token,
     ): Boolean {
+        userLocalDataSource.signIn(
+            firstName = "",
+            lastName = "",
+            email = email ?: "",
+            phoneNumber = "",
+            postalCode = "",
+            address = "",
+            age = 0
+        )
         tokenLocalDataSource.saveTokenIntoTokenContainerObject(
             tokenType = token.tokenType,
             accessToken = token.accessToken,

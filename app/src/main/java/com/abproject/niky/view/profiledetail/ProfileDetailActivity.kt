@@ -1,5 +1,6 @@
 package com.abproject.niky.view.profiledetail
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -29,6 +30,7 @@ class ProfileDetailActivity : NikyActivity() {
     }
 
     private fun initializeViews() {
+
         profileDetailViewModel.loadUserInformation()
         if (!UserContainer.firstName.isNullOrEmpty()) {
             binding.firstNameTextInputEditText.setText(UserContainer.firstName)
@@ -39,6 +41,7 @@ class ProfileDetailActivity : NikyActivity() {
             binding.ageTextInputEditText.setText(UserContainer.age.toString())
             binding.postalCodeTextInputEditText.setText(UserContainer.postalCode)
         }
+        binding.emailTextInputEditText.setText(UserContainer.email)
     }
 
     private fun initializeSaveInformation() {

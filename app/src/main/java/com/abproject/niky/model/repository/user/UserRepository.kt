@@ -22,6 +22,7 @@ interface UserRepository {
     fun loadTokenFromSharedPreferences(): Boolean
 
     fun onSuccessFullLogin(
+        email: String?,
         token: Token,
     ): Boolean
 

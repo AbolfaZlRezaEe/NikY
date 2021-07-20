@@ -19,10 +19,10 @@ class CommentViewModel @Inject constructor(
 ) : NikyViewModel() {
 
     private val _getAllComments = MutableLiveData<List<Comment>>()
-    private val _addCommentStatus = MutableLiveData<Comment>()
+    private val _productIdLiveData = MutableLiveData<Int>()
 
     val getAllComments: LiveData<List<Comment>> get() = _getAllComments
-    val addCommentStatus: LiveData<Comment> get() = _addCommentStatus
+    val productIdLiveData: LiveData<Int> get() = _productIdLiveData
 
 
     /**
@@ -32,7 +32,9 @@ class CommentViewModel @Inject constructor(
      * for sending request to the server.
      */
     private fun getProductId(): Int {
-        return savedStateHandle.get<Int>(EXTRA_KEY_PRODUCT_ID_DATA)!!
+        val productId = savedStateHandle.get<Int>(EXTRA_KEY_PRODUCT_ID_DATA)!!
+        _productIdLiveData.value = productId
+        return productId
     }
 
     fun getAllComments() {
@@ -43,21 +45,6 @@ class CommentViewModel @Inject constructor(
             .subscribe(object : NikySingleObserver<List<Comment>>(compositeDisposable) {
                 override fun onSuccess(response: List<Comment>) {
                     _getAllComments.postValue(response)
-                }
-            })
-
-    }
-
-    fun addComments(
-        comment: Comment,
-    ) {
-        _progressbarStatusLiveData.postValue(true)
-        commentRepository.addComment(comment)
-            .asyncNetworkRequest()
-            .doFinally { _progressbarStatusLiveData.postValue(false) }
-            .subscribe(object : NikySingleObserver<Comment>(compositeDisposable) {
-                override fun onSuccess(response: Comment) {
-                    _addCommentStatus.postValue(response)
                 }
             })
 

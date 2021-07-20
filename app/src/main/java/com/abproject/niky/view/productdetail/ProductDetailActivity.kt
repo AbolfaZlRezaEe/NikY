@@ -1,5 +1,6 @@
 package com.abproject.niky.view.productdetail
 
+import android.app.Activity
 import com.abproject.niky.R
 import android.content.Intent
 import android.graphics.Paint
@@ -17,9 +18,13 @@ import com.abproject.niky.model.dataclass.Comment
 import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.utils.other.EnglishConverter
 import com.abproject.niky.utils.other.UtilFunctions.formatPrice
+import com.abproject.niky.utils.other.Variables
+import com.abproject.niky.utils.other.Variables.EXTRA_KEY_COMMENT
+import com.abproject.niky.utils.other.Variables.REQUEST_COMMENT_KEY
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_ID_DATA
 import com.abproject.niky.utils.other.Variables.SHOW_THREE_COMMENTS
 import com.abproject.niky.utils.rxjava.NikyCompletableObserver
+import com.abproject.niky.view.addcomment.AddCommentActivity
 import com.abproject.niky.view.comment.CommentActivity
 import com.abproject.niky.view.comment.CommentAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,6 +91,13 @@ class ProductDetailActivity : NikyActivity() {
             this.finish()
         }
 
+        binding.insertCommentMaterialButtonProductDetail.setOnClickListener {
+            startActivity(Intent(this, AddCommentActivity::class.java).apply {
+                putExtra(EXTRA_KEY_PRODUCT_ID_DATA,
+                    productDetailViewModel.getProduct.value!!.id)
+            })
+        }
+
         //initialize add to cart button clicked.
         binding.addToCartExtendedFabProductDetail.setOnClickListener {
             productDetailViewModel.addProductToCart()
@@ -147,5 +159,10 @@ class ProductDetailActivity : NikyActivity() {
                 }
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        productDetailViewModel.getComments()
     }
 }

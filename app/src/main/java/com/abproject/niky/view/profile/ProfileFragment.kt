@@ -47,10 +47,15 @@ class ProfileFragment : NikyFragment() {
     private fun initializeViews() {
         profileViewModel.loadUserInformation()
 
-        binding.usernameTextViewProfileFragment.text =
-            EnglishConverter.convertEnglishNumberToPersianNumber(
-                "${UserContainer.firstName} ${UserContainer.lastName}"
-            )
+        if (UserContainer.firstName.isNullOrEmpty()) {
+            binding.usernameTextViewProfileFragment.text = getString(R.string.newUser)
+        } else {
+            binding.usernameTextViewProfileFragment.text =
+                EnglishConverter.convertEnglishNumberToPersianNumber(
+                    "${UserContainer.firstName} ${UserContainer.lastName}"
+                )
+        }
+
         binding.emailTextViewProfileFragment.text = UserContainer.email
 
         binding.applicationVersionTextViewProfileFragment.text =

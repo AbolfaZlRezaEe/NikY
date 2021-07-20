@@ -21,6 +21,11 @@ object Variables {
     const val EXTRA_KEY_PRODUCT_SORT = "productSort"
     const val EXTRA_KEY_PURCHASE_DETAIL = "purchaseDetail"
     const val EXTRA_KEY_ORDER_ID = "orderId"
+    const val EXTRA_KEY_PRODUCT_ID = "productId"
+    const val EXTRA_KEY_COMMENT = "comment"
+
+    //static variables for comments
+    const val REQUEST_COMMENT_KEY = 127
 
     //all static functions can use in sending request for
     //receive Product list from server
@@ -59,6 +64,8 @@ object Variables {
     const val JSON_ADDRESS_KEY = "address"
     const val JSON_PAYMENT_METHOD_KEY = "payment_method"
     const val JSON_ORDER_ID_KEY = "order_id"
+    const val JSON_TITLE_KEY = "title"
+    const val JSON_CONTENT_KEY = "content"
 
     //json values for sending parameters to the server
     const val JSON_GRANT_TYPE_VALUE = "password"

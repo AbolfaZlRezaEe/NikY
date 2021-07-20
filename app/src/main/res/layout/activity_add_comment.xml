@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.addcomment.AddCommentActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight">
+
+        <com.abproject.niky.customview.toolbarview.NikyToolbar
+            android:id="@+id/toolbarAddComment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbarHeight"
+            app:niky_toolbar_text="@string/addComment" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingTop="@dimen/normalPadding"
+        android:paddingBottom="@dimen/extraPadding"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/normalPadding"
+            android:paddingEnd="@dimen/normalPadding"
+            android:paddingBottom="@dimen/normalPadding">
+
+            <EditText
+                android:id="@+id/commentTitleEditTextAddComment"
+                style="@style/NikyCommentEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:hint="@string/title"
+                android:maxLines="1" />
+
+
+            <EditText
+                android:id="@+id/commentContentEditTextAddComment"
+                style="@style/NikyCommentEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/commentTitleEditTextAddComment"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/normalMargin"
+                android:gravity="start|top"
+                android:hint="@string/comment"
+                android:inputType="text|textMultiLine"
+                android:paddingTop="@dimen/normalPadding"
+                android:paddingBottom="@dimen/normalPadding" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addCommentFloatingActionBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/normalMargin"
+        android:layout_marginBottom="@dimen/normalMargin"
+        app:srcCompat="@drawable/ic_send_24dp" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -64,7 +64,10 @@ class NikyAuthenticator @Inject constructor(
                 }
             ).execute()
         response.body()?.let { token ->
-            userRepository.onSuccessFullLogin(token)
+            userRepository.onSuccessFullLogin(
+                email = null,
+                token = token
+            )
             return "Bearer ${token.accessToken}"
         }
         return ""

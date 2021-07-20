@@ -32,6 +32,12 @@ interface NikyApiService {
         @Query("product_id") productId: Int,
     ): Single<List<Comment>>
 
+    //add comment
+    @POST("comment/add")
+    fun addComment(
+        @Body jsonObject: JsonObject,
+    ): Single<Comment>
+
     //add product to cart
     @POST("cart/add")
     fun addProductToCart(
@@ -80,11 +86,13 @@ interface NikyApiService {
     @GET("order/list")
     fun getOrderHistory(): Single<OrderItem>
 
+    //submit order
     @POST("order/submit")
     fun submitOrder(
         @Body jsonObject: JsonObject,
     ): Single<SubmitOrderResult>
 
+    //get payment result
     @GET("order/checkout")
     fun getPaymentResult(
         @Query("order_id") orderId: Int,
