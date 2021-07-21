@@ -48,12 +48,13 @@
     <dimen name="customAuthEditTextMinHeight">48dp</dimen>
     <dimen name="customWidthAuthButton">270dp</dimen>
     <dimen name="customAuthButtonMinHeight">48dp</dimen>
-    <dimen name="customPaddingRecyclerView">100dp</dimen>
+    <dimen name="customPaddingRecyclerView">60dp</dimen>
     <dimen name="customSizeNikyImageViewCartItem">100dp</dimen>
     <dimen name="customCartEmptyStateImageView">280dp</dimen>
     <dimen name="customProfileImageView">75dp</dimen>
     <dimen name="customFavoriteProductImageSize">80dp</dimen>
     <dimen name="customImageViewEmptyState">100dp</dimen>
+    <dimen name="customHeightOrderDetailItem">50dp</dimen>
 
     <!-- Custom radius size (dp) -->
     <dimen name="customRadiusCommentItem">2dp</dimen>

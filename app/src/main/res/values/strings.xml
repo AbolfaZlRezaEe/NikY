@@ -103,6 +103,11 @@
     <string name="deleteAllProductsFromFavoriteSuccessfully">تمامی محصولات با موفقیت از لیست علاقه مندی ها حذف شدند!</string>
     <string name="deleteProductFromFavoriteSuccessfully">محصول مورد نظر با موفقیت از لیست علاقه مندی ها حذف گردید!</string>
     <string name="nothingForShowInFavorites">هنوز چیزی جزو علاقه مندیات نبوده</string>
+    <string name="orderId">شناسه سفارش</string>
+    <string name="nothingForShowInOrders">هنوز سفارشی ثبت نکردی</string>
+    <string name="orderDetail">جزئیات سفارش</string>
+    <string name="paymentMethod">روش پرداخت</string>
+    <string name="paymentStatus">وضعیت پرداخت</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

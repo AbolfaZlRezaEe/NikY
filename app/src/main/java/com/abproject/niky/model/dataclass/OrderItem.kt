@@ -1,11 +1,18 @@
 package com.abproject.niky.model.dataclass
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class OrderItem(
     val count: Int,
     val discount: Int,
     val id: Int,
-    val order_id: Int,
+    @SerializedName("order_id")
+    val orderId: Int,
     val price: Int,
     val product: Product,
-    val product_id: Int,
-)
+    @SerializedName("product_id")
+    val productId: Int,
+) : Parcelable

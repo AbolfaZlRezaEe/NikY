@@ -1,18 +1,33 @@
 package com.abproject.niky.model.dataclass
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class OrderHistoryItem(
     val address: String,
     val date: String,
-    val first_name: String,
+    @SerializedName("first_name")
+    val firstName: String,
     val id: Int,
-    val last_name: String,
-    val order_items: List<OrderItem>,
+    @SerializedName("last_name")
+    val lastName: String,
+    @SerializedName("order_items")
+    val orderItems: List<OrderItem>,
     val payable: Int,
-    val payment_method: String,
-    val payment_status: String,
-    val phone: String,
-    val postal_code: String,
-    val shipping_cost: Int,
-    val total: Int,
-    val user_id: Int
-)
+    @SerializedName("payment_method")
+    val paymentMethod: String,
+    @SerializedName("payment_status")
+    val paymentStatus: String,
+    @SerializedName("phone")
+    val phoneNumber: String,
+    @SerializedName("postal_code")
+    val postalCode: String,
+    @SerializedName("shipping_cost")
+    val shippingCost: Int,
+    @SerializedName("total")
+    val totalPrice: Int,
+    @SerializedName("user_id")
+    val userId: Int,
+) : Parcelable

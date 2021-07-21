@@ -84,7 +84,7 @@ interface NikyApiService {
 
     //order history
     @GET("order/list")
-    fun getOrderHistory(): Single<OrderItem>
+    fun getOrderHistory(): Single<List<OrderHistoryItem>>
 
     //submit order
     @POST("order/submit")

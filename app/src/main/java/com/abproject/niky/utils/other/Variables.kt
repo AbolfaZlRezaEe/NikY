@@ -23,6 +23,7 @@ object Variables {
     const val EXTRA_KEY_ORDER_ID = "orderId"
     const val EXTRA_KEY_PRODUCT_ID = "productId"
     const val EXTRA_KEY_COMMENT = "comment"
+    const val EXTRA_KEY_ORDER_HISTORY_ITEM = "orderHistoryItem"
 
     //static variables for comments
     const val REQUEST_COMMENT_KEY = 127

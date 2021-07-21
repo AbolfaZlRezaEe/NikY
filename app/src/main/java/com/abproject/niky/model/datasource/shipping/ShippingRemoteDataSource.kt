@@ -1,6 +1,7 @@
 package com.abproject.niky.model.datasource.shipping
 
 import com.abproject.niky.model.apiservice.NikyApiService
+import com.abproject.niky.model.dataclass.OrderHistoryItem
 import com.abproject.niky.model.dataclass.PaymentResult
 import com.abproject.niky.model.dataclass.OrderInformation
 import com.abproject.niky.model.dataclass.SubmitOrderResult
@@ -35,5 +36,9 @@ class ShippingRemoteDataSource @Inject constructor(
         orderId: Int,
     ): Single<PaymentResult> {
         return apiService.getPaymentResult(orderId)
+    }
+
+    override fun getOrderHistory(): Single<List<OrderHistoryItem>> {
+        return apiService.getOrderHistory()
     }
 }
