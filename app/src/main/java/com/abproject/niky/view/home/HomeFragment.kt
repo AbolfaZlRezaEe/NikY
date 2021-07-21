@@ -1,30 +1,40 @@
 package com.abproject.niky.view.home
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import com.abproject.niky.R
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.databinding.FragmentHomeBinding
 import com.abproject.niky.model.dataclass.Banner
 import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.utils.other.UtilFunctions.convertDpToPixel
+import com.abproject.niky.utils.other.Variables.DELAY_FOR_SEARCHING
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_DATA
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_SORT
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_LATEST
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_POPULAR
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_PRICE_ASC
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_PRICE_DESC
+import com.abproject.niky.utils.other.hideKeyboard
 import com.abproject.niky.view.common.ProductAdapter
 import com.abproject.niky.view.home.banner.BannerSliderAdapter
 import com.abproject.niky.view.productdetail.ProductDetailActivity
 import com.abproject.niky.view.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,6 +61,9 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
     @Inject
     lateinit var priceDescAdapter: ProductAdapter
 
+    @Inject
+    lateinit var searchListAdapter: SearchListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,6 +83,8 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
         recyclerViewsStateRestoration()
 
         initializeViewAllButtons()
+
+        setupSearchEditText()
     }
 
     override fun onStart() {
@@ -144,6 +159,9 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
         homeViewModel.getBanners.observe(viewLifecycleOwner) { response ->
             initializeBannerSlider(response, homeViewModel.viewPagerHeight)
         }
+        homeViewModel.searchProductsLiveData.observe(viewLifecycleOwner) { filterProducts ->
+            searchListAdapter.setData(filterProducts)
+        }
     }
 
 
@@ -189,6 +207,20 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
                 binding.priceDescProductRecyclerViewHome.adapter = priceDescAdapter
             }
         }
+
+        //initialize Search recyclerView
+        searchListAdapter.onProductClick = { product ->
+            //start activity and pass product to ProductDetailActivity
+            startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
+                putExtra(EXTRA_KEY_PRODUCT_DATA, product)
+            })
+        }
+        binding.searchRecyclerViewHome.layoutManager = LinearLayoutManager(
+            requireContext(),
+            RecyclerView.VERTICAL,
+            false
+        )
+        binding.searchRecyclerViewHome.adapter = searchListAdapter
     }
 
     private fun initializeBannerSlider(
@@ -223,6 +255,53 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
         }
         //set new layoutParams for viewPager
         binding.bannerSliderViewPagerHome.layoutParams = layoutParams
+    }
+
+    private fun setupSearchEditText() {
+        var timer = Timer()
+        binding.searchEditTextHome.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                binding.searchRecyclerViewHome.visibility =
+                    if (hasFocus) View.VISIBLE else View.GONE
+                binding.closeImageViewHome.visibility =
+                    if (hasFocus) View.VISIBLE else View.GONE
+                binding.nestedScrollViewHome.isEnableScrolling = !hasFocus
+            }
+
+        binding.closeImageViewHome.setOnClickListener {
+            if (binding.searchEditTextHome.hasFocus()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    binding.searchEditTextHome.clearFocus()
+                }
+                binding.closeImageViewHome.visibility = View.GONE
+                binding.searchRecyclerViewHome.visibility = View.GONE
+                binding.searchEditTextHome.hideKeyboard()
+                binding.searchEditTextHome.text.clear()
+            }
+        }
+
+        binding.searchEditTextHome.setOnEditorActionListener { v, actionId, event ->
+            actionId != EditorInfo.IME_ACTION_SEARCH
+        }
+
+        binding.searchEditTextHome.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(string: Editable?) {
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(object : TimerTask() {
+                    override fun run() {
+                        string?.let { productTitle ->
+                            if (productTitle.isNotEmpty())
+                                homeViewModel.searchInProducts(productTitle.toString())
+                        }
+                    }
+                }, DELAY_FOR_SEARCHING)
+            }
+        })
     }
 
 

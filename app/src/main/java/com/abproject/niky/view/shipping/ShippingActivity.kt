@@ -8,6 +8,7 @@ import com.abproject.niky.R
 import com.abproject.niky.base.NikyActivity
 import com.abproject.niky.databinding.ActivityShippingBinding
 import com.abproject.niky.model.dataclass.OrderInformation
+import com.abproject.niky.model.objects.UserContainer
 import com.abproject.niky.utils.other.UtilFunctions
 import com.abproject.niky.utils.other.Variables
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_ORDER_ID
@@ -33,6 +34,17 @@ class ShippingActivity : NikyActivity() {
 
         initializeViews()
 
+        initializeUserDetailInformation()
+    }
+
+    private fun initializeUserDetailInformation() {
+        if (!UserContainer.firstName.isNullOrEmpty()) {
+            binding.firstNameTextInputEditText.setText(UserContainer.firstName)
+            binding.lastNameTextInputEditText.setText(UserContainer.lastName)
+            binding.phoneNumberTextInputEditText.setText(UserContainer.phoneNumber)
+            binding.postalCodeTextInputEditText.setText(UserContainer.postalCode)
+            binding.addressTextInputEditText.setText(UserContainer.address)
+        }
     }
 
     private fun initializeViews() {
@@ -100,6 +112,7 @@ class ShippingActivity : NikyActivity() {
                 && binding.postalCodeTextInputEditText.text!!.length == 10
                 && binding.addressTextInputEditText.text!!.isNotEmpty()
                 && binding.addressTextInputEditText.text!!.length >= 20
+                && binding.addressTextInputEditText.text!!.length <= 50
     }
 
     private fun setErrorForTextInputEditTexts() {
@@ -126,6 +139,9 @@ class ShippingActivity : NikyActivity() {
         }
         if (binding.addressTextInputEditText.text!!.length != 20) {
             binding.addressTextInputEditText.error = getString(R.string.addressSchemeError)
+        }
+        if (binding.addressTextInputEditText.text!!.length > 50) {
+            binding.addressTextInputEditText.error = getString(R.string.addressSchemeError2)
         }
     }
 

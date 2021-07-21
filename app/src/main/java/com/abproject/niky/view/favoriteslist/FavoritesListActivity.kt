@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abproject.niky.R
@@ -14,11 +16,14 @@ import com.abproject.niky.utils.other.Variables
 import com.abproject.niky.utils.other.Variables.EXTRA_KEY_PRODUCT_DATA
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_LATEST
 import com.abproject.niky.utils.rxjava.NikyCompletableObserver
+import com.abproject.niky.view.auth.AuthActivity
 import com.abproject.niky.view.productdetail.ProductDetailActivity
 import com.abproject.niky.view.productlist.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class FavoritesListActivity : NikyActivity() {
@@ -55,14 +60,28 @@ class FavoritesListActivity : NikyActivity() {
             })
         }
         binding.deleteAllProductsFromFavoritesImageView.setOnClickListener {
-            favoriteListViewModel.deleteAllProductsFromFavorite()
-                .subscribe(object :
-                    NikyCompletableObserver(favoriteListViewModel.compositeDisposable) {
-                    override fun onComplete() {
-                        showSnackBar(getString(R.string.deleteAllProductsFromFavoriteSuccessfully))
-                    }
-                })
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.deleteAllFavoritesTitle))
+                .setMessage(getString(R.string.deleteAllFavoritesMessage))
+                .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
+                    dialog.dismiss()
+                    deleteAllUsers()
+                }
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
+    }
+
+    private fun deleteAllUsers() {
+        favoriteListViewModel.deleteAllProductsFromFavorite()
+            .subscribe(object :
+                NikyCompletableObserver(favoriteListViewModel.compositeDisposable) {
+                override fun onComplete() {
+                    showSnackBar(getString(R.string.deleteAllProductsFromFavoriteSuccessfully))
+                }
+            })
     }
 
     override fun onStart() {
@@ -86,6 +105,9 @@ class FavoritesListActivity : NikyActivity() {
         }
         favoriteListViewModel.getAllFavoriteProducts.observe(this) { products ->
             favoriteListAdapter.setData(products)
+            binding.deleteAllProductsFromFavoritesImageView.visibility =
+                if (products.size <= 1) View.GONE else View.VISIBLE
+
         }
         favoriteListAdapter.onProductClick = { product ->
             //start activity and pass product to ProductDetailActivity

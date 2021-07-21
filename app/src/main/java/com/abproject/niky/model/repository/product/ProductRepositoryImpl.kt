@@ -30,6 +30,12 @@ class ProductRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun searchInProductsWithProductTitle(
+        productTitle: String,
+    ): Single<List<Product>> {
+        return productRemoteDataSource.searchInProducts(productTitle)
+    }
+
     override fun getBanner(): Single<List<Banner>> {
         return bannerRemoteDataSource.getBanners()
     }

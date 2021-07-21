@@ -108,6 +108,9 @@
                 android:id="@+id/addressTextInputLayout"
                 style="@style/NikyTextInputLayoutStyle"
                 android:layout_width="match_parent"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:helperText="@string/addressHelperText"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText

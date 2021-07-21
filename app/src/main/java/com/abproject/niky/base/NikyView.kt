@@ -88,7 +88,7 @@ interface NikyView {
      */
     fun showEmptyState(
         layoutResId: Int,
-        rootViewId: Int,
+        rootViewId: Int
     ): View? {
         rootView?.let { coordinatorLayout ->
             viewContext?.let { context ->

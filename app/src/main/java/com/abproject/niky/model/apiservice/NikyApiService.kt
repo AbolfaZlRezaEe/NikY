@@ -22,6 +22,12 @@ interface NikyApiService {
         @Query("sort") sort: String,
     ): Single<List<Product>>
 
+    //search in products
+    @GET("product/search")
+    fun searchInProducts(
+        @Query("q") productTitle: String,
+    ): Single<List<Product>>
+
     //get banners
     @GET("banner/slider")
     fun getBanners(): Single<List<Banner>>

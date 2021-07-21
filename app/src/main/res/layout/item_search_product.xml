@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.abproject.niky.customview.imageview.NikyImageView
+        android:id="@+id/favoriteProductImageViewItem"
+        android:layout_width="@dimen/customFavoriteProductImageSize"
+        android:layout_height="@dimen/customFavoriteProductImageSize"
+        android:layout_marginTop="@dimen/littleMargin"
+        android:layout_marginBottom="@dimen/littleMargin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:roundedCornerRadius="@dimen/customRadiusFavoriteProductItem" />
+
+    <TextView
+        android:id="@+id/favoriteProductTitleItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normalMargin"
+        android:layout_marginEnd="@dimen/normalMargin"
+        app:layout_constraintBottom_toBottomOf="@+id/favoriteProductImageViewItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/favoriteProductImageViewItem"
+        app:layout_constraintTop_toTopOf="@+id/favoriteProductImageViewItem"
+        tools:text="TextView" />
+
+    <FrameLayout
+        android:id="@+id/clickableLayoutForClickItemProduct"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

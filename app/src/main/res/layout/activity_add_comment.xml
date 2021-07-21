@@ -50,15 +50,15 @@
                 android:id="@+id/commentContentEditTextAddComment"
                 style="@style/NikyCommentEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/commentTitleEditTextAddComment"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/normalMargin"
                 android:gravity="start|top"
                 android:hint="@string/comment"
                 android:inputType="text|textMultiLine"
+                android:minHeight="150dp"
                 android:paddingTop="@dimen/normalPadding"
                 android:paddingBottom="@dimen/normalPadding" />
 

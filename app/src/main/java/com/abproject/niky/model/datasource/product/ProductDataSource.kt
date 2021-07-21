@@ -1,6 +1,5 @@
 package com.abproject.niky.model.datasource.product
 
-import androidx.lifecycle.LiveData
 import com.abproject.niky.model.dataclass.Product
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -9,6 +8,10 @@ interface ProductDataSource {
 
     fun getProductsBySort(
         sort: Int,
+    ): Single<List<Product>>
+
+    fun searchInProducts(
+        productTitle: String,
     ): Single<List<Product>>
 
     fun getFavoriteProducts(): Single<List<Product>>

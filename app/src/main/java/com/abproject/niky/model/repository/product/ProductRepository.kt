@@ -11,6 +11,10 @@ interface ProductRepository {
         sort: Int,
     ): Single<List<Product>>
 
+    fun searchInProductsWithProductTitle(
+        productTitle: String,
+    ): Single<List<Product>>
+
     fun getBanner(): Single<List<Banner>>
 
     fun getFavoriteProducts(): Single<List<Product>>

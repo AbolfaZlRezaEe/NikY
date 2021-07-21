@@ -1,8 +1,12 @@
 package com.abproject.niky.utils.other
 
+import android.app.Activity
+import android.content.Context
 import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
@@ -37,6 +41,11 @@ fun validationIranianPhoneNumber(number: String): Boolean {
     val phoneNumberPattern =
         Regex("(0|\\+98)?([ ]|,|-|[()]){0,2}9[1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}")
     return (number.isNotEmpty() && number.matches(phoneNumberPattern))
+}
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
 /**
@@ -82,4 +91,5 @@ fun View.implementSpringAnimationTrait() {
 
         false
     }
+
 }

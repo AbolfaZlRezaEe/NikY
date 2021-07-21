@@ -13,8 +13,4 @@ class ProfileViewModel @Inject constructor(
     fun signOut() {
         userRepository.signOut()
     }
-
-    fun loadUserInformation() {
-        userRepository.loadUserInformation()
-    }
 }

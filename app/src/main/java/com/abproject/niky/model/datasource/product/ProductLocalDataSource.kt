@@ -14,6 +14,10 @@ class ProductLocalDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override fun searchInProducts(productTitle: String): Single<List<Product>> {
+        TODO("Not yet implemented")
+    }
+
     override fun getFavoriteProducts(): Single<List<Product>> {
         return productDao.getAllFavoritesProduct()
     }

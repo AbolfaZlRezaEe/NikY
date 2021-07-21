@@ -2,8 +2,10 @@ package com.abproject.niky.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.abproject.niky.R
 import com.abproject.niky.base.NikyViewModel
 import com.abproject.niky.model.dataclass.Banner
+import com.abproject.niky.model.dataclass.EmptyState
 import com.abproject.niky.model.dataclass.Product
 import com.abproject.niky.model.repository.product.ProductRepository
 import com.abproject.niky.utils.other.Variables.PRODUCT_SORT_LATEST
@@ -25,12 +27,14 @@ class HomeViewModel @Inject constructor(
     private val _getPopularProducts = MutableLiveData<List<Product>>()
     private val _getPriceDescProducts = MutableLiveData<List<Product>>()
     private val _getPriceAscProducts = MutableLiveData<List<Product>>()
+    private val _searchProductsLiveData = MutableLiveData<List<Product>>()
     private val _getBanners = MutableLiveData<List<Banner>>()
 
     val getLatestProducts: LiveData<List<Product>> get() = _getLatestProducts
     val getPopularProducts: LiveData<List<Product>> get() = _getPopularProducts
     val getPriceDescProducts: LiveData<List<Product>> get() = _getPriceDescProducts
     val getPriceAscProducts: LiveData<List<Product>> get() = _getPriceAscProducts
+    val searchProductsLiveData: LiveData<List<Product>> get() = _searchProductsLiveData
     val getBanners: LiveData<List<Banner>> get() = _getBanners
 
     /**
@@ -115,6 +119,20 @@ class HomeViewModel @Inject constructor(
             .subscribe(object : NikySingleObserver<List<Banner>>(compositeDisposable) {
                 override fun onSuccess(t: List<Banner>) {
                     _getBanners.postValue(t)
+                }
+            })
+    }
+
+    fun searchInProducts(
+        productTitle: String,
+    ) {
+        _progressbarStatusLiveData.postValue(true)
+        productRepository.searchInProductsWithProductTitle(productTitle)
+            .asyncNetworkRequest()
+            .doFinally { _progressbarStatusLiveData.postValue(false) }
+            .subscribe(object : NikySingleObserver<List<Product>>(compositeDisposable) {
+                override fun onSuccess(response: List<Product>) {
+                    _searchProductsLiveData.value = response
                 }
             })
     }

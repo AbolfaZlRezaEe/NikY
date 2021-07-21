@@ -107,4 +107,7 @@ object Variables {
     //payment method
     const val PAYMENT_METHOD_ONLINE = "online"
     const val PAYMENT_METHOD_CASH_ON_DELIVERY = "cash_on_delivery"
+
+    //search delay
+    const val DELAY_FOR_SEARCHING = 1000L
 }

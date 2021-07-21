@@ -45,8 +45,6 @@ class ProfileFragment : NikyFragment() {
     }
 
     private fun initializeViews() {
-        profileViewModel.loadUserInformation()
-
         if (UserContainer.firstName.isNullOrEmpty()) {
             binding.usernameTextViewProfileFragment.text = getString(R.string.newUser)
         } else {

@@ -10,10 +10,6 @@ class ProfileDetailViewModel @Inject constructor(
     private val userRepository: UserRepository,
 ) : NikyViewModel() {
 
-    fun loadUserInformation() {
-        userRepository.loadUserInformation()
-    }
-
     fun saveUserInformation(
         firstName: String,
         lastName: String,

@@ -1,15 +1,18 @@
 package com.abproject.niky.view.profiledetail
 
-import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import com.abproject.niky.R
 import com.abproject.niky.base.NikyActivity
 import com.abproject.niky.databinding.ActivityProfileDetailBinding
 import com.abproject.niky.model.objects.UserContainer
+import com.abproject.niky.utils.other.EnglishConverter
 import com.abproject.niky.utils.other.isValidEmail
 import com.abproject.niky.utils.other.validationIranianPhoneNumber
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.concurrent.schedule
@@ -30,8 +33,6 @@ class ProfileDetailActivity : NikyActivity() {
     }
 
     private fun initializeViews() {
-
-        profileDetailViewModel.loadUserInformation()
         if (!UserContainer.firstName.isNullOrEmpty()) {
             binding.firstNameTextInputEditText.setText(UserContainer.firstName)
             binding.lastNameTextInputEditText.setText(UserContainer.lastName)
@@ -69,6 +70,31 @@ class ProfileDetailActivity : NikyActivity() {
         }
     }
 
+    //todo fix this function and edit texts
+    private fun setTextWatcherForEditTexts(
+        editText: TextInputEditText,
+    ) {
+        var change = false
+        val converter = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                if (change) {
+                    change = false
+                    return
+                }
+                change = true
+                val resultText = EnglishConverter.convertEnglishNumberToPersianNumber(
+                    text.toString()
+                )
+                editText.setText(resultText)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        }
+        editText.addTextChangedListener(converter)
+    }
+
     private fun validationEditTexts(): Boolean {
         return binding.firstNameTextInputEditText.text!!.isNotEmpty()
                 && binding.lastNameTextInputEditText.text!!.isNotEmpty()
@@ -81,6 +107,7 @@ class ProfileDetailActivity : NikyActivity() {
                 && binding.emailTextInputEditText.text!!.isValidEmail()
                 && binding.ageTextInputEditText.text!!.length <= 2
                 && binding.ageTextInputEditText.text!!.isNotEmpty()
+                && binding.addressTextInputEditText.text!!.length <= 50
     }
 
     private fun setErrorForTextInputEditTexts() {
@@ -116,6 +143,9 @@ class ProfileDetailActivity : NikyActivity() {
         }
         if (binding.ageTextInputEditText.text.isNullOrEmpty()) {
             binding.ageTextInputEditText.error = getString(R.string.ageError)
+        }
+        if (binding.addressTextInputEditText.text!!.length > 50) {
+            binding.addressTextInputEditText.error = getString(R.string.addressSchemeError2)
         }
     }
 }

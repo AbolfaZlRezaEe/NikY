@@ -16,6 +16,12 @@ class ProductRemoteDataSource @Inject constructor(
         return apiService.getProducts(sort.toString())
     }
 
+    override fun searchInProducts(
+        productTitle: String
+    ): Single<List<Product>> {
+        return apiService.searchInProducts(productTitle)
+    }
+
     override fun getFavoriteProducts(): Single<List<Product>> {
         TODO("Not yet implemented")
     }
