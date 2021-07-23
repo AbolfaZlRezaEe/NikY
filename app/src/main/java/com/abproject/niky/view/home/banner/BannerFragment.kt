@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.abproject.niky.base.NikyFragment
 import com.abproject.niky.components.imageview.ImageLoadingService
 import com.abproject.niky.databinding.FragmentBannerBinding
@@ -14,7 +15,7 @@ import java.lang.IllegalStateException
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BannerFragment : NikyFragment() {
+class BannerFragment : Fragment() {
 
     private var _binding: FragmentBannerBinding? = null
     private val binding get() = _binding!!

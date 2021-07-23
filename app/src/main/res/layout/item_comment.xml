@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,51 +7,50 @@
 
     <TextView
         android:id="@+id/commentTitleTextViewItem"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="@dimen/normalMargin"
         android:layout_marginTop="@dimen/normalMargin"
         android:gravity="right"
         android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintEnd_toStartOf="@+id/commentDateTextViewItem"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="عنوان کامنت" />
 
     <TextView
         android:id="@+id/commentDateTextViewItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/normalMargin"
         android:layout_marginEnd="@dimen/normalMargin"
         android:textAppearance="?textAppearanceBody2"
         android:textColor="?android:textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="@+id/commentTitleTextViewItem"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="تاریخ کامنت" />
 
     <TextView
         android:id="@+id/commentAuthorTextViewItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/commentTitleTextViewItem"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/normalMargin"
         android:layout_marginTop="4dp"
         android:textAppearance="?textAppearanceBody2"
         android:textColor="?android:textColorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/commentTitleTextViewItem"
-        app:layout_constraintTop_toBottomOf="@+id/commentTitleTextViewItem"
         tools:text="آدرس ایمیل" />
 
     <TextView
         android:id="@+id/commentContentTextViewItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/commentAuthorTextViewItem"
+        android:layout_alignStart="@id/commentAuthorTextViewItem"
+        android:layout_alignEnd="@id/commentDateTextViewItem"
         android:layout_marginTop="@dimen/normalMargin"
         android:gravity="right"
         android:textAppearance="?textAppearanceBody2"
-        app:layout_constraintEnd_toEndOf="@+id/commentDateTextViewItem"
-        app:layout_constraintStart_toStartOf="@+id/commentAuthorTextViewItem"
-        app:layout_constraintTop_toBottomOf="@+id/commentAuthorTextViewItem"
         tools:text="اقعا یکی از بهترین کفش هاییه که تا حالا دیدم خیلی خوبه" />
 
     <View
@@ -59,7 +58,7 @@
         android:layout_height="@dimen/dividerSize"
         android:layout_marginTop="@dimen/normalMargin"
         android:background="?dividerColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentContentTextViewItem" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/commentContentTextViewItem"/>
+</RelativeLayout>

@@ -5,6 +5,7 @@ import io.reactivex.CompletableObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
+import timber.log.Timber
 
 /**
  * this is a custom class for CompletableObserver.
@@ -24,5 +25,6 @@ abstract class NikyCompletableObserver(
     override fun onError(e: Throwable) {
         //handling error that receive from CompletableObservers.
         EventBus.getDefault().post(NikyExceptionMapper.map(e))
+        Timber.d("NikyCompletableObserver -> $e")
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.abproject.niky.utils.internetconnetion.ConnectionLiveData
+import com.abproject.niky.utils.other.UtilFunctions
 import org.greenrobot.eventbus.EventBus
 
 abstract class NikyFragment : Fragment(), NikyView {

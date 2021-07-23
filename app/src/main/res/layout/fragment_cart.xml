@@ -38,6 +38,7 @@
         android:layout_gravity="bottom"
         android:layout_marginStart="@dimen/veryHighNormalMargin"
         android:layout_marginEnd="@dimen/veryHighNormalMargin"
+        android:visibility="gone"
         android:layout_marginBottom="@dimen/normalMargin"
         android:fontFamily="@font/primary_bold"
         android:gravity="center"

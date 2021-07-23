@@ -7,6 +7,7 @@ import com.abproject.niky.utils.exceptionhandler.exceptions.InternetException
 import com.abproject.niky.utils.other.Variables.EXCEPTION_MESSAGE_KEY
 import org.json.JSONObject
 import retrofit2.HttpException
+import timber.log.Timber
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
@@ -24,7 +25,7 @@ class NikyExceptionMapper {
         fun map(
             throwable: Throwable,
         ): NikyException {
-            return when (throwable) {
+            when (throwable) {
                 is HttpException -> {
                     when (throwable.code()) {
                         //authentication error
@@ -63,6 +64,7 @@ class NikyExceptionMapper {
                             )
                         }
                         else -> {
+                            Timber.d("NikyExceptionMapper (server side) -> ${throwable.message}")
                             return NikyException(
                                 ExceptionType.SIMPLE,
                                 resourceStringMessage = R.string.snackbarExceptionMessage
@@ -85,7 +87,7 @@ class NikyExceptionMapper {
                     )
                 }
                 //this block only reach when user no internet connection.
-                is UnknownHostException->{
+                is UnknownHostException -> {
                     return NikyException(
                         ExceptionType.INTERNET_CONNECTION,
                         resourceStringMessage = R.string.pleaseCheckYourInternetConnection
@@ -99,6 +101,7 @@ class NikyExceptionMapper {
                     )
                 }
                 else -> {
+                    Timber.d("NikyExceptionMapper (client side) -> $throwable")
                     return NikyException(
                         ExceptionType.SIMPLE,
                         resourceStringMessage = R.string.snackbarExceptionMessage

@@ -3,6 +3,7 @@ package com.abproject.niky.view.profile
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.abproject.niky.view.favoriteslist.FavoritesListActivity
 import com.abproject.niky.view.orderhistory.OrderHistoryActivity
 import com.abproject.niky.view.profiledetail.ProfileDetailActivity
 import com.facebook.drawee.generic.RoundingParams
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import java.util.*
@@ -72,17 +74,14 @@ class ProfileFragment : NikyFragment() {
         }
 
         binding.signoutTextViewFragmentProfile.setOnClickListener {
-            AlertDialog.Builder(requireContext())
+            MaterialAlertDialogBuilder(requireContext(), R.style.NikyAlertDialogStyle)
                 .setTitle(getString(R.string.signOutDialogTitle))
                 .setMessage(getString(R.string.signOutDialogMessage))
                 .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                     dialog.dismiss()
                     profileViewModel.signOut()
-                    showSnackBar(getString(R.string.youSignOutFromAccount))
-                    Timer("startAuthActivity", false).schedule(3000) {
-                        startActivity(Intent(requireActivity(), AuthActivity::class.java))
-                        requireActivity().finish()
-                    }
+                    startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                    requireActivity().finish()
                 }
                 .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                     dialog.dismiss()

@@ -57,7 +57,7 @@ class SignUpFragment : NikyFragment() {
                 authViewModel.userSignUp(
                     binding.emailEditTextSignUp.text.toString(),
                     binding.passwordEditTextSignUp.text.toString()
-                )?.subscribe(object : NikyCompletableObserver(authViewModel.compositeDisposable) {
+                ).subscribe(object : NikyCompletableObserver(authViewModel.compositeDisposable) {
                     override fun onComplete() {
                         showSnackBar(getString(R.string.signUpSuccessfully))
                         Timer("startSplashActivity", false).schedule(3000) {

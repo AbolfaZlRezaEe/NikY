@@ -20,7 +20,7 @@ class TokenRemoteDataSource @Inject constructor(
     }
 
     override fun loadTokenFromSharedPreferences(): Boolean {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenRemoteDataSource -> this function not available in this class!")
     }
 
     override fun saveTokenIntoSharedPreferences(
@@ -28,7 +28,7 @@ class TokenRemoteDataSource @Inject constructor(
         accessToken: String,
         refreshToken: String,
     ): Boolean {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenRemoteDataSource -> this function not available in this class!")
     }
 
     override fun saveTokenIntoTokenContainerObject(
@@ -36,10 +36,10 @@ class TokenRemoteDataSource @Inject constructor(
         accessToken: String,
         refreshToken: String,
     ): Boolean {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenRemoteDataSource -> this function not available in this class!")
     }
 
     override fun signOut() {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenRemoteDataSource -> this function not available in this class!")
     }
 }

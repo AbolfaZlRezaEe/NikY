@@ -14,6 +14,7 @@ import com.abproject.niky.utils.other.Variables.JSON_PASSWORD_KEY
 import com.abproject.niky.utils.other.Variables.JSON_USERNAME_KEY
 import com.google.gson.JsonObject
 import io.reactivex.Completable
+import timber.log.Timber
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -35,6 +36,8 @@ class UserRepositoryImpl @Inject constructor(
                 addProperty(JSON_CLIENT_SECRET_KEY, JSON_CLIENT_SECRET_VALUE)
             }
         ).doOnSuccess { token ->
+            Timber.d("UserRepositoryImpl -> successful sing in")
+            Timber.d("UserRepositoryImpl -> ${token.accessToken}")
             //save token in shared preferences and TokenContainer
             onSuccessFullLogin(
                 email = username,
@@ -84,6 +87,7 @@ class UserRepositoryImpl @Inject constructor(
         email: String?,
         token: Token,
     ): Boolean {
+        Timber.d("UserRepositoryImpl -> email ->$email -- accessToken ->${token.accessToken} -- refreshToken ->${token.refreshShToken} -- tokenType -> ${token.tokenType}")
         userLocalDataSource.signIn(
             firstName = "",
             lastName = "",

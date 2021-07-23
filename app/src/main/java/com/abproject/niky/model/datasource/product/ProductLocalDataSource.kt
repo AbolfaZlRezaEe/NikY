@@ -11,11 +11,11 @@ class ProductLocalDataSource @Inject constructor(
 ) : ProductDataSource {
 
     override fun getProductsBySort(sort: Int): Single<List<Product>> {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductLocalDataSource -> this function not available in this class!")
     }
 
     override fun searchInProducts(productTitle: String): Single<List<Product>> {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductLocalDataSource -> this function not available in this class!")
     }
 
     override fun getFavoriteProducts(): Single<List<Product>> {

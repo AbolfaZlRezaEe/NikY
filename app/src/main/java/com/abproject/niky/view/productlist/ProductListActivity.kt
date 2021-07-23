@@ -72,7 +72,7 @@ class ProductListActivity : NikyActivity(), ProductAdapter.ProductListener {
 
         //initialize choose sort button click
         binding.chooseSortViewProductList.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
+            MaterialAlertDialogBuilder(this,R.style.NikyAlertDialogStyle)
                 .setTitle(getString(R.string.sortBy))
                 .setSingleChoiceItems(
                     R.array.productSortArray,

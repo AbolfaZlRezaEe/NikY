@@ -19,6 +19,7 @@ import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.auth.AuthActivity
 import com.abproject.niky.view.productdetail.ProductDetailActivity
 import com.abproject.niky.view.productlist.ProductListActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
@@ -60,7 +61,7 @@ class FavoritesListActivity : NikyActivity() {
             })
         }
         binding.deleteAllProductsFromFavoritesImageView.setOnClickListener {
-            AlertDialog.Builder(this)
+            MaterialAlertDialogBuilder(this, R.style.NikyAlertDialogStyle)
                 .setTitle(getString(R.string.deleteAllFavoritesTitle))
                 .setMessage(getString(R.string.deleteAllFavoritesMessage))
                 .setPositiveButton(getString(R.string.yes)) { dialog, _ ->

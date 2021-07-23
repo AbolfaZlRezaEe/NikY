@@ -5,6 +5,8 @@
     <style name="NikyBottomNavigationStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@color/niky_bottom_navigation_item_color</item>
         <item name="itemTextColor">@color/niky_bottom_navigation_item_color</item>
+        <item name="android:fontFamily">@font/primary_regular</item>
+        <item name="fontFamily">@font/primary_regular</item>
         <item name="itemRippleColor">@color/niky_bottom_navigation_ripple_color</item>
         <item name="itemTextAppearanceActive">@style/nikyActiveItemBottomNavigationTextAppearance
         </item>
@@ -98,5 +100,13 @@
         <item name="android:minHeight">@dimen/customAuthEditTextMinHeight</item>
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textColorHint">@color/darkGray</item>
+    </style>
+
+    <!-- Niky Dialog Style -->
+
+    <style name="NikyAlertDialogStyle" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="android:layoutDirection">rtl</item>
+        <item name="fontFamily">@font/primary_regular</item>
+        <item name="android:fontFamily">@font/primary_regular</item>
     </style>
 </resources>

@@ -109,7 +109,7 @@ class ProductDetailActivity : NikyActivity() {
         //initialize add to cart button clicked.
         binding.addToCartExtendedFabProductDetail.setOnClickListener {
             productDetailViewModel.addProductToCart()
-                ?.subscribe(object :
+                .subscribe(object :
                     NikyCompletableObserver(productDetailViewModel.compositeDisposable) {
                     override fun onComplete() {
                         showSnackBar(getString(R.string.addToCartSuccessfully))

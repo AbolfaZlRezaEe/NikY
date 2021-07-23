@@ -75,7 +75,7 @@ interface NikyView {
         message: String,
         duration: Int = Toast.LENGTH_SHORT,
     ) {
-        rootView?.let { coordinatorLayout ->
+        rootView?.let { _ ->
             viewContext?.let { context ->
                 Toast.makeText(context, message, duration).show()
             }

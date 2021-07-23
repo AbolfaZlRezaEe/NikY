@@ -23,18 +23,18 @@ class ProductRemoteDataSource @Inject constructor(
     }
 
     override fun getFavoriteProducts(): Single<List<Product>> {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductRemoteDataSource -> this function not available in this class!")
     }
 
     override fun addProductToFavorite(product: Product): Completable {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductRemoteDataSource -> this function not available in this class!")
     }
 
     override fun deleteProductFromFavorite(product: Product): Completable {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductRemoteDataSource -> this function not available in this class!")
     }
 
     override fun deleteAllProductsFromFavorites(): Completable {
-        TODO("Not yet implemented")
+        throw IllegalStateException("ProductRemoteDataSource -> this function not available in this class!")
     }
 }

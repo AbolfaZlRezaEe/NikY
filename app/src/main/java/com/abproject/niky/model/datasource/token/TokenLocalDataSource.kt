@@ -18,13 +18,13 @@ class TokenLocalDataSource @Inject constructor(
     override fun signIn(
         jsonObject: JsonObject,
     ): Single<Token> {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenLocalDataSource -> this function not available in this class!")
     }
 
     override fun signUp(
         jsonObject: JsonObject,
     ): Single<Message> {
-        TODO("Not yet implemented")
+        throw IllegalStateException("TokenLocalDataSource -> this function not available in this class!")
     }
 
     override fun loadTokenFromSharedPreferences(): Boolean {

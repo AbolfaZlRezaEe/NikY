@@ -280,7 +280,7 @@ class HomeFragment : NikyFragment(), ProductAdapter.ProductListener {
             }
         }
 
-        binding.searchEditTextHome.setOnEditorActionListener { v, actionId, event ->
+        binding.searchEditTextHome.setOnEditorActionListener { _, actionId, _ ->
             actionId != EditorInfo.IME_ACTION_SEARCH
         }
 

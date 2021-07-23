@@ -1,5 +1,7 @@
 package com.abproject.niky.model.objects
 
+import timber.log.Timber
+
 /**
  * this class contain AccessToken and RefreshToken.
  * these variables alive when the application alive.
@@ -29,6 +31,7 @@ object TokenContainer {
         TokenContainer.accessToken = accessToken
         TokenContainer.refreshToken = refreshToken
         TokenContainer.tokenType = tokenType
+        Timber.d("Token Container -> access Token ->${this.accessToken} -- refresh Token ->${this.refreshToken} -- token Type -> ${this.tokenType}")
     }
 
     fun clearTokenData() {

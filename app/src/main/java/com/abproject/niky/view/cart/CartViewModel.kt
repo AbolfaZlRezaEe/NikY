@@ -32,13 +32,20 @@ class CartViewModel @Inject constructor(
             .doFinally { _progressbarStatusLiveData.postValue(false) }
             .subscribe(object : NikySingleObserver<Cart>(compositeDisposable) {
                 override fun onSuccess(response: Cart) {
-                    _cartItemsLiveData.value = response.cartItems
-                    processOfEmptyStateStatus()
-                    setPurchaseDetailLiveData(
-                        totalPrice = response.totalPrice,
-                        shippingCost = response.shippingCost,
-                        payablePrice = response.payable_price
-                    )
+                    if (response.cartItems.isEmpty()) {
+                        _emptyStateStatusLiveData.value = EmptyState(
+                            true,
+                            R.string.nothingForShowHere
+                        )
+                    } else {
+                        _cartItemsLiveData.value = response.cartItems
+                        processOfEmptyStateStatus()
+                        setPurchaseDetailLiveData(
+                            totalPrice = response.totalPrice,
+                            shippingCost = response.shippingCost,
+                            payablePrice = response.payable_price
+                        )
+                    }
                 }
             })
     }
@@ -65,8 +72,7 @@ class CartViewModel @Inject constructor(
             .doAfterSuccess {
                 calculatePurchaseDetail()
 
-                // TODO: 7/19/2021 fix the empty state status when nothing in cart
-                processOfEmptyStateStatus()
+                getCartItems()
 
                 //publish new CartItemCount with EventBus
                 EventBus.getDefault().getStickyEvent(CartItemCount::class.java)

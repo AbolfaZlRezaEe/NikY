@@ -1,7 +1,9 @@
 package com.abproject.niky.model.dataclass
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class Token(
     @SerializedName("access_token")
     val accessToken: String,

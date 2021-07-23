@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent"
     tools:context=".view.main.MainActivity">
 
@@ -18,6 +19,7 @@
         android:id="@+id/bottomNaviagtionMain"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottomNavigationViewHeight"
+        style="NikyBottomNavigationStyle"
         android:layout_gravity="bottom"
         app:menu="@menu/main_navigation_menu" />
 

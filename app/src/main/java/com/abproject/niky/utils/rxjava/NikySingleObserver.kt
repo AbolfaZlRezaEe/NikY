@@ -26,6 +26,7 @@ abstract class NikySingleObserver<T>(
     override fun onError(e: Throwable) {
         //handling error that receive from SingleObservers.
         EventBus.getDefault().post(NikyExceptionMapper.map(e))
+        Timber.d("NikySingleObserver -> $e")
     }
 
 }

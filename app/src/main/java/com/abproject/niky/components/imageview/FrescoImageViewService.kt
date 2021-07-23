@@ -18,12 +18,7 @@ class FrescoImageViewService : ImageLoadingService {
      * image with fresco.
      */
     override fun loadImage(imageView: NikyImageView, imageUrl: String) {
-        if (imageView is SimpleDraweeView) {
-            imageView.setImageURI(imageUrl)
-        } else {
-            //throwing exception if this imageView doesn't instance of SimpleDraweeView!
-            throw IllegalStateException("debug (FrescoImageViewService)-> ImageView must be instance of SimpleDraweeView! ")
-        }
+        imageView.setImageURI(imageUrl)
     }
 
 }

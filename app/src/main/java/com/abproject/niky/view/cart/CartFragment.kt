@@ -53,7 +53,6 @@ class CartFragment : NikyFragment() {
     private fun initializeViews() {
         binding.payMaterialButtonCart.setOnClickListener {
             startActivity(Intent(requireContext(), ShippingActivity::class.java).apply {
-                // TODO: 7/19/2021 force close because getPurchaseDetail is null
                 putExtra(EXTRA_KEY_PURCHASE_DETAIL, cartItemAdapter.getPurchaseDetail())
             })
             requireActivity().finish()
@@ -62,6 +61,8 @@ class CartFragment : NikyFragment() {
 
     private fun listeningToTheObservers() {
         cartViewModel.emptyStateStatusLiveData.observe(viewLifecycleOwner) { emptyState ->
+            binding.payMaterialButtonCart.visibility =
+                if (emptyState.mustShowEmptyState) View.GONE else View.VISIBLE
             //create empty state view
             val emptyStateView =
                 showEmptyState(R.layout.view_cart_empty_state, R.id.rootViewCartEmptyState)
@@ -71,8 +72,9 @@ class CartFragment : NikyFragment() {
                     view.findViewById<TextView>(R.id.messageCartEmptyState).text =
                         getString(emptyState.emptyStateMessage)
                 }
-            } else
+            } else {
                 emptyStateView?.visibility = View.GONE
+            }
         }
 
         cartViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { show ->

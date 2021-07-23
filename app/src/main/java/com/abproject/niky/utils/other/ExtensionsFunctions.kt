@@ -57,7 +57,7 @@ fun View.implementSpringAnimationTrait() {
     val scaleXAnim = SpringAnimation(this, DynamicAnimation.SCALE_X, 0.90f)
     val scaleYAnim = SpringAnimation(this, DynamicAnimation.SCALE_Y, 0.90f)
 
-    setOnTouchListener { v, event ->
+    setOnTouchListener { _, event ->
         Timber.i(event.action.toString())
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
