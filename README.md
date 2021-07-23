@@ -1,6 +1,6 @@
 # NIKY
 
-Niky is a sample Persian shoe store application that work with Real rest API. Niky developed with **Kotlin** and **Dagger-Hilt** Dependency injection.
+Niky is a sample Persian shoe store application that works with Real rest API. Niky developed with **Kotlin** and **Dagger-Hilt** Dependency injection.
 
 ## What exactly Niky is?
 
