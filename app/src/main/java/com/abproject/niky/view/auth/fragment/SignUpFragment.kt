@@ -15,6 +15,7 @@ import com.abproject.niky.utils.rxjava.NikyCompletableObserver
 import com.abproject.niky.view.auth.AuthViewModel
 import com.abproject.niky.view.splash.SplashActivity
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -29,7 +30,7 @@ class SignUpFragment : NikyFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,8 +43,16 @@ class SignUpFragment : NikyFragment() {
     }
 
     private fun listeningToTheObservers() {
-        authViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { show ->
-            showProgressbar(show, true)
+        authViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { showingState ->
+            if (showingState) {
+                binding.progressBarSignUpButton.visibility = View.VISIBLE
+                binding.signUpMaterialButton.isEnabled = false
+                binding.signUpMaterialButton.text = ""
+            } else {
+                binding.progressBarSignUpButton.visibility = View.GONE
+                binding.signUpMaterialButton.isEnabled = true
+                binding.signUpMaterialButton.text = getString(R.string.signUp)
+            }
         }
     }
 
@@ -52,18 +61,15 @@ class SignUpFragment : NikyFragment() {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
-        binding.singUpMaterialButton.setOnClickListener {
+        binding.signUpMaterialButton.setOnClickListener {
             if (validationOfEditTexts()) {
                 authViewModel.userSignUp(
                     binding.emailEditTextSignUp.text.toString(),
                     binding.passwordEditTextSignUp.text.toString()
                 ).subscribe(object : NikyCompletableObserver(authViewModel.compositeDisposable) {
                     override fun onComplete() {
-                        showSnackBar(getString(R.string.signUpSuccessfully))
-                        Timer("startSplashActivity", false).schedule(3000) {
-                            startActivity(Intent(requireContext(), SplashActivity::class.java))
-                            requireActivity().finish()
-                        }
+                        startActivity(Intent(requireContext(), SplashActivity::class.java))
+                        requireActivity().finish()
                     }
                 })
             } else

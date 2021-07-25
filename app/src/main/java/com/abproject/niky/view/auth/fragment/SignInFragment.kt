@@ -42,8 +42,16 @@ class SignInFragment : NikyFragment() {
     }
 
     private fun listeningToTheObservers() {
-        authViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { show ->
-            showProgressbar(show, true)
+        authViewModel.progressbarStatusLiveData.observe(viewLifecycleOwner) { showingState ->
+            if (showingState) {
+                binding.progressBarSignInButton.visibility = View.VISIBLE
+                binding.singInMaterialButton.isEnabled = false
+                binding.singInMaterialButton.text = ""
+            } else {
+                binding.progressBarSignInButton.visibility = View.GONE
+                binding.singInMaterialButton.isEnabled = true
+                binding.singInMaterialButton.text = getString(R.string.singIn)
+            }
         }
     }
 

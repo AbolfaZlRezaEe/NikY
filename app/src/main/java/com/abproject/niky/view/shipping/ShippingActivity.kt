@@ -99,6 +99,8 @@ class ShippingActivity : NikyActivity() {
                     putExtra(EXTRA_KEY_ORDER_ID, submitOrderResult.orderId)
                 })
             }
+            binding.onlinePaymentMaterialButton.isEnabled = false
+            binding.cashOnDeliveryMaterialButton.isEnabled = false
             this.finish()
         }
     }

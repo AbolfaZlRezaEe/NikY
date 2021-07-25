@@ -48,6 +48,7 @@ class AddCommentActivity : NikyActivity() {
     private fun listeningToTheObservers() {
         addCommentViewModel.commentStatusLiveData.observe(this) { comment ->
             if (comment != null) {
+                binding.addCommentFloatingActionBottom.visibility = View.GONE
                 showSnackBar(getString(R.string.addingCommentSuccessfully))
                 Timer("finishAddCommentActivity").schedule(3000) {
                     setResult(Activity.RESULT_OK, Intent().apply {
@@ -55,7 +56,8 @@ class AddCommentActivity : NikyActivity() {
                     })
                     finish()
                 }
-            }
+            }else
+                binding.addCommentFloatingActionBottom.visibility = View.VISIBLE
         }
 
         addCommentViewModel.progressbarStatusLiveData.observe(this) { status ->

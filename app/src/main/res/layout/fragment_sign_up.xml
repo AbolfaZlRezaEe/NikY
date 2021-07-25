@@ -60,14 +60,31 @@
                     android:hint="@string/password"
                     android:inputType="textPassword" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/singUpMaterialButton"
-                    android:layout_width="@dimen/customWidthAuthButton"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/normalMargin"
-                    android:gravity="center"
-                    android:minHeight="@dimen/customAuthButtonMinHeight"
-                    android:text="@string/signUp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/customAuthButtonMinHeight"
+                    android:layout_marginTop="@dimen/normalMargin">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/sign_up_material_button"
+                        android:layout_width="@dimen/customWidthAuthButton"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:minHeight="@dimen/customAuthButtonMinHeight"
+                        android:text="@string/signUp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarSignUpButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="?progressBarColor"
+                        android:padding="@dimen/lowNormalPadding"
+                        android:visibility="gone" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
