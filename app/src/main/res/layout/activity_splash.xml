@@ -6,7 +6,7 @@
     android:layoutDirection="rtl"
     android:layout_height="match_parent"
     android:background="?android:colorBackground"
-    tools:context=".view.splash.SplashActivity">
+    tools:context=".view.views.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/nikyImageViewSplash"

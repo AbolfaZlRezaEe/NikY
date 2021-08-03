@@ -16,12 +16,12 @@
         android:theme="@style/Theme.NikY"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".view.orderhistorydetail.OrderHistoryDetailActivity"></activity>
-        <activity android:name=".view.addcomment.AddCommentActivity" />
-        <activity android:name=".view.favoriteslist.FavoritesListActivity" />
-        <activity android:name=".view.profiledetail.ProfileDetailActivity" />
-        <activity android:name=".view.orderhistory.OrderHistoryActivity" />
-        <activity android:name=".view.payment.PaymentResultActivity">
+        <activity android:name=".view.views.orderhistorydetail.OrderHistoryDetailActivity"></activity>
+        <activity android:name=".view.views.addcomment.AddCommentActivity" />
+        <activity android:name=".view.views.favoriteslist.FavoritesListActivity" />
+        <activity android:name=".view.views.profiledetail.ProfileDetailActivity" />
+        <activity android:name=".view.views.orderhistory.OrderHistoryActivity" />
+        <activity android:name=".view.views.payment.PaymentResultActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -34,15 +34,15 @@
                     android:scheme="nike" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.shipping.ShippingActivity" />
-        <activity android:name=".view.main.MainActivity" />
+        <activity android:name=".view.views.shipping.ShippingActivity" />
+        <activity android:name=".view.views.main.MainActivity" />
         <activity
-            android:name=".view.auth.AuthActivity"
+            android:name=".view.views.auth.AuthActivity"
             android:theme="@style/Theme.NikY.Auth" />
-        <activity android:name=".view.productlist.ProductListActivity" />
-        <activity android:name=".view.comment.CommentActivity" />
-        <activity android:name=".view.productdetail.ProductDetailActivity" />
-        <activity android:name=".view.splash.SplashActivity">
+        <activity android:name=".view.views.productlist.ProductListActivity" />
+        <activity android:name=".view.views.comment.CommentActivity" />
+        <activity android:name=".view.views.productdetail.ProductDetailActivity" />
+        <activity android:name=".view.views.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layoutDirection="rtl"
     android:layout_height="match_parent"
-    tools:context=".view.productdetail.ProductDetailActivity">
+    tools:context=".view.views.productdetail.ProductDetailActivity">
 
     <com.abproject.niky.customview.scrollview.ObservableScrollView
         android:id="@+id/observableScrollViewProductDetail"

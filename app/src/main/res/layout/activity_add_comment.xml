@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
-    tools:context=".view.addcomment.AddCommentActivity">
+    tools:context=".view.views.addcomment.AddCommentActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

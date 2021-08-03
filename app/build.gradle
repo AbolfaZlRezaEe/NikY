@@ -29,24 +29,66 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
     }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta02'
+
+    def core_version = "1.6.0"
+    implementation "androidx.core:core-ktx:$core_version"
+    def appCompat_version = "1.3.1"
+    implementation "androidx.appcompat:appcompat:$appCompat_version"
+    def material_version = "1.4.0"
+    implementation "com.google.android.material:material:$material_version"
+    def constraint_version = "2.0.4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    def compose_version = "1.0.0"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    // Tooling support (Previews, etc.)
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // Compose Utils
+    implementation "androidx.compose.ui:ui-util:$compose_version"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    // Material Design
+    implementation "androidx.compose.material:material:$compose_version"
+    // Material design icons
+    implementation "androidx.compose.material:material-icons-core:$compose_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    // Compose Animation
+    implementation "androidx.compose.animation:animation:$compose_version"
+    // Integration with activities
+    def activityCompose_version = "1.3.0"
+    implementation "androidx.activity:activity-compose:$activityCompose_version"
+    // Integration with ViewModels
+    def lifeCycleViewModelCompose_version = "1.0.0-alpha07"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifeCycleViewModelCompose_version"
+    // Constraint Layout for Compose
+    def constraintLayoutForCompose_version = "1.0.0-beta02"
+    implementation "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutForCompose_version"
+
+    //Accompanist Library
+    def accompanist_version = "0.15.0"
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
     //RecyclerView Library
     def recyclerview_version = "1.2.1"
@@ -64,10 +106,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     //Hilt Dependency Injection
-    def hilt_version = "2.36"
+    def hilt_version = "2.38.1"
     implementation "com.google.dagger:hilt-android:$hilt_version"
-    //to use Java annotation processing tool
-    annotationProcessor "com.google.dagger:hilt-compiler:$hilt_version"
     //to use Kotlin annotation processing tool (kapt)
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
@@ -78,8 +118,8 @@ dependencies {
 
     //Ktx library
     def kotlin_ktx = "1.3.0"
-    def fragment_ktx = "1.3.5"
-    def activity_ktx = "1.2.3"
+    def fragment_ktx = "1.4.0-alpha05"
+    def activity_ktx = "1.3.0"
     implementation "androidx.core:core-ktx:$kotlin_ktx"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     implementation "androidx.activity:activity-ktx:$activity_ktx"
@@ -111,7 +151,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     //Navigation Library
-    def navigation_version = "2.4.0-alpha04"
+    def navigation_version = "2.4.0-alpha05"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"
@@ -129,7 +169,7 @@ dependencies {
     //Armadillo Library for Encrypted shared preferences.
     def armadillo_version = "1.0.0"
     //only compile annotation available for this library.
-    compile "at.favre.lib:armadillo:$armadillo_version"
+    implementation "at.favre.lib:armadillo:$armadillo_version"
 
     //web browser in the application
     def browser_version = "1.3.0"

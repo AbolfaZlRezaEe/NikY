@@ -1,7 +1,7 @@
 package com.abproject.niky.di
 
 import com.abproject.niky.components.imageview.ImageLoadingService
-import com.abproject.niky.view.common.ProductAdapter
+import com.abproject.niky.view.views.common.ProductAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

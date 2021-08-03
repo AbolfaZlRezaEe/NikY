@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.abproject.niky.view.profile.ProfileFragment"
+        android:name="com.abproject.niky.view.views.profile.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>

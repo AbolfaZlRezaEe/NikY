@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.abproject.niky.view.cart.CartFragment"
+        android:name="com.abproject.niky.view.views.cart.CartFragment"
         android:label="CartFragment" />
 </navigation>

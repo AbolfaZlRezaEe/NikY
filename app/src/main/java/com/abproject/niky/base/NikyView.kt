@@ -9,7 +9,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.niky.R
 import com.abproject.niky.utils.exceptionhandler.ExceptionType
 import com.abproject.niky.utils.exceptionhandler.exceptions.NikyException
-import com.abproject.niky.view.auth.AuthActivity
+import com.abproject.niky.view.views.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

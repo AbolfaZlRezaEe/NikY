@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layoutDirection="rtl"
     android:layout_height="match_parent"
-    tools:context=".view.orderhistorydetail.OrderHistoryDetailActivity">
+    tools:context=".view.views.orderhistorydetail.OrderHistoryDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

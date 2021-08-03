@@ -8,7 +8,7 @@ object Variables {
      * Due to some training rules used in the app, we are not allowed to publish Base-Url.
      * So you can use the app for training or sample code for your idea and enjoy it :)
      */
-    const val BASE_URL = "empty"
+    const val BASE_URL = "http://expertdevelopers.ir/api/v1/"
 
     //database name use for creating room database instance.
     const val DATABASE_NAME = "niky_db"
