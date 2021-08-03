@@ -16,148 +16,147 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abproject.niky.R
-import com.abproject.niky.customview.scrollview.Scrollable
-import com.abproject.niky.theme.NikyTheme
 import com.abproject.niky.theme.dividerColor
+import com.abproject.niky.utils.other.EnglishConverter
+import com.abproject.niky.utils.other.UtilFunctions.formatPrice
 import com.abproject.niky.view.components.NikyDivider
+import com.abproject.niky.view.components.NikyPreview
 import com.abproject.niky.view.components.NikyToolbar
 
 @Composable
 fun PaymentResultUi(
-    darkTheme: Boolean,
     purchaseStatus: String,
     orderStatus: String,
-    orderPrice: String,
+    orderPrice: Int,
     onPressReturnHome: () -> Unit,
     onPressOrderHistory: () -> Unit
 ) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    NikyTheme(darkTheme = darkTheme) {
-        Scaffold(
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background),
+        topBar = {
+            NikyToolbar(
+                toolbarTitle = context.getString(R.string.paymentResultToolbarTitle),
+                backButtonVisibility = false,
+                onBackButtonPress = {}
+            )
+        }
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.background),
-            topBar = {
-                NikyToolbar(
-                    modifier = Modifier,
-                    toolbarTitle = context.getString(R.string.paymentResultToolbarTitle),
-                    backButtonVisibility = false,
-                    onBackButtonPress = {}
-                )
-            }
+                .verticalScroll(scrollState)
+                .padding(bottom = 16.dp)
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+            Surface(
                 modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .padding(bottom = 16.dp)
+                    .fillMaxWidth()
+                    .padding(all = 16.dp)
+                    .border(
+                        width = 1.dp,
+                        color = MaterialTheme.colors.dividerColor
+                    ),
+                shape = RoundedCornerShape(2.dp),
             ) {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(all = 16.dp)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colors.dividerColor
-                        ),
-                    shape = RoundedCornerShape(2.dp),
-                ) {
-                    Column {
+                Column {
+                    Text(
+                        text = purchaseStatus,
+                        color = MaterialTheme.colors.primary,
+                        style = MaterialTheme.typography.h5,
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .padding(
+                                top = 24.dp,
+                                start = 16.dp,
+                                end = 16.dp
+                            ),
+                        textAlign = TextAlign.Center
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(top = 32.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
                         Text(
-                            text = purchaseStatus,
-                            color = MaterialTheme.colors.primary,
-                            style = MaterialTheme.typography.h5,
+                            text = context.getString(R.string.purchaseStatus),
+                            style = MaterialTheme.typography.body1,
                             modifier = Modifier
-                                .align(Alignment.CenterHorizontally)
-                                .padding(
-                                    top = 24.dp,
-                                    start = 16.dp,
-                                    end = 16.dp
-                                ),
-                            textAlign = TextAlign.Center
+                                .padding(start = 16.dp)
                         )
-                        Row(
+                        Text(
+                            text = orderStatus,
+                            style = MaterialTheme.typography.body1,
                             modifier = Modifier
-                                .padding(top = 32.dp)
-                                .fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = context.getString(R.string.purchaseStatus),
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier
-                                    .padding(start = 16.dp)
-                            )
-                            Text(
-                                text = orderStatus,
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier
-                                    .padding(end = 16.dp)
-                            )
-                        }
-                        NikyDivider(
-                            modifier = Modifier
-                                .padding(top = 12.dp),
+                                .padding(end = 16.dp)
                         )
-                        Row(
+                    }
+                    NikyDivider(
+                        modifier = Modifier
+                            .padding(top = 12.dp),
+                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(
+                                top = 12.dp,
+                                bottom = 12.dp
+                            )
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = context.getString(R.string.amount),
+                            style = MaterialTheme.typography.body1,
                             modifier = Modifier
-                                .padding(
-                                    top = 12.dp,
-                                    bottom = 12.dp
-                                )
-                                .fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = context.getString(R.string.amount),
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier
-                                    .padding(start = 16.dp)
-                            )
-                            Text(
-                                text = orderPrice,
-                                style = MaterialTheme.typography.body1,
-                                modifier = Modifier
-                                    .padding(end = 16.dp)
-                            )
-                        }
+                                .padding(start = 16.dp)
+                        )
+                        Text(
+                            text = EnglishConverter.convertEnglishNumberToPersianNumber(
+                                formatPrice(orderPrice).toString()
+                            ),
+                            style = MaterialTheme.typography.body1,
+                            modifier = Modifier
+                                .padding(end = 16.dp)
+                        )
                     }
                 }
-                Row(
-                    modifier = Modifier
-                        .padding(
-                            start = 16.dp,
-                            end = 16.dp,
-                            top = 16.dp
-                        ),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+            }
+            Row(
+                modifier = Modifier
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 16.dp
+                    ),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Button(
+                    onClick = onPressReturnHome,
+                    shape = MaterialTheme.shapes.small
                 ) {
-                    Button(
-                        onClick = onPressReturnHome,
-                        shape = MaterialTheme.shapes.small
-                    ) {
-                        Text(
-                            text = context.getString(R.string.returnToHome),
-                            style = MaterialTheme.typography.button,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    OutlinedButton(
-                        onClick = onPressOrderHistory,
-                        shape = MaterialTheme.shapes.small,
-                        modifier = Modifier
-                            .padding(start = 16.dp)
-                    ) {
-                        Text(
-                            text = context.getString(R.string.orderHistory),
-                            style = MaterialTheme.typography.button,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+                    Text(
+                        text = context.getString(R.string.returnToHome),
+                        style = MaterialTheme.typography.button,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                OutlinedButton(
+                    onClick = onPressOrderHistory,
+                    shape = MaterialTheme.shapes.small,
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                ) {
+                    Text(
+                        text = context.getString(R.string.orderHistory),
+                        style = MaterialTheme.typography.button,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }
@@ -167,12 +166,13 @@ fun PaymentResultUi(
 @Preview()
 @Composable
 fun previewPaymentUi() {
-    PaymentResultUi(
-        darkTheme = false,
-        purchaseStatus = "پرداخت شما با موفقیت انجام گردید",
-        orderStatus = "در انتظار پرداخت",
-        orderPrice = "16000000",
-        onPressOrderHistory = {},
-        onPressReturnHome = {}
-    )
+    NikyPreview {
+        PaymentResultUi(
+            purchaseStatus = "پرداخت شما با موفقیت انجام گردید",
+            orderStatus = "در انتظار پرداخت",
+            orderPrice = 16000000,
+            onPressOrderHistory = {},
+            onPressReturnHome = {}
+        )
+    }
 }

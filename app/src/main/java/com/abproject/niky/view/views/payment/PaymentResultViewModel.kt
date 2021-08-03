@@ -19,23 +19,14 @@ class PaymentResultViewModel @Inject constructor(
 ) : NikyViewModel() {
 
     private val _paymentResultStatusLiveData = MutableLiveData<PaymentResult>()
-    private val _getOrderIdInExtraLiveData = MutableLiveData<Int?>()
-
     val paymentResultStatusLiveData: LiveData<PaymentResult> get() = _paymentResultStatusLiveData
-    val getOrderIdInExtraLiveData: LiveData<Int?> get() = _getOrderIdInExtraLiveData
 
-    init {
-        _getOrderIdInExtraLiveData.value = getOrderIdInExtras(savedStateHandle)
-    }
-
-    private fun getOrderIdInExtras(
-        savedStateHandle: SavedStateHandle,
-    ): Int? {
+    fun getOrderIdInExtras(): Int? {
         return savedStateHandle.get<Int>(EXTRA_KEY_ORDER_ID)
     }
 
     fun getPaymentResult(
-        orderId: Int,
+        orderId: Int
     ) {
         _progressbarStatusLiveData.value = true
         shippingRepository.getPaymentResult(orderId)

@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
             SplashUi()
         }
 
-//        initializeView()
+        initializeView()
     }
 
     private fun initializeView() {

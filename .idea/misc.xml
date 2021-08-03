@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/drawable/background_order_history.xml" value="0.24114583333333334" />
         <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/drawable/background_payment_result.xml" value="0.24114583333333334" />
         <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/drawable/ic_nike_logo.xml" value="0.11203703703703703" />
-        <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/layout/activity_order_history_detail.xml" value="0.2074074074074074" />
+        <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/layout/activity_order_history_detail.xml" value="0.22" />
         <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/layout/activity_payment_result.xml" value="0.33" />
         <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/layout/activity_shipping.xml" value="0.22037037037037038" />
         <entry key="..\:/AndroidProject/MyProject/NikY/app/src/main/res/layout/activity_splash.xml" value="0.1" />

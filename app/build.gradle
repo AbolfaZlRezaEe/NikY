@@ -128,6 +128,10 @@ dependencies {
     def fresco_version = "2.5.0"
     implementation "com.facebook.fresco:fresco:$fresco_version"
 
+    //Coil Library
+    def coil_version = "1.3.1"
+    implementation "io.coil-kt:coil-compose:$coil_version"
+
     //Retrofit Library
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
