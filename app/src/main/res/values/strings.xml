@@ -113,6 +113,7 @@
     <string name="deleteAllFavoritesTitle">حذف همه</string>
     <string name="addressHelperText">لطفا آدرس خود را بدون حرف اضافی وارد کنید</string>
     <string name="deleteAllFavoritesMessage">آیا می خواهید همه ی محصولات را از لیست علاقه مندی های خود حذف کنید؟</string>
+    <string name="loadingImageIsFailure">مشکلی در بارگزاری تصویر به وجود آمد!</string>
     <string-array name="productSortArray">
         <item>@string/sortLatestProduct</item>
         <item>@string/sortPopularProduct</item>

@@ -38,10 +38,21 @@ fun NikyTheme(
     content: @Composable () -> Unit
 ) {
     //Todo("for use dark theme, use a new object call colors for MaterialTheme!")
-        MaterialTheme(
-            colors = NikyLightPalette,
-            typography = NikyTypography,
-            shapes = NikyShape,
-            content = content
-        )
+    MaterialTheme(
+        colors = NikyLightPalette,
+        typography = NikyTypography,
+        shapes = NikyShape,
+        content = content
+    )
+}
+
+@Composable
+fun NikyLayoutDirectionProvider(
+    layoutDirection: LayoutDirection = LayoutDirection.Rtl,
+    content: @Composable () -> Unit
+) {
+    CompositionLocalProvider(
+        LocalLayoutDirection provides layoutDirection,
+        content = content
+    )
 }

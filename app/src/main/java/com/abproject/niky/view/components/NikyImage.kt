@@ -1,35 +1,43 @@
 package com.abproject.niky.view.components
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
-import coil.transform.CircleCropTransformation
+import androidx.constraintlayout.compose.ConstraintLayout
+import com.skydoves.landscapist.glide.GlideImage
 
-@ExperimentalCoilApi
 @Composable
 fun NikyImage(
-    height: Dp,
-    width: Dp,
-    url: String,
-    @DrawableRes defaultImage: Int = 0
+    imageUrl: String,
+    modifier: Modifier,
+    showProgressBarIndicator: Boolean,
+    errorMessage: String
 ) {
-    Image(
-        painter = rememberImagePainter(
-            data = url,
-            onExecute = { _, _ -> true },
-            builder = {
-                crossfade(true)
-                //Todo("add place Holder for All Images")
-                placeholder(defaultImage)
-                transformations(CircleCropTransformation())
-            }
-        ),
-        contentDescription = null,
-        modifier = Modifier.size(width, height)
+    GlideImage(
+        imageModel = imageUrl,
+        modifier = modifier,
+        loading = {
+            if (showProgressBarIndicator)
+                ConstraintLayout(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    val indicator = createRef()
+                    CircularProgressIndicator(
+                        modifier = Modifier.constrainAs(indicator) {
+                            top.linkTo(parent.top)
+                            bottom.linkTo(parent.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        }
+                    )
+                }
+        },
+        failure = {
+            Text(
+                text = errorMessage
+            )
+        },
     )
 }

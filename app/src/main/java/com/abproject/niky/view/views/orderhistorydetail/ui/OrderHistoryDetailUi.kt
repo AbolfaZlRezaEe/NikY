@@ -18,317 +18,334 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
 import com.abproject.niky.R
 import com.abproject.niky.model.dataclass.OrderHistoryItem
 import com.abproject.niky.model.dataclass.OrderItem
-import com.abproject.niky.theme.NikyTheme
 import com.abproject.niky.theme.dividerColor
+import com.abproject.niky.utils.other.EnglishConverter
+import com.abproject.niky.utils.other.UtilFunctions
+import com.abproject.niky.utils.other.Variables.PAYMENT_METHOD_ONLINE
 import com.abproject.niky.view.components.NikyDivider
 import com.abproject.niky.view.components.NikyImage
 import com.abproject.niky.view.components.NikyPreview
 import com.abproject.niky.view.components.NikyToolbar
 
-@ExperimentalCoilApi
 @Composable
 fun OrderHistoryDetailUi(
-    darkTheme: Boolean,
     orderHistoryItem: OrderHistoryItem,
     email: String,
     onToolbarBackButtonPress: () -> Unit
 ) {
-    NikyTheme(darkTheme = darkTheme) {
+    val context = LocalContext.current
+    val stateScroll = rememberScrollState()
 
-        val context = LocalContext.current
-        val stateScroll = rememberScrollState()
-
-        Scaffold(
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colors.background),
+        topBar = {
+            NikyToolbar(
+                toolbarTitle = context.getString(R.string.orderDetail),
+                backButtonVisibility = true,
+                onBackButtonPress = onToolbarBackButtonPress
+            )
+        }
+    ) {
+        Surface(
             modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.background),
-            topBar = {
-                NikyToolbar(
-                    toolbarTitle = context.getString(R.string.orderDetail),
-                    backButtonVisibility = true,
-                    onBackButtonPress = onToolbarBackButtonPress
-                )
-            }
+                .fillMaxWidth()
+                .padding(all = 16.dp)
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.colors.dividerColor
+                ),
+            shape = RoundedCornerShape(2.dp)
         ) {
-            Surface(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(all = 16.dp)
-                    .border(
-                        width = 1.dp,
-                        color = MaterialTheme.colors.dividerColor
-                    ),
-                shape = RoundedCornerShape(2.dp)
+                    .verticalScroll(stateScroll)
             ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.firstName),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = orderHistoryItem.firstName,
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.lastName),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = orderHistoryItem.lastName,
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.phoneNumber),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = EnglishConverter.convertEnglishNumberToPersianNumber(
+                            orderHistoryItem.phoneNumber
+                        ),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.email),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = email,
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .verticalScroll(stateScroll)
+                        .padding(all = 16.dp),
                 ) {
-                    Row(
+                    Text(
+                        text = context.getString(R.string.address),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.firstName),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.firstName,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
+                            .align(Alignment.Start)
+                    )
+                    Text(
+                        text = orderHistoryItem.address,
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.lastName),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.lastName,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.phoneNumber),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.phoneNumber,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.email),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = email,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                    ) {
-                        Text(
-                            text = context.getString(R.string.address),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.Start)
-                        )
-                        Text(
-                            text = orderHistoryItem.address,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.End)
-                                .padding(
-                                    top = 8.dp
-                                ),
-                            maxLines = 3,
-                            overflow = TextOverflow.Ellipsis,
+                            .align(Alignment.End)
+                            .padding(
+                                top = 8.dp
+                            ),
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis,
 
-                            )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.postalCode),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
                         )
-                        Text(
-                            text = orderHistoryItem.postalCode,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.postalCode),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = EnglishConverter.convertEnglishNumberToPersianNumber(
+                            orderHistoryItem.postalCode
+                        ),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.paymentMethod),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    val paymentMethod = if (orderHistoryItem.paymentMethod == PAYMENT_METHOD_ONLINE)
+                        context.getString(R.string.onlinePayment)
+                    else
+                        context.getString(R.string.cashOnDelivery)
+                    Text(
+                        text = paymentMethod,
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.paymentStatus),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = context.getString(R.string.paymentSuccessfully),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.shippingCost),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = EnglishConverter.convertEnglishNumberToPersianNumber(
+                            UtilFunctions.formatPrice(orderHistoryItem.shippingCost).toString()
+                        ),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = context.getString(R.string.totalPrice),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = EnglishConverter.convertEnglishNumberToPersianNumber(
+                            UtilFunctions.formatPrice(orderHistoryItem.totalPrice).toString()
+                        ),
+                        style = MaterialTheme.typography.body1,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .padding(
+                                start = 16.dp
+                            ),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+                NikyDivider()
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(132.dp)
+                        .align(Alignment.Start),
+                    contentPadding = PaddingValues(all = 16.dp),
+                ) {
+                    items(
+                        items = orderHistoryItem.orderItems,
+                    ) { item: OrderItem ->
+                        NikyImage(
+                            imageUrl = item.product.image,
                             modifier = Modifier
                                 .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                                    start = 3.dp,
+                                    end = 3.dp
+                                )
+                                .width(100.dp)
+                                .height(100.dp),
+                            showProgressBarIndicator = true,
+                            errorMessage = context.getString(R.string.loadingImageIsFailure)
                         )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.paymentMethod),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.paymentMethod,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.paymentStatus),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.paymentStatus,
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.shippingCost),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.shippingCost.toString(),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    NikyDivider()
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = context.getString(R.string.totalPrice),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = orderHistoryItem.totalPrice.toString(),
-                            style = MaterialTheme.typography.body1,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(
-                                    start = 16.dp
-                                ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(132.dp),
-                        contentPadding = PaddingValues(16.dp)
-                    ) {
-                        items(
-                            items = orderHistoryItem.orderItems
-                        ) { item: OrderItem ->
-                            NikyImage(
-                                height = 100.dp,
-                                width = 100.dp,
-                                url = item.product.image
-                            )
-                        }
                     }
                 }
             }
@@ -357,7 +374,6 @@ fun previewOrderHistoryUi() {
     )
     NikyPreview {
         OrderHistoryDetailUi(
-            darkTheme = false,
             email = "AbolfazlRezaei.of@gmail.com",
             orderHistoryItem = orderHistoryItem,
             onToolbarBackButtonPress = {}
